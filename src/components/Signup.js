@@ -6,7 +6,7 @@ const Signup = ()=>{
     const SignupInputStyle = {
         borderBottom: "5px solid #0f9690",
         outline: "none",
-        caratr: "#6da5c0"
+        caratr: "#6da5c0",
     }
 const [Loading, setLoading] = useState(false);
 
@@ -18,14 +18,32 @@ const handleSignup = async ()=>{
         {/** parent div for login screen */}
             <div className="h-[100vh] bg-[#05161a] flex flex-col justify-center">
                 {/** main container */}
-                <div className="bg-[#072e33] rounded-xl h-[60%] w-[30%] self-center">
+                <div className="bg-[#072e33] rounded-xl h-[90%] w-[30%] self-center">
                 <div className="h-[100%] flex flex-col justify-between">
-                        <div className="h-[20%] flex flex-row justify-center">
+                        <div className="h-[15%] flex flex-row justify-center">
                             <img src={HalfLogo} className="h-[100%]" />
                         </div>
-                        <div className="h-[80%]">
-                            <div className="flex flex-row justify-center">
+                        <div className="h-[85%]">
+                            <div className="-my-2 flex flex-row justify-center">
                                 <h1 className="text-white text-3xl">Signup</h1>
+                            </div>
+                        {/** user credentials fields */}
+                            <div className="h-[100%] flex flex-col justify-around -my-6">
+                                <div className=" h-[25%] flex flex-row justify-evenly">
+                                {/**first name */}
+                                        <input className="w-[40%] h-[35%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-l text-[#6da5c0]" style={SignupInputStyle} placeholder="First name" />
+                                {/**last name */}
+                                        <input className="w-[40%] h-[35%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-l text-[#6da5c0]" style={SignupInputStyle} placeholder="Last name" />
+                                </div>
+                                <div className="h-[25%] flex flex-col justify-start">
+                                        <input className="w-[80%] h-[35%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] " style={SignupInputStyle} placeholder="Enter Username or Email..." />
+                                </div>
+                                <div className=" h-[25%] flex flex-col justify-start">
+                                    <input className="w-[80%] h-[35%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] " style={SignupInputStyle} placeholder="Enter Username or Email..." />
+                                </div>
+                                <div className=" h-[25%] flex flex-col justify-start">
+                                    <input className="w-[80%] h-[35%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] " style={SignupInputStyle} placeholder="Enter Username or Email..." />
+                                </div>
                             </div>
                         </div>   
                 </div>   

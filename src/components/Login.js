@@ -33,11 +33,11 @@ const handleLogin = async ()=>{
                                 <div className="h-[100%] flex flex-col justify-evenly ">
                                     {/** single input field container */}
                                     <div className=" h-[25%] flex flex-col justify-start">
-                                        <input className="w-[80%] h-[55%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] autofill:bg-[#072e33] autofill:text-[#6da5c0]" style={LoginInputStyle} placeholder="Enter Username or Email..." />
+                                        <input className="w-[80%] h-[55%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] " style={LoginInputStyle} placeholder="Enter Username or Email..." />
                                     </div>
                                     {/** single input field container */}
                                     <div className=" h-[25%] flex flex-col justify-start ">
-                                        <input className="w-[80%] h-[55%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] autofill:bg-[#072e33] autofill:text-[#6da5c0]" style={LoginInputStyle} placeholder="Password..." />
+                                        <input className="w-[80%] h-[55%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] " style={LoginInputStyle} placeholder="Password..." />
                                     </div>
                                     {/** Login button field container */}
                                     <div className="h-[25%] flex flex-col justify-start ">
