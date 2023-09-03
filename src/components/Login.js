@@ -3,15 +3,39 @@ import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 import HalfLogo from "../assets/final_half_logo.png"
 import PacmanLoader from "react-spinners/PacmanLoader";
+import axios from 'axios';
+import path from '../path';
 const Login = ()=>{
     const LoginInputStyle = {
         borderBottom: "5px solid #0f9690",
         outline: "none",
-        caratr: "#6da5c0"
+        caret: "#6da5c0"
     }
 const [Loading, setLoading] = useState(false);
-
+const auth = {
+    headers: {
+      "Access-Control-Allow-Origin": `${path}`,
+      //Authorization: `Bearer ${token}`,
+    }
+  };
+const [LoginCred,setLoginCred] = useState({
+    uniqueId: '',
+    password: '',
+})
+const handleInput = (event) =>{
+    setLoginCred({...LoginCred,[event.target.name]:event.target.value})
+}
 const handleLogin = async ()=>{
+    console.log(LoginCred)
+    try{
+        const response = await axios.post(`${path}/login`,LoginCred)
+        alert(response.data.token)
+        setLoading(false)
+    }catch(error){
+        console.log("error in login catch",error);
+        setLoading(false);
+
+    }
 
 }
     return(
@@ -33,16 +57,27 @@ const handleLogin = async ()=>{
                                 <div className="h-[100%] flex flex-col justify-evenly ">
                                     {/** single input field container */}
                                     <div className=" h-[25%] flex flex-col justify-start">
-                                        <input className="w-[80%] h-[55%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] " style={LoginInputStyle} placeholder="Enter Username or Email..." />
+                                        <input 
+                                        className="w-[80%] h-[55%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0]" style={LoginInputStyle} 
+                                        placeholder="Enter Username or Email..." 
+                                        name="uniqueId"
+                                        onChange={handleInput}
+                                        />
                                     </div>
                                     {/** single input field container */}
                                     <div className=" h-[25%] flex flex-col justify-start ">
-                                        <input className="w-[80%] h-[55%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] " style={LoginInputStyle} placeholder="Password..." />
+                                        <input className="w-[80%] h-[55%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0]" 
+                                        style={LoginInputStyle} 
+                                        placeholder="Password..." 
+                                        name="password"
+                                        onChange={handleInput}
+                                        />
                                     </div>
                                     {/** Login button field container */}
                                     <div className="h-[25%] flex flex-col justify-start ">
                                     <button disabled={Loading} style={{borderColor: "#6da5c0", backgroundColor: 'transparent'}} className=" self-center w-[25%] h-[40%] text-white text-xl border-2 rounded-xl hover:bg-[#0f9690] hover:text-green" onClick={()=>{
                                         setLoading(true);
+                                        handleLogin()
                                     }}>
                                     {/** Login button animation icon and text */}
                                         {Loading?<>
