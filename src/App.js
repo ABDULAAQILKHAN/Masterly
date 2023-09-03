@@ -1,10 +1,17 @@
+import {BrowserRouter,Routes,Route } from 'react-router-dom';
 import LandingPage from "./components/LandingPage";
-
+import Login from './components/Login';
 function App() {
-  return (<>
+  return (
+  <>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<LandingPage /> } />
+      <Route exact path="/login" element={<Login /> } />
 
-    <LandingPage />  
-    </>  
+    </Routes>
+  </BrowserRouter>
+  </>  
   );
 }
 
