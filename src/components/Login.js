@@ -49,30 +49,30 @@ const handleLogin = async ()=>{
         {/** parent div for login screen */}
             <div className="h-[100vh] bg-[#05161a] flex flex-col justify-center">
                 {/** main container */}
-                <div className="bg-[#072e33] rounded-xl h-[70%] w-[30%] self-center">
+                <div className="bg-[#072e33] rounded-xl h-[70%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%]">
                     <div className="h-[100%] flex flex-col justify-between">
                         <div className="h-[20%] flex flex-row justify-center">
                             <img src={HalfLogo} className="h-[100%]" />
                         </div>
                         <div className="h-[80%]">
-                            <div className="flex flex-row justify-center">
+                            <div className="flex flex-row justify-center ">
                                 <h1 className="text-white text-2xl">Login</h1>
                             </div>
                             {/** login fields containter */}
                             <div className=" h-[100%]">
                                 <div className="h-[100%] flex flex-col justify-evenly ">
                                     {/** single input field container */}
-                                    <div className=" h-[20%] flex flex-col justify-start">
+                                    <div className="flex flex-col justify-start ">
                                         <input 
-                                        className="w-[80%] h-[55%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-l text-[#6da5c0]" style={LoginInputStyle} 
+                                        className="w-[80%] h-[50px] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-[1.1rem] text-[#6da5c0]" style={LoginInputStyle} 
                                         placeholder="Enter Username or Email..." 
                                         name="uniqueId"
                                         onChange={handleInput}
                                         />
                                     </div>
                                     {/** single input field container */}
-                                    <div className=" h-[20%] flex flex-col justify-start ">
-                                        <input className="w-[80%] h-[55%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-l text-[#6da5c0]" 
+                                    <div className=" flex flex-col justify-start ">
+                                        <input className="w-[80%] h-[50px] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-[1.1rem] text-[#6da5c0]" 
                                         style={LoginInputStyle} 
                                         placeholder="Password..." 
                                         name="password"
@@ -80,8 +80,8 @@ const handleLogin = async ()=>{
                                         />
                                     </div>
                                     {/** Login button field container */}
-                                    <div className="h-[35%] flex flex-col justify-start ">
-                                    <button disabled={Loading} style={{borderColor: "#6da5c0", backgroundColor: 'transparent'}} className=" self-center w-[25%] h-[35%] text-white text-xl border-2 rounded-xl hover:bg-[#0f9690] hover:text-green" onClick={()=>{
+                                    <div className="flex flex-col justify-start ">
+                                    <button disabled={Loading} style={{borderColor: "#6da5c0", backgroundColor: 'transparent'}} className=" self-center w-[25%] h-[40px] text-white text-xl border-2 rounded-xl hover:bg-[#0f9690] hover:text-green" onClick={()=>{
                                         handleLogin()
                                     }}>
                                     {/** Login button animation icon and text */}
