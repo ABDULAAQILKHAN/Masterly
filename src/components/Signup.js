@@ -25,7 +25,7 @@ const handleSignup = async ()=>{
                         </div>
                         <div className="h-[85%]">
                             <div className="-my-2 flex flex-row justify-center">
-                                <h1 className="text-white text-3xl">Signup</h1>
+                                <h1 className="text-white text-2xl">Signup</h1>
                             </div>
                         {/** user credentials fields */}
                             <div className="h-[100%] flex flex-col justify-around -my-6">
@@ -35,8 +35,13 @@ const handleSignup = async ()=>{
                                 {/**last name */}
                                         <input className="w-[40%] h-[35%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-l text-[#6da5c0]" style={SignupInputStyle} placeholder="Last name" />
                                 </div>
+                                {/**Gender */}
                                 <div className="h-[25%] flex flex-col justify-start">
-                                        <input className="w-[80%] h-[35%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] " style={SignupInputStyle} placeholder="Enter Username or Email..." />
+                                    <select className="w-[80%] self-center h-[35%] bg-[#072e33] text-white outline-none" defaultValue={"male"}>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Other</option>
+                                    </select>
                                 </div>
                                 <div className=" h-[25%] flex flex-col justify-start">
                                     <input className="w-[80%] h-[35%] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-xl text-[#6da5c0] " style={SignupInputStyle} placeholder="Enter Username or Email..." />
