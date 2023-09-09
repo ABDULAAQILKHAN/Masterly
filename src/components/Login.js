@@ -26,7 +26,7 @@ const handleInput = (event) =>{
     setLoginCred({...LoginCred,[event.target.name]:event.target.value})
 }
 const handleLogin = async ()=>{
-    console.log(LoginCred)
+    //console.log(LoginCred)
     if(LoginCred.uniqueId === '' || LoginCred.password === ''){
         alert("Username or password missing")
     }
@@ -34,8 +34,16 @@ const handleLogin = async ()=>{
         try{
             setLoading(true);
             const response = await axios.post(`${path}/login`,LoginCred)
-            alert(response.data.token)
-            setLoading(false)
+            if(response.data.flag){
+                //dispatch user info in redux
+                const {flag,user,token} = response.data;
+                console.log(flag,user,token)
+                setLoading(false)
+            }
+            else{
+                alert(response.data.message)
+                setLoading(false)
+            }
         }catch(error){
             console.log("error in login catch",error);
             setLoading(false);

@@ -5,12 +5,15 @@ import HalfLogo from "../assets/final_half_logo.png"
 import PacmanLoader from "react-spinners/PacmanLoader";
 import axios from 'axios';
 import path from '../path';
+import { useNavigate } from "react-router-dom";
+
 const Signup = ()=>{
     const signupInputStyle = {
         borderBottom: "5px solid #0f9690",
         outline: "none",
         caret: "#6da5c0"
     }
+const Navigate = useNavigate();
 const [Loading, setLoading] = useState(false);
 const [allValid,setAllValid] = useState(false);
 
@@ -44,10 +47,16 @@ const handleSignup = async ()=>{
             setLoading(true);
             console.log(SignupCred)
             const response = await axios.post(`${path}/signup`,SignupCred)
-            if(response.data.token){
-                alert(response.data.token)
+            if(response.data.flag){
+                //alert(response.data.token)
+                setLoading(false)
+                Navigate('/login')
+            }
+            else{
+                alert(response.data.message)
                 setLoading(false)
             }
+
         }catch(error){
             console.log("error in signup catch",error);
             setLoading(false);
