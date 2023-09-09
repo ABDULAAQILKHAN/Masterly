@@ -1,10 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
-import HalfLogo from "../assets/final_half_logo.png"
+import HalfLogo from "../../assets/final_half_logo.png"
 import PacmanLoader from "react-spinners/PacmanLoader";
 import axios from 'axios';
-import path from '../path';
+import path from '../../path';
 import { useNavigate } from "react-router-dom";
 
 const Signup = ()=>{
@@ -15,14 +15,13 @@ const Signup = ()=>{
     }
 const Navigate = useNavigate();
 const [Loading, setLoading] = useState(false);
-const [allValid,setAllValid] = useState(false);
 
-const auth = {
+/*const auth = {
     headers: {
       "Access-Control-Allow-Origin": `${path}`,
       //Authorization: `Bearer ${token}`,
     }
-  };
+  };*/
 const [SignupCred,setSignupCred] = useState({
     name: '',
     uniqueId: '',
@@ -50,7 +49,7 @@ const handleSignup = async ()=>{
             if(response.data.flag){
                 //alert(response.data.token)
                 setLoading(false)
-                Navigate('/login')
+                Navigate('/verifyotp')
             }
             else{
                 alert(response.data.message)

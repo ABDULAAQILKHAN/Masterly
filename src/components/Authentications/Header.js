@@ -1,5 +1,5 @@
 import React from "react";
-import HalfLogo from "../assets/final_half_logo.png"
+import HalfLogo from "../../assets/final_half_logo.png"
 import { useNavigate } from "react-router-dom";
 const LandingHeader = ()=>{
     const Navigate = useNavigate();
