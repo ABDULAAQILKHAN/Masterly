@@ -6,7 +6,7 @@ const LandingHeader = ()=>{
     return(
         <>
         {/** web header */}
-        <div className="h-[10vh] bg-transparent border-b border-white">
+        <div className="h-[10vh] primaryBG border-b border-white">
             <div className="flex flex-row justify-between h-[100%]">
                 <div className="h-[100%] flex flex-column justify-center min-w-[20%]">
                     <img src={HalfLogo} className="h-[100%]" />
