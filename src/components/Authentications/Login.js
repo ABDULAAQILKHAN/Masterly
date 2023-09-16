@@ -1,16 +1,17 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import HalfLogo from "../../assets/final_half_logo.png"
 import PacmanLoader from "react-spinners/PacmanLoader";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import path from '../../path';
-const Login = ()=>{
-    const LoginInputStyle = {
-        borderBottom: "5px solid #0f9690",
-        outline: "none",
-        caret: "#6da5c0"
-    }
+import "../css/global.css";
+import { useSelector, useDispatch } from 'react-redux';
+import {updateUserDetails} from "../../redux/userReducer";
+const Login = ({setToken})=>{
+const Navigate = useNavigate();
+const dispatch = useDispatch();
 const [Loading, setLoading] = useState(false);
 const auth = {
     headers: {
@@ -18,6 +19,10 @@ const auth = {
       //Authorization: `Bearer ${token}`,
     }
   };
+  const user = useSelector(state=> state.user)
+  useEffect(()=>{
+    user.token&&Navigate("/login")
+  },[])
 const [LoginCred,setLoginCred] = useState({
     uniqueId: '',
     password: '',
@@ -36,8 +41,14 @@ const handleLogin = async ()=>{
             const response = await axios.post(`${path}/login`,LoginCred)
             if(response.data.flag){
                 //dispatch user info in redux
-                const {flag,user,token} = response.data;
-                console.log(flag,user,token)
+                //const {flag,user,token} = response.data;
+                //console.log(flag,user,token)
+                let user = {
+                    user:response.data.user,token:response.data.token
+                }
+                setToken(response.data.token)
+                dispatch(updateUserDetails(user))
+                Navigate("/home")
                 setLoading(false)
             }
             else{
@@ -45,6 +56,7 @@ const handleLogin = async ()=>{
                 setLoading(false)
             }
         }catch(error){
+            alert("try again later")
             console.log("error in login catch",error);
             setLoading(false);
             
@@ -55,41 +67,43 @@ const handleLogin = async ()=>{
     return(
         <>
         {/** parent div for login screen */}
-            <div className="h-[100vh] bg-[#05161a] flex flex-col justify-center">
+            <div className="h-[100vh] bg-primaryBG flex flex-col justify-center">
                 {/** main container */}
-                <div className="bg-[#072e33] rounded-xl h-[70%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%]">
+                <div className="whiteCard rounded-xl h-[70%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%]">
                     <div className="h-[100%] flex flex-col justify-between">
-                        <div className="h-[20%] flex flex-row justify-center">
-                            <img src={HalfLogo} className="h-[100%]" />
+                        <div className="h-[20%] flex flex-row justify-center bg-black opacity-80 z-10">
+                            <img src={HalfLogo} className="z-15 h-[100%]" />
                         </div>
-                        <div className="h-[80%]">
-                            <div className="flex flex-row justify-center ">
-                                <h1 className="text-white text-2xl">Login</h1>
+                        <div className="h-[80%] flex flex-col justify-between">
+                            <div className="flex flex-row justify-center p-3">
+                                <h1 className=" text-2xl">Login</h1>
                             </div>
                             {/** login fields containter */}
                             <div className=" h-[100%]">
-                                <div className="h-[100%] flex flex-col justify-evenly ">
+                                <div className="h-[100%] flex flex-col justify-around ">
                                     {/** single input field container */}
                                     <div className="flex flex-col justify-start ">
                                         <input 
-                                        className="w-[80%] h-[50px] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-[1.1rem] text-[#6da5c0]" style={LoginInputStyle} 
+                                        className="w-[80%] h-[50px] self-center bg-transparent placeho placeholder: caret-[#FF5500] text-[1.1rem]  inputBorder" 
                                         placeholder="Enter Username or Email..." 
                                         name="uniqueId"
                                         onChange={handleInput}
                                         />
+                                        <span style={{visibility: 'hidden'}} className="text-[red] self-center p-1">this is to genereate error</span>
                                     </div>
                                     {/** single input field container */}
                                     <div className=" flex flex-col justify-start ">
-                                        <input className="w-[80%] h-[50px] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-[1.1rem] text-[#6da5c0]" 
-                                        style={LoginInputStyle} 
+                                        <input className="w-[80%] h-[50px] self-center bg-transparent placeho placeholder: caret-[#FF5500] text-[1.1rem] inputBorder" 
                                         placeholder="Password..." 
+                                        type="password"
                                         name="password"
                                         onChange={handleInput}
                                         />
+                                        <span style={{visibility: 'hidden'}} className="text-[red] self-center p-1">this is to genereate error</span>
                                     </div>
                                     {/** Login button field container */}
                                     <div className="flex flex-col justify-start ">
-                                    <button disabled={Loading} style={{borderColor: "#6da5c0", backgroundColor: 'transparent'}} className=" self-center w-[25%] h-[40px] text-white text-xl border-2 rounded-xl hover:bg-[#0f9690] hover:text-green" onClick={()=>{
+                                    <button disabled={Loading} className=" self-center w-[25%] h-[40px]  text-xl button" onClick={()=>{
                                         handleLogin()
                                     }}>
                                     {/** Login button animation icon and text */}
@@ -109,7 +123,7 @@ const handleLogin = async ()=>{
                                     </button>
                                     {/** signup field and its link container */}
                                     <div className="w-[80%] my-6 self-center">
-                                        <Link className="text-l text-white hover:text-[#6da5c0]" to="/signup">Create account...</Link>
+                                        <Link className="text-l  hover:text-[#FF5500]" to="/signup">Create account...</Link>
                                     </div>
                                     </div>
                                 </div>

@@ -5,6 +5,9 @@ import HalfLogo from "../../assets/final_half_logo.png"
 import PacmanLoader from "react-spinners/PacmanLoader";
 import axios from 'axios';
 import path from '../../path';
+import '../css/global.css';
+import { useSelector, useDispatch } from 'react-redux'
+
 const VerifyOtp = ()=>{
     const OtpInputStyle = {
         borderBottom: "5px solid #0f9690",
@@ -54,24 +57,24 @@ const handleVerify = async ()=>{
     return(
         <>
         {/** parent div for login screen */}
-            <div className="h-[100vh] bg-[#05161a] flex flex-col justify-center">
+            <div className="h-[100vh] bg-primaryBG flex flex-col justify-center">
                 {/** main container */}
-                <div className="bg-[#072e33] rounded-xl h-[70%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%]">
+                <div className="bg-[#072e33] whiteCard h-[60%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%]">
                     <div className="h-[100%] flex flex-col justify-between">
-                        <div className="h-[20%] flex flex-row justify-center">
+                        <div className="h-[20%] flex flex-row justify-center bg-black opacity-80">
                             <img src={HalfLogo} className="h-[100%]" />
                         </div>
                         <div className="h-[80%]">
-                            <div className="flex flex-row justify-center ">
-                                <h1 className="text-white text-2xl">Authentication</h1>
+                            <div className="flex flex-row justify-center  p-3">
+                                <h1 className=" text-2xl">Authentication</h1>
                             </div>
                             {/** login fields containter */}
                             <div className=" h-[100%]">
-                                <div className="h-[80%] flex flex-col justify-between ">
+                                <div className="h-[80%] flex flex-col justify-evenly ">
                                     {/** single input field container */}
-                                    <h3 className="text-white self-center my-3">Enter otp sent on your Email</h3>
+                                    <h3 className=" self-center my-3">Enter otp sent on your Email</h3>
                                     <input 
-                                        className="w-[80%] h-[45px] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-[1.1rem] text-[#6da5c0]" style={OtpInputStyle} 
+                                        className="w-[80%] h-[50px] self-center bg-transparent placeho placeholder: caret-[#FF5500] text-[1.1rem] inputBorder"
                                         placeholder={"Enter OTP here"} 
                                         name="otp"
                                         type="number"
@@ -80,7 +83,8 @@ const handleVerify = async ()=>{
                                     <span style={{visibility: 'hidden'}} className="text-[red] self-center p-1">this is to genereate error</span>
                                     {/** Login button field container */}
                                     <div className="flex flex-col h-[35%] justify-between">
-                                    <button disabled={Loading} style={{borderColor: "#6da5c0", backgroundColor: 'transparent'}} className=" self-center w-[25%] h-[40px] text-white text-xl border-2 rounded-xl hover:bg-[#0f9690] hover:text-green" onClick={()=>{
+
+                                    <button disabled={Loading}  className=" self-center w-[25%] h-[40px]  text-xl button" onClick={()=>{
                                         handleVerify()
                                     }}>
                                     {/** Login button animation icon and text */}
@@ -100,7 +104,7 @@ const handleVerify = async ()=>{
                                     </button>
                                     {/** signup field and its link container */}
                                     <div className="w-[80%] self-center">
-                                        <Link className="text-l text-white hover:text-[#6da5c0]" to="/signup">Redend Otp...</Link>
+                                        <Link className="text-l  hover:text-[#FF5500]" to="/signup">Redend Otp...</Link>
                                     </div>
                                     </div>
                                 </div>

@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       colors: {
         "primaryBG": "var(--primaryBG)",
+        "cardBG": "var(--cardBG)",
+
       },
     },
   },

@@ -6,13 +6,10 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 import axios from 'axios';
 import path from '../../path';
 import { useNavigate } from "react-router-dom";
+import "../css/global.css";
 
 const Signup = ()=>{
-    const signupInputStyle = {
-        borderBottom: "5px solid #0f9690",
-        outline: "none",
-        caret: "#6da5c0"
-    }
+
 const Navigate = useNavigate();
 const [Loading, setLoading] = useState(false);
 
@@ -67,25 +64,25 @@ const handleSignup = async ()=>{
     return(
         <>
         {/** parent div for signup screen */}
-            <div className="h-[100vh] bg-[#05161a] flex flex-col justify-center">
+            <div className="h-[100vh]  flex flex-col justify-center">
                 {/** main container */}
-                <div className="bg-[#072e33] rounded-xl h-[90%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%]">
-                    <div className="h-[100%] flex flex-col justify-between">
-                        <div className="h-[20%] flex flex-row justify-center">
+                <div className="whiteCard rounded-xl h-[90%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%]">
+                    <div className="h-[100%] flex flex-col justify-evenly">
+                        <div className="h-[15%] flex flex-row justify-center bg-black opacity-80">
                             <img src={HalfLogo} className="h-[100%]" />
                         </div>
                         <div className="h-[80%]">
-                            <div className="flex flex-row justify-center">
-                                <h1 className="text-white text-2xl">Signup</h1>
+                            <div className="flex flex-row justify-center ">
+                                <h1 className=" text-2xl ">Signup</h1>
                             </div>
                             {/** signup fields containter */}
-                            <div className="-my-4 h-[100%]">
+                            <div className=" h-[100%] ">
                                 <div className="h-[100%] flex flex-col justify-evenly ">
                                     {/** all input field container */}
-                                    <div className="flex flex-col justify-evenly  h-[100%] ">
+                                    <div className="flex flex-col justify-center gap-5 h-[80%]">
                                         <div className="flex flex-col">
                                             <input 
-                                                className="w-[80%] h-[45px] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-[1.1rem] text-[#6da5c0]" style={signupInputStyle} 
+                                                className="w-[80%] h-[45px] self-center bg-transparent inputBorder caret-[#FF5500] text-[1.1rem]" 
                                                 placeholder={"Enter Your Full name"} 
                                                 name="name"
                                                 type="text"
@@ -95,7 +92,7 @@ const handleSignup = async ()=>{
                                         </div>
                                         <div className="flex flex-col">
                                             <input 
-                                                className="w-[80%] h-[45px] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-[1.1rem] text-[#6da5c0]" style={signupInputStyle} 
+                                                className="w-[80%] h-[45px] self-center bg-transparent inputBorder caret-[#FF5500] text-[1.1rem]" 
                                                 placeholder={"Enter Your Email id"} 
                                                 name="uniqueId"
                                                 type="email"
@@ -105,7 +102,7 @@ const handleSignup = async ()=>{
                                         </div>
                                         <div className="flex flex-col">
                                             <input 
-                                                className="w-[80%] h-[45px] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-[1.1rem] text-[#6da5c0]" style={signupInputStyle} 
+                                                className="w-[80%] h-[45px] self-center bg-transparent inputBorder caret-[#FF5500] text-[1.1rem]" 
                                                 placeholder={"Enter Strong password"} 
                                                 name="password"
                                                 type="password"
@@ -115,7 +112,7 @@ const handleSignup = async ()=>{
                                         </div>
                                         <div className="flex flex-col">
                                             <input 
-                                                className="w-[80%] h-[45px] self-center bg-transparent placeho placeholder:text-white caret-[#6da5c0] text-[1.1rem] text-[#6da5c0]" style={signupInputStyle} 
+                                                className="w-[80%] h-[45px] self-center bg-transparent inputBorder caret-[#FF5500] text-[1.1rem]" 
                                                 placeholder={"Confirm password"} 
                                                 name="cpassword"
                                                 type="password"
@@ -126,15 +123,15 @@ const handleSignup = async ()=>{
                                     </div>
 
                                     {/** signup button field container */}
-                                    <div className="flex flex-col justify-start ">
-                                    <button disabled={Loading} style={{borderColor: "#6da5c0", backgroundColor: Loading?'black':'transparent'}} className="self-center w-[25%] h-[40px] text-white text-xl border-2 rounded-xl hover:bg-[#0f9690] hover:text-green" onClick={()=>{
+                                    <div className="flex flex-col justify-evenly my-5 h-[20%]">
+                                    <button disabled={Loading} className="self-center w-[25%] h-[40px] text-xl button" onClick={()=>{
                                         handleSignup()
                                     }}>
                                     {/** signup button animation icon and text */}
                                         {Loading?<>
                                         <div className="mx-6">
                                             <PacmanLoader
-                                                color={"#6da5c0"}
+                                                color={"#FF5500"}
                                                 cssOverride={{
                                                     width: '0'
                                                 }}
@@ -147,7 +144,7 @@ const handleSignup = async ()=>{
                                     </button>
                                     {/** signup field and its link container */}
                                     <div className="w-[80%] my-6 self-center">
-                                        <Link className="text-l text-white hover:text-[#6da5c0]" to="/login">Already have a account...</Link>
+                                        <Link className="text-l  hover:text-[#FF5500]" to="/login">Already have a account...</Link>
                                     </div>
                                     </div>
                                 </div>
