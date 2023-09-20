@@ -15,6 +15,7 @@ const dispatch = useDispatch();
 const [Loading, setLoading] = useState(false);
 const auth = {
     headers: {
+    "Content-Type": "application/json",
       "Access-Control-Allow-Origin": `${path}`,
       //Authorization: `Bearer ${token}`,
     }
@@ -38,7 +39,7 @@ const handleLogin = async ()=>{
     else{
         try{
             setLoading(true);
-            const response = await axios.post(`${path}/login`,LoginCred)
+            const response = await axios.post(`${path}/login`,LoginCred,auth)
             if(response.data.flag){
                 //dispatch user info in redux
                 //const {flag,user,token} = response.data;
@@ -69,7 +70,7 @@ const handleLogin = async ()=>{
         {/** parent div for login screen */}
             <div className="h-[100vh] bg-primaryBG flex flex-col justify-center">
                 {/** main container */}
-                <div className="whiteCard rounded-xl h-[70%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%]">
+                <div className="whiteCard rounded-xl h-[70%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%] anim">
                     <div className="h-[100%] flex flex-col justify-between">
                         <div className="h-[20%] flex flex-row justify-center bg-black opacity-80 z-10">
                             <img src={HalfLogo} className="z-15 h-[100%]" />

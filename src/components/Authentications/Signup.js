@@ -66,7 +66,7 @@ const handleSignup = async ()=>{
         {/** parent div for signup screen */}
             <div className="h-[100vh]  flex flex-col justify-center">
                 {/** main container */}
-                <div className="whiteCard rounded-xl h-[90%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%]">
+                <div className="whiteCard rounded-xl h-[90%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%] anim">
                     <div className="h-[100%] flex flex-col justify-evenly">
                         <div className="h-[15%] flex flex-row justify-center bg-black opacity-80">
                             <img src={HalfLogo} className="h-[100%]" />

@@ -1,16 +1,17 @@
 import React from "react";
 import LandingHeader from "./Header";
 const LandingPage = () =>{
+    const dev = true;
     return (
     <>
-    <div className="h-[100vh] bg-[#05161a]">
-            <LandingHeader />
+    <div className="h-[100vh] bg-[#ffffff]">
             {
-                /**
-                 * 
-                <iframe  className="h-[100vh]" src={'https://10web-site.ai/1/central-parakeet/services/'} width="100%" height="500px" />
-                 */
-            }
+            //<LandingHeader />
+        }
+                <iframe  className="h-[100vh]" src={dev?'https://abdulaaqilkhan.github.io/MasterlyLanding/':'http://127.0.0.1:5500/Masterly/Masterly/index.html'} width="100%" height="100%"  seamless="seamless" frameborder="0" style={{overflow: 'hidden'}}/>
+            
+                 
+            
     </div>
     </>)
 }

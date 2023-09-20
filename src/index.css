@@ -9,6 +9,11 @@
 body{
     font-family: "MyFont";
 }
+
+::selection{
+  background-color: #FF5500;
+  color: white;
+}
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
