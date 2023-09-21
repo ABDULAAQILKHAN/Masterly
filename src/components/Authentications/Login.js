@@ -8,8 +8,7 @@ import axios from 'axios';
 import path from '../../path';
 import "../css/global.css";
 import { useSelector, useDispatch } from 'react-redux';
-import {updateUserDetails} from "../../redux/userReducer";
-const Login = ({setToken})=>{
+const Login = ()=>{
 const Navigate = useNavigate();
 const dispatch = useDispatch();
 const [Loading, setLoading] = useState(false);
@@ -20,9 +19,9 @@ const auth = {
       //Authorization: `Bearer ${token}`,
     }
   };
-  const user = useSelector(state=> state.user)
   useEffect(()=>{
-    user.token&&Navigate("/login")
+    let  data  = JSON.parse(localStorage.getItem("local"))
+    data?.token&&Navigate("/home")
   },[])
 const [LoginCred,setLoginCred] = useState({
     uniqueId: '',
@@ -44,11 +43,11 @@ const handleLogin = async ()=>{
                 //dispatch user info in redux
                 //const {flag,user,token} = response.data;
                 //console.log(flag,user,token)
-                let user = {
+                let local = {
                     user:response.data.user,token:response.data.token
                 }
-                setToken(response.data.token)
-                dispatch(updateUserDetails(user))
+                //dispatch(updateUserDetails(local));
+                localStorage.setItem("local",JSON.stringify(local))
                 Navigate("/home")
                 setLoading(false)
             }

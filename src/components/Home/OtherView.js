@@ -8,10 +8,7 @@ import '../css/global.css';
 import { useSelector, useDispatch } from 'react-redux'
 const OtherView = ()=>{
     const user = useSelector(state=> state.user)
-    useEffect(()=>{
-    !user.token&&Navigate("/login")
-        console.log(user)
-    },[])
+
 
 const Navigate = useNavigate();
 
@@ -19,10 +16,18 @@ const Navigate = useNavigate();
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-[90%] w-[85%] bg-white whiteCard  self-center">
-        <div className="flex flex-row justify-center">
+        <div className="h-[90%] w-[90%] bg-white homeContainers  self-center">
+        <div className="flex flex-row justify-evenly">
                 <h1 className="">other view</h1>
             </div>
+                <div className=" bg-white">
+                    <button className="" onClick={()=>{
+                        localStorage.removeItem("local");
+                        Navigate("/login")
+                        }}>
+                        Logout
+                    </button>
+                </div>
         </div>
         </>
 

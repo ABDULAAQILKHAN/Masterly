@@ -9,11 +9,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import ProfileView from "./profileView";
 import MainView from "./MainView";
 import OtherView from "./OtherView";
+import {updateUserDetails} from "../../redux/userReducer";
 const Homepage = ()=>{
-    const user = useSelector(state=> state.user)
+    const dispatch = useDispatch()
     useEffect(()=>{
-    !user.token&&Navigate("/login")
-        console.log(user)
+
+    let data = JSON.parse(localStorage.getItem("local"))
+    let local = {
+        user:data?.user,
+        token:data?.token
+    }
+    data?.token?dispatch(updateUserDetails(local)):Navigate("/login")
+        //console.log(user)
     },[])
 
 const Navigate = useNavigate();
@@ -27,7 +34,7 @@ const Navigate = useNavigate();
                 <div className=" h-[100%] w-[25%] flex flex-col justify-center">
                     <ProfileView/>
                 </div>
-                <div className=" h-[100%] flex flex-col justify-center w-[50%] ">
+                <div className=" h-[100%] flex flex-col justify-center w-[60%] ">
                     <MainView/>
                 </div>
                 <div className=" h-[100%] w-[25%] flex flex-col justify-center">

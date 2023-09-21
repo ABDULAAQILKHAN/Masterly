@@ -131,7 +131,7 @@ const handleSignup = async ()=>{
                                         {Loading?<>
                                         <div className="mx-6">
                                             <PacmanLoader
-                                                color={"#FF5500"}
+                                                color={"white"}
                                                 cssOverride={{
                                                     width: '0'
                                                 }}

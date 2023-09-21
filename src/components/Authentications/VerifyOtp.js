@@ -6,14 +6,12 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 import axios from 'axios';
 import path from '../../path';
 import '../css/global.css';
+import {updateUserDetails} from "../../redux/userReducer";
 import { useSelector, useDispatch } from 'react-redux'
 
 const VerifyOtp = ()=>{
-    const OtpInputStyle = {
-        borderBottom: "5px solid #0f9690",
-        outline: "none",
-        caret: "#6da5c0"
-    }
+const dispatch = useDispatch();
+
 const [Loading, setLoading] = useState(false);
 const Navigate = useNavigate();
 
@@ -37,10 +35,15 @@ const handleVerify = async ()=>{
             const response = await axios.post(`${path}/verification`,otp)
             if(response.data.flag){
                 //dispatch user info in redux
-                const {flag,user,token} = response.data;
-                console.log(flag,user,token)
+                //const {flag,user,token} = response.data;
+                //console.log(flag,user,token)
                 setLoading(false)
-                alert("congo acc created")
+                //alert("congo acc created")
+                let user = {
+                    user:response.data.user,token:response.data.token
+                }
+                dispatch(updateUserDetails(user))
+                Navigate('/home')
             }
             else{
                 alert(response.data.message)

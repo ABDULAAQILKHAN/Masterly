@@ -5,16 +5,27 @@
                  -20px -20px 60px #ffffff;
     overflow: hidden;
 }
+.homeContainers {
+    border-radius: 10px;
+    background: #e0e0e0;
+    box-shadow:  20px 20px 60px #bebebe,
+                 -20px -20px 60px #ffffff;
+    overflow: hidden;
+}
 .inputBorder {
     border-bottom: 5px solid #FF5500;
     outline: none;
 }
 .button {
+    background-color: transparent;
+    color: #FF5500;
     border: 2px solid #FF5500;
     border-radius: 25px;
+    text-align: center;
 }
 .button:hover{
     background-color: #FF5500;
+    color: white;
     transition-duration: 900ms;
 }
 .anim {

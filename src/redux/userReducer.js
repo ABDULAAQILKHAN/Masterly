@@ -10,7 +10,7 @@ export const counterSlice = createSlice({
   },
   reducers: {
     updateUserDetails: (state, action) => {
-      console.log(state,action.payload.user);
+      console.log(action.payload.user,action.payload.token);
       state.name = action.payload.user.name;
       state.userId = action.payload.user._id;
       state.uniqueId = action.payload.user.uniqueId;
