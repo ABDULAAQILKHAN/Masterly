@@ -18,7 +18,7 @@ const Navigate = useNavigate();
         {/** parent div for profileView screen */}
         <div className="h-[90%] w-[98%] bg-white homeContainers self-center">
             <div className="flex flex-row justify-center">
-                <h1 className="">Nooruddin</h1>
+                <h1 className="">Main View</h1>
             </div>
         </div>
         </>
