@@ -7,7 +7,6 @@ const ProfileView = ()=>{
     const user = useSelector(state=> state.user)
     const Navigate = useNavigate();
 
-
     return(
         <>
         {/** parent div for profileView screen */}
@@ -43,7 +42,8 @@ const ProfileView = ()=>{
                 </div>
             </div>
             <div className="w-[100%] flex flex-col">
-                <button className="w-[180px] self-center button ">
+                <button className="w-[180px] self-center button"
+                onClick={()=>Navigate("/editprofile")}>
                     Edit profile
                 </button>
             </div>

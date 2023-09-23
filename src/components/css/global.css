@@ -1,13 +1,20 @@
 .whiteCard {
     border-radius: 50px;
-    background: #e0e0e0;
+    background: #ffffff;
     box-shadow:  20px 20px 60px #bebebe,
                  -20px -20px 60px #ffffff;
     overflow: hidden;
 }
 .homeContainers {
     border-radius: 10px;
-    background: #e0e0e0;
+    background: #ffffff;
+    box-shadow:  20px 20px 60px #bebebe,
+                 -20px -20px 60px #ffffff;
+    overflow: hidden;
+}
+.secondaryCard {
+    border-radius: 20px;
+    background: linear-gradient(145deg, #cacaca, #f0f0f0);
     box-shadow:  20px 20px 60px #bebebe,
                  -20px -20px 60px #ffffff;
     overflow: hidden;
@@ -15,6 +22,11 @@
 .inputBorder {
     border-bottom: 5px solid #FF5500;
     outline: none;
+}
+.scrollDiv {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+
 }
 .button {
     background-color: transparent;
