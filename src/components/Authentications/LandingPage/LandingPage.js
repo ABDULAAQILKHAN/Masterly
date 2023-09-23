@@ -8,7 +8,6 @@ const LandingPage = () =>{
 
     const dev = true;
     return (
-
         <>
         {/**
     <Helmet>
@@ -247,7 +246,7 @@ const LandingPage = () =>{
       */ }
     <div className="h-[100vh] bg-[#ffffff]">
 
-                <iframe  className="h-[100vh]" src={dev?'https://abdulaaqilkhan.github.io/MasterlyLanding/':'http://127.0.0.1:5500/Masterly/Masterly/index.html'} width="100%" height="100%"  seamless="seamless" frameborder="0" style={{overflow: 'hidden'}}/>
+                <iframe  className="h-[100vh]" src={dev?'https://abdulaaqilkhan.github.io/MasterlyLanding/':'http://127.0.0.1:5500/Masterly/Masterly/index.html'} width="100%" height="100%"  seamless="seamless"  style={{overflow: 'hidden'}}/>
                 </div>
     </>)
 }

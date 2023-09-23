@@ -15,9 +15,9 @@
 .secondaryCard {
     border-radius: 20px;
     background: linear-gradient(145deg, #cacaca, #f0f0f0);
-    box-shadow:  20px 20px 60px #bebebe,
-                 -20px -20px 60px #ffffff;
-    overflow: hidden;
+    box-shadow: -2px 0px 19px 8px rgba(0,0,0,0.47);
+    -webkit-box-shadow: -2px 0px 19px 8px rgba(0,0,0,0.47);
+    -moz-box-shadow: -2px 0px 19px 8px rgba(0,0,0,0.47);
 }
 .inputBorder {
     border-bottom: 5px solid #FF5500;
@@ -26,7 +26,16 @@
 .scrollDiv {
     overflow-y: scroll;
     scroll-behavior: smooth;
-
+}
+.cardBorder {
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: #FF5500;
+}
+.allCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .button {
     background-color: transparent;

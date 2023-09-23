@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import path from '../../path';
 import "../css/global.css";
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
+import {updateUserDetails} from "../../redux/userReducer";
 const Login = ()=>{
 const Navigate = useNavigate();
 const dispatch = useDispatch();
@@ -21,7 +22,13 @@ const auth = {
   };
   useEffect(()=>{
     let  data  = JSON.parse(localStorage.getItem("local"))
-    data?.token&&Navigate("/home")
+    if(data?.token){
+        let user = {
+            user:data?.user,token:data?.token
+        }
+        dispatch(updateUserDetails(user))
+        Navigate("/home")
+    }
   },[])
 const [LoginCred,setLoginCred] = useState({
     uniqueId: '',
@@ -46,7 +53,7 @@ const handleLogin = async ()=>{
                 let local = {
                     user:response.data.user,token:response.data.token
                 }
-                //dispatch(updateUserDetails(local));
+                dispatch(updateUserDetails(local));
                 localStorage.setItem("local",JSON.stringify(local))
                 Navigate("/home")
                 setLoading(false)
