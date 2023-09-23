@@ -11,7 +11,7 @@ function App() {
   <>
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<LandingPage />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<Signup /> } />
       <Route exact path="/verifyotp" element={<VerifyOtp/>} />
