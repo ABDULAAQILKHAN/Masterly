@@ -23,6 +23,17 @@
     border-bottom: 5px solid #FF5500;
     outline: none;
 }
+.ResumeInput {
+    border: 1px solid #FF5500;
+    outline: none;
+    border-radius: 10px;
+    caret-color: #FF5500;
+    background-color: transparent;
+}
+.ResumeInput::placeholder {
+    color: black;
+}
+
 .scrollDiv {
     overflow-y: scroll;
     scroll-behavior: smooth;
