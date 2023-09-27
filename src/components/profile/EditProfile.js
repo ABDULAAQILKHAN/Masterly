@@ -6,6 +6,7 @@ import path from '../../path';
 import '../css/global.css';
 import { useSelector, useDispatch } from 'react-redux'
 import EducationCard from "./EducationCard";
+import EnterDetailsCard from "./EnterDetailCard";
 const EditProfile = ()=>{
     const [ModalVisiblity, setModalVisiblity] = useState("hidden")
     const [addEducationModalVisiblity,setaddEducationModalVisiblity] = useState("hidden");
@@ -20,6 +21,7 @@ const EditProfile = ()=>{
     const [InstituteArray,setInstituteArray] = useState([])
     const user = useSelector((state)=> state.user)
     console.log(user)
+    /*
     const handleEducationInput = (event)=>{
         setInstituteDetails({...InstituteDetails,[event.target.name]:event.target.value})
     }
@@ -30,7 +32,7 @@ const EditProfile = ()=>{
     const handleEducationDetailSave = async()=>{
         console.log(InstituteDetails)
         setInstituteArray((prev)=>{return [...prev,InstituteDetails]})
-    }
+    }*/
     useEffect(()=>{
         
         console.log(InstituteArray)
@@ -42,9 +44,15 @@ const Navigate = useNavigate();
         <>
         {/** parent div for profileView screen */}
         <div className="h-[100vh] w-[100%] bg-white self-center ">
+        <EnterDetailsCard ModalVisiblity={ModalVisiblity}
+                           addEducationModalVisiblity={addEducationModalVisiblity} 
+                           setModalVisiblity={setModalVisiblity}
+                           setaddEducationModalVisiblity={setaddEducationModalVisiblity}
+                           setInstituteArray={setInstituteArray}/>
             {
                 //add items screen start
-            }
+                /**
+                 * 
             <div className="h-[100%] w-[100%]  absolute  top-0 left-0 allCenter" style={{visibility: ModalVisiblity}}>
                 <div className="h-[60%] w-[50%] self-center secondaryCard cardBorder overflow-hidden" style={{visibility: addEducationModalVisiblity}}>
                     {
@@ -111,6 +119,7 @@ const Navigate = useNavigate();
                     </div>
                 </div>
             </div>
+            */}
             <div className="flex flex-row justify-center gap-3">
                 {
                     //edit details div
@@ -194,7 +203,7 @@ const Navigate = useNavigate();
                     }
                     <div className="cardBorder w-[95%] py-5 flex flex-col justify-evenly">
                         <div className="flex flex-row justify-evenly ">
-                            {InstituteArray.length<0?
+                            {InstituteArray.length===0?
                             <><h3>Add Education details.</h3></>:
                             <>
                             <div className="flex flex-col justify-around gap-4 w-[95%]">
