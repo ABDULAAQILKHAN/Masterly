@@ -2,52 +2,54 @@ import React from "react";
 import { useState, useEffect } from "react";
 import '../css/global.css';
 
-    const EnterDetailsCard   =                                                                                 ({    
-        setModalVisiblity,                                        addEducationModalVisiblity,
-            setaddEducationModalVisiblity,
-            setInstituteArray})=>{
-    const [InstituteDetails, setInstituteDetails] = useState({
-    InstituteName: String,
-    CourseName: String,
+const EnterExperience = ({
+        setModalVisiblity,
+        addExperienceModalVisiblity,
+        setaddExperienceModalVisiblity,
+        setExperienceArray
+    })=> {
+    const [Job, setJob] = useState({
+    CompanyName: String,
+    Designation: String,
     StartDate: Date,
     EndDate: Date,
     current: false,
     Experience: String,
     })
-    const handleEducationInput = (event)=>{
-        setInstituteDetails({...InstituteDetails,[event.target.name]:event.target.value})
+    const handleInput = (event)=>{
+        setJob({...Job,[event.target.name]:event.target.value})
     }
-    const handleEducationInputCheckbox = (event)=>{
+    const handleInputCheckbox = (event)=>{
         alert(event.target.value)
-        setInstituteDetails({...InstituteDetails,current:event.target.value})
+        setJob({...Job,current:event.target.value})
     }
-    const handleEducationDetailSave = async()=>{
-        console.log(InstituteDetails)
-        setInstituteArray((prev)=>{return [...prev,InstituteDetails]})
+    const handleSave = async()=>{
+        console.log(Job)
+        setExperienceArray((prev)=>{return [...prev,Job]})
     }
     return <>            
-
             <div className="h-[95%] md:max-h-[60vh] w-[90vw] md:max-w-[50vw] xl:w-[40vw] secondaryCard cardBorder overflow-hidden self-center absolute"
-                style={{visibility: addEducationModalVisiblity}}>
+
+                style={{visibility: addExperienceModalVisiblity}}>
                     <div className="flex flex-row justify-between">
-                        <h3 className=" p-4 text-xl ">Enter education details below</h3>
+                        <h3 className=" p-4 text-xl ">Enter Internship/job details below</h3>
                         <p className="float-right p-4 text-red-500 text-2xl cursor-pointer hover:bg-red-500 hover:text-white" onClick={()=>{
                         setModalVisiblity("hidden")
-                        setaddEducationModalVisiblity("hidden")
+                        setaddExperienceModalVisiblity("hidden")
                         }}>X</p>
                     </div>
                     <div className="w-[100%] h-[80%]  flex flex-col justify-between self-center">
                         <input className="w-[95%] p-1 self-center h-[35px] ResumeInput"   
-                            placeholder="Institute name." 
-                            name="InstituteName" 
-                            onChange={handleEducationInput} 
-                            value={InstituteDetails.InstituteName}
+                            placeholder="Company name." 
+                            name="CompanyName" 
+                            onChange={handleInput} 
+                            value={Job.InstituteName}
                         />
                         <input className="w-[95%] p-1 self-center h-[35px] ResumeInput" 
-                            placeholder="Opted course." 
-                            name="CourseName" 
-                            onChange={handleEducationInput} 
-                            value={InstituteDetails.CourseName}
+                            placeholder="Designation / Job title." 
+                            name="Designation" 
+                            onChange={handleInput} 
+                            value={Job.CourseName}
                         />
                             {
                                 //date select
@@ -60,8 +62,8 @@ import '../css/global.css';
                                         type="date" 
                                         placeholder="Opted course." 
                                         name="StartDate" 
-                                        onChange={handleEducationInput} 
-                                        value={InstituteDetails.StartDate}
+                                        onChange={handleInput} 
+                                        value={Job.StartDate}
                                     />
                                 </div>
                                 <div className="allCenter grow">
@@ -70,8 +72,8 @@ import '../css/global.css';
                                         type="date" 
                                         placeholder="Opted course." 
                                         name="EndDate" 
-                                        onChange={handleEducationInput} 
-                                        value={InstituteDetails.EndDate}
+                                        onChange={handleInput} 
+                                        value={Job.EndDate}
                                     />                                
                                 </div>
                             {
@@ -81,7 +83,7 @@ import '../css/global.css';
                                     type="checkbox" 
                                     placeholder="Opted course." 
                                     name="current" 
-                                    onChange={handleEducationInputCheckbox} 
+                                    onChange={handleInputCheckbox} 
                                     value={"Ongoing"}
                                 />    
                                 <div className="allCenter  p-2">
@@ -99,12 +101,12 @@ import '../css/global.css';
                                     <textarea className="w-[100%] h-[100%] p-2 ResumeInput"     
                                         placeholder="Experience..." 
                                         name="Experience" 
-                                        onChange={handleEducationInput} 
-                                        value={InstituteDetails.Experience}
+                                        onChange={handleInput} 
+                                        value={Job.Experience}
                                     />
                                 </div>
                             <div className="flex flex-col justify-evenly">
-                                <button className="button" onClick={()=>{setInstituteDetails({
+                                <button className="button" onClick={()=>{setJob({
                                     InstituteName: String,
                                     CourseName: String,
                                     StartDate: Date,
@@ -114,7 +116,7 @@ import '../css/global.css';
                                     })}}>
                                     Reset
                                 </button>
-                                <button className="button" onClick={handleEducationDetailSave}>
+                                <button className="button" onClick={handleSave}>
                                     Save
                                 </button>
                             </div>
@@ -125,4 +127,4 @@ import '../css/global.css';
     </>
 }
 
-export default EnterDetailsCard;
+export default EnterExperience;

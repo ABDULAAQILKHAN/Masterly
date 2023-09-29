@@ -14,6 +14,8 @@ console.log("data",data)
             <h3 className='font-semibold text-l'>Course Opted: </h3>
             <h3 className=' text-lg'>{data.CourseName}</h3>
         </div>  
+        {/*
+        */}
             <div className='flex flex-row justify-between w-[100%]'>
                 <div className='allCenter'>
                     <h3 className='font-semibold text-l'>Started: </h3>
