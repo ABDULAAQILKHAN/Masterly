@@ -77,16 +77,16 @@ const Navigate = useNavigate();
                 {
                     //basic profile card 
                 }
-                    <div className="secondaryCard min-h-[35vh] p-5 w-[95%] self-center flex flex-row justify-between">
+                    <div className="secondaryCard p-5 w-[95%] self-center resumeResponsiveness justify-around ">
 
-                        <div className="h-[225px] w-[225px] rounded-full self-center border border-[#FF5500] overflow-hidden ">
+                        <div className="h-[120px] w-[120px] rounded-full self-center border border-[#FF5500] overflow-hidden ">
                             <img src={require('../profile/selfie.png')} className="h-[100%] w-[100%] object-cover overflow-hidden"/>
                         </div>
                         {
                             //card side edit details
                         }
-                        <div className="allCenter w-[55%]">
-                        <div className=" border-[#FF5500] h-fit flex flex-col justify-evenly">
+                        <div className="allCenter">
+                        <div className=" border-[#FF5500] h-fit flex flex-col justify-evenly self-center">
                         <div>
                         <input 
                             className="w-[100%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
