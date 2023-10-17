@@ -69,11 +69,11 @@ const Navigate = useNavigate();
         {/** parent div for profileView screen */}
         <div className="h-[100vh] w-[100vw] bg-white self-center ">
 
-            <div className="flex flex-row justify-center gap-3">
+            <div className="gap-3 resumeResponsiveness">
                 {
                     //edit details div
                 }
-                <div className="h-[100vh] w-[50%] homeContainers flex flex-col gap-2 scrollDiv">
+                <div className="h-[100vh] homeContainers flex flex-col gap-2 scrollDiv">
                 {
                     //basic profile card 
                 }
@@ -153,7 +153,7 @@ const Navigate = useNavigate();
                     //right resume div
                 }
                 </div>
-                <div className="w-[95%] self-center secondaryCard my-5">
+                <div className="w-[95%] self-center secondaryCard my-5 ">
                     <div className="flex flex-row justify-center w-[100%] border-b-2 border-[#FF5500]">
                         <h2 className="py-4 text-xl self center">Create|Edit Resume</h2>
                     </div>
@@ -162,9 +162,9 @@ const Navigate = useNavigate();
                         information={resumeInformation}
                         setInformation={setResumeInformation}
                         />
-                    </div>
                 </div>
-                <div className="h-[100vh] w-[50%] homeContainers">
+                </div>
+                <div className="h-[100vh] homeContainers">
                 <Resume
                     ref={resumeRef}
                     sections={sections}

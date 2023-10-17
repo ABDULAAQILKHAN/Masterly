@@ -65,7 +65,18 @@
     transform: translateY(30px);
     animation: moveup 0.5s linear forwards;
 }
-
+.resumeResponsiveness{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+@media only screen and (max-width:800px) {
+    .resumeResponsiveness{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
 @keyframes moveup {
     100% {
         opacity: 1;
