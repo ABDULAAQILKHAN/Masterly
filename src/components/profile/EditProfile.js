@@ -1,27 +1,66 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import path from '../../path';
 import '../css/global.css';
+import Editor from './Editor/Editor'
+import Resume from './Resume/Resume'
 import { useSelector, useDispatch } from 'react-redux'
-import EducationCard from "./EducationCard";
-import EnterDetailsCard from "./EnterDetailCard";
-import EnterExperience from "./EnterExperienc";
 const EditProfile = ()=>{
-    const [ModalVisiblity, setModalVisiblity] = useState("hidden")
-    const [addEducationModalVisiblity,setaddEducationModalVisiblity] = useState("hidden");
-    const [addExperienceModalVisiblity,setaddExperienceModalVisiblity] = useState("hidden");
 
-    const [InstituteArray,setInstituteArray] = useState([])
-    const [ExperienceArray,setExperienceArray] = useState([])
+    const resumeRef = useRef();
 
+    const sections = {
+        basicInfo: "Basic Info",
+        workExp: "Work Experience",
+        project: "Projects",
+        education: "Education",
+        achievement: "Achievements",
+        summary: "Summary",
+        other: "Other",
+      };
+      const [resumeInformation, setResumeInformation] = useState({
+        [sections.basicInfo]: {
+          id: sections.basicInfo,
+          sectionTitle: sections.basicInfo,
+          detail: {},
+        },
+        [sections.workExp]: {
+          id: sections.workExp,
+          sectionTitle: sections.workExp,
+          details: [],
+        },
+        [sections.project]: {
+          id: sections.project,
+          sectionTitle: sections.project,
+          details: [],
+        },
+        [sections.education]: {
+          id: sections.education,
+          sectionTitle: sections.education,
+          details: [],
+        },
+        [sections.achievement]: {
+          id: sections.achievement,
+          sectionTitle: sections.achievement,
+          points: [],
+        },
+        [sections.summary]: {
+          id: sections.summary,
+          sectionTitle: sections.summary,
+          detail: "",
+        },
+        [sections.other]: {
+          id: sections.other,
+          sectionTitle: sections.other,
+          detail: "",
+        },
+      });
+    
     const user = useSelector((state)=> state.user)
     console.log(user)
 
-    useEffect(()=>{
-        console.log(InstituteArray)
-    },[InstituteArray])
 const Navigate = useNavigate();
 
 
@@ -29,24 +68,6 @@ const Navigate = useNavigate();
         <>
         {/** parent div for profileView screen */}
         <div className="h-[100vh] w-[100vw] bg-white self-center ">
-        <div className="h-[100%] w-[100%]  absolute top-0 left-0" 
-            style={{visibility: ModalVisiblity}}>
-                <div className="h-[100%] w-[100%] allCenter ">
-
-        <EnterDetailsCard ModalVisiblity={ModalVisiblity}
-            addEducationModalVisiblity={addEducationModalVisiblity} 
-            setModalVisiblity={setModalVisiblity}
-            setaddEducationModalVisiblity={setaddEducationModalVisiblity}
-            setInstituteArray={setInstituteArray}
-            />
-        <EnterExperience ModalVisiblity={ModalVisiblity}
-            addExperienceModalVisiblity={addExperienceModalVisiblity} 
-            setModalVisiblity={setModalVisiblity}
-            setaddExperienceModalVisiblity={setaddExperienceModalVisiblity}
-            setExperienceArray={setExperienceArray}
-            />
-            </div>
-        </div>
 
             <div className="flex flex-row justify-center gap-3">
                 {
@@ -127,97 +148,29 @@ const Navigate = useNavigate();
                             </button>
                         </div>
                     </div>
-                    {
-                        //education details div
-                    }
-                    <div className="cardBorder w-[95%] py-5 flex flex-col justify-evenly">
-                        <div className="flex flex-row justify-evenly ">
-                            {InstituteArray.length===0?
-                            <><h3>Add Education details.</h3></>:
-                            <>
-                            <div className="flex flex-col justify-around gap-4 w-[95%]">
-                                {
-                                    InstituteArray.map(item=>{
-                                        console.log("tada",item)
-                                        return<>
-                                            <EducationCard data={item}/>
-                                        </>
-                                    })
-                                }
-                            </div>
-                            </>
-                            }
-                        </div>
-                        <div className="w-[100%] h-[100%] allCenter items-center">
-                            <button className="button" onClick={()=>{
-                                setModalVisiblity("visible");
-                                setaddEducationModalVisiblity("visible")
-                                }}>
-                                +
-                            </button>
-                        </div>
-                    </div>
-                    {
-                        //Experience div start
-                    }
-                    <div className="cardBorder w-[95%] py-5 flex flex-col justify-evenly">
-                        <div className="flex flex-row justify-evenly ">
-                        {ExperienceArray.length===0?
-                            <><h3>Internship's & Job's</h3></>:
-                            <>
-                            <div className="flex flex-col justify-around gap-4 w-[95%]">
-                                {
-                                    ExperienceArray.map(item=>{
-                                        console.log("tada",item)
-                                        return<>
-                                            <EducationCard data={item}/>
-                                        </>
-                                    })
-                                }
-                            </div>
-                            </>
-                            }
-                        </div>
-                        <div className="w-[100%] h-[100%] allCenter items-center">
-                        <button className="button" onClick={()=>{
-                                setModalVisiblity("visible");
-                                setaddExperienceModalVisiblity("visible")
-                                }}>
-                                +
-                            </button>
-                        </div>
-                    </div>
-                    {
-                        //skills
-                    }
-                    <div className="cardBorder w-[95%] py-5">
-                        <div className="flex flex-row justify-evenly ">
-                    skills
-                        </div>
-                        <div className="w-[100%] h-[100%] allCenter items-center">
 
-                        </div>
-                    </div>
-                    {
-                        //summary
-                    }
-                    <div className="cardBorder w-[95%] py-5">
-                        <div className="flex flex-row justify-evenly ">
-                    summary
-                        </div>
-                        <div className="w-[100%] h-[100%] allCenter items-center">
-                            <button className="mx-5 button">
-                                submit
-                            </button>
-                        </div>
-                    </div>
-                    </div>
-                </div>
                 {
                     //right resume div
                 }
+                </div>
+                <div className="w-[95%] self-center secondaryCard my-5">
+                    <div className="flex flex-row justify-center w-[100%] border-b-2 border-[#FF5500]">
+                        <h2 className="py-4 text-xl self center">Create|Edit Resume</h2>
+                    </div>
+                    <Editor
+                        sections={sections}
+                        information={resumeInformation}
+                        setInformation={setResumeInformation}
+                        />
+                    </div>
+                </div>
                 <div className="h-[100vh] w-[50%] homeContainers">
-                    hellow world
+                <Resume
+                    ref={resumeRef}
+                    sections={sections}
+                    information={resumeInformation}
+                    //activeColor={activeColor}
+                />
                 </div>
             </div>
         </div>
