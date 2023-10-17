@@ -6,6 +6,9 @@ import path from '../../path';
 import '../css/global.css';
 import Editor from './Editor/Editor'
 import Resume from './Resume/Resume'
+import ReactToPrint from "react-to-print";
+import { ArrowDown } from "react-feather";
+
 import { useSelector, useDispatch } from 'react-redux'
 const EditProfile = ()=>{
 
@@ -69,11 +72,11 @@ const Navigate = useNavigate();
         {/** parent div for profileView screen */}
         <div className="h-[100vh] w-[100vw] bg-white self-center ">
 
-            <div className="gap-3 resumeResponsiveness">
+            <div className="gap-3 resumeResponsiveness w-[100%]">
                 {
                     //edit details div
                 }
-                <div className="h-[100vh] homeContainers flex flex-col gap-2 scrollDiv">
+                <div className="h-[100vh] homeContainers flex flex-col gap-2 scrollDiv w-[100%]">
                 {
                     //basic profile card 
                 }
@@ -154,23 +157,44 @@ const Navigate = useNavigate();
                 }
                 </div>
                 <div className="w-[95%] self-center secondaryCard my-5 ">
-                    <div className="flex flex-row justify-center w-[100%] border-b-2 border-[#FF5500]">
-                        <h2 className="py-4 text-xl self center">Create|Edit Resume</h2>
-                    </div>
+                <div className="flex flex-row justify-center w-[100%] border-b-2 border-[#FF5500]">
+                    <h2 className="py-4 text-xl self center">Create|Edit Resume</h2>
+                </div>
                     <Editor
                         sections={sections}
                         information={resumeInformation}
                         setInformation={setResumeInformation}
-                        />
+                    />
                 </div>
                 </div>
-                <div className="h-[100vh] homeContainers">
-                <Resume
-                    ref={resumeRef}
-                    sections={sections}
-                    information={resumeInformation}
-                    //activeColor={activeColor}
-                />
+                <div className="h-[100vh] w-[100%] allCenter">
+                <div className="w-[95%] self-center scrollDiv secondaryCard">
+                    <div className="flex flex-row justify-between h-[10vh]">
+                        <div className="allCenter">
+                            <h2 className="text-xl">
+                                Resume Preview
+                            </h2>
+                        </div>
+                        <div className="allCenter">
+                        <ReactToPrint
+                            trigger={() => {
+                                return (
+                                    <button className="flex flex-row p-2 bg-[#FF5500] text-white rounded-lg self-end text-lg">
+                                    Download <ArrowDown />
+                                </button>
+                                );
+                            }}
+                            content={() => resumeRef.current}
+                            />
+                            </div>
+                    </div>
+                    <Resume
+                        ref={resumeRef}
+                        sections={sections}
+                        information={resumeInformation}
+                        //activeColor={activeColor}
+                    />
+                </div>
                 </div>
             </div>
         </div>

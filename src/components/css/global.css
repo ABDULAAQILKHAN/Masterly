@@ -29,6 +29,17 @@
     overflow-y: scroll;
     scroll-behavior: smooth;
 }
+
+.scrollDiv::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 20px;
+  }
+  
+  .scrollDiv::-webkit-scrollbar-thumb {
+    border: 1px solid #FF5500 ; 
+    border-radius: 20px;
+    background-color: #FF5500;
+  }
 .cardBorder {
     border-width: 1px;
     border-radius: 15px;
