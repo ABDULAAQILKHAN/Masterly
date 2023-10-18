@@ -5,7 +5,9 @@ import Login from './components/Authentications/Login';
 import Signup from './components/Authentications/Signup';
 import VerifyOtp from './components/Authentications/VerifyOtp';
 import Homepage from './components/Home/homepage';
+import CreateResume from './components/profile/CreateResume';
 import EditProfile from './components/profile/EditProfile';
+
 function App() {
   return (
   <>
@@ -16,7 +18,9 @@ function App() {
       <Route exact path="/signup" element={<Signup /> } />
       <Route exact path="/verifyotp" element={<VerifyOtp/>} />
       <Route exact path="/home" element={<Homepage /> } />
-      <Route exact path="/editprofile" element={<EditProfile /> } />
+      <Route exact path="/CreateResume" element={<CreateResume /> } />
+      <Route exact path="/EditProfile" element={<EditProfile /> } />
+
 
     </Routes>
   </BrowserRouter>

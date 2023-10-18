@@ -1,65 +1,15 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import path from '../../path';
 import '../css/global.css';
-import Editor from './Editor/Editor'
-import Resume from './Resume/Resume'
-import ReactToPrint from "react-to-print";
-import { ArrowDown } from "react-feather";
+import { ArrowLeft } from "react-feather";
 
 import { useSelector, useDispatch } from 'react-redux'
 const EditProfile = ()=>{
 
-    const resumeRef = useRef();
-
-    const sections = {
-        basicInfo: "Basic Info",
-        workExp: "Work Experience",
-        project: "Projects",
-        education: "Education",
-        achievement: "Achievements",
-        summary: "Summary",
-        other: "Other",
-      };
-      const [resumeInformation, setResumeInformation] = useState({
-        [sections.basicInfo]: {
-          id: sections.basicInfo,
-          sectionTitle: sections.basicInfo,
-          detail: {},
-        },
-        [sections.workExp]: {
-          id: sections.workExp,
-          sectionTitle: sections.workExp,
-          details: [],
-        },
-        [sections.project]: {
-          id: sections.project,
-          sectionTitle: sections.project,
-          details: [],
-        },
-        [sections.education]: {
-          id: sections.education,
-          sectionTitle: sections.education,
-          details: [],
-        },
-        [sections.achievement]: {
-          id: sections.achievement,
-          sectionTitle: sections.achievement,
-          points: [],
-        },
-        [sections.summary]: {
-          id: sections.summary,
-          sectionTitle: sections.summary,
-          detail: "",
-        },
-        [sections.other]: {
-          id: sections.other,
-          sectionTitle: sections.other,
-          detail: "",
-        },
-      });
+   
     
     const user = useSelector((state)=> state.user)
     console.log(user)
@@ -70,16 +20,24 @@ const Navigate = useNavigate();
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-[100vh] w-[100vw] bg-white self-center ">
+        <div className="h-[100vh] w-[100vw] allCenter">
 
-            <div className="gap-3 resumeResponsiveness w-[100%]">
                 {
                     //edit details div
                 }
-                <div className="h-[100vh] homeContainers flex flex-col gap-2 scrollDiv w-[100%]">
+                <div className="min-h-[60%] flex flex-col justify-around self-center gap-2 w-[90%] md:max-w-[60%]">
                 {
                     //basic profile card 
                 }
+                    <div className=" w-[95%] secondaryCard self-center flex flex-row justify-between">
+                    <div className="allCenter mx-4">
+
+                        <button className="rounded-xl border-2 border-[#FF5500] w-fit p-1 h-fit" onClick={()=>Navigate("/home")}>
+                        <ArrowLeft />
+                        </button>
+                    </div>
+                        <h2 className="py-4 text-xl mx-4">Edit Profile</h2>
+                    </div>
                     <div className="secondaryCard p-5 w-[95%] self-center resumeResponsiveness justify-around ">
 
                         <div className="h-[120px] w-[120px] rounded-full self-center border border-[#FF5500] overflow-hidden ">
@@ -156,48 +114,10 @@ const Navigate = useNavigate();
                     //right resume div
                 }
                 </div>
-                <div className="w-[95%] self-center secondaryCard my-5 ">
-                <div className="flex flex-row justify-center w-[100%] border-b-2 border-[#FF5500]">
-                    <h2 className="py-4 text-xl self center">Create|Edit Resume</h2>
+               
                 </div>
-                    <Editor
-                        sections={sections}
-                        information={resumeInformation}
-                        setInformation={setResumeInformation}
-                    />
-                </div>
-                </div>
-                <div className="h-[100vh] w-[100%] allCenter">
-                <div className="w-[95%] self-center scrollDiv secondaryCard">
-                    <div className="flex flex-row justify-between h-[10vh]">
-                        <div className="allCenter">
-                            <h2 className="text-xl">
-                                Resume Preview
-                            </h2>
-                        </div>
-                        <div className="allCenter">
-                        <ReactToPrint
-                            trigger={() => {
-                                return (
-                                    <button className="flex flex-row p-2 bg-[#FF5500] text-white rounded-lg self-end text-lg">
-                                    Download <ArrowDown />
-                                </button>
-                                );
-                            }}
-                            content={() => resumeRef.current}
-                            />
-                            </div>
-                    </div>
-                    <Resume
-                        ref={resumeRef}
-                        sections={sections}
-                        information={resumeInformation}
-                        //activeColor={activeColor}
-                    />
-                </div>
-                </div>
+
             </div>
-        </div>
         </>
 
     )

@@ -27,24 +27,26 @@ const ProfileView = ()=>{
             {
                 //user information
             }
-            <div className="max-h-[45%] h-[45%] w-[95%] border border-[#FF5500] self-center rounded-lg flex flex-col justify-evenly ">
+            <div className="max-h-[45%] h-[15%] w-[95%] border border-[#FF5500] self-center rounded-lg flex flex-col justify-evenly ">
                 <div>
                     <h3 className="text-start p-2 text-lg">{user.name}</h3>
                 </div>
                 <div>
-                    <h3 className="text-start p-2 text-lg">{user.name}</h3>
-                </div>
-                <div>
-                    <h3 className="text-start p-2 text-lg">{user.name}</h3>
-                </div>
-                <div>
-                    <h3 className="text-start p-2 text-lg">{user.name}</h3>
+                    <h3 className="text-start p-2 text-lg">{user.uniqueId}</h3>
                 </div>
             </div>
             <div className="w-[100%] flex flex-col">
                 <button className="w-[180px] self-center button"
-                onClick={()=>Navigate("/editprofile")}>
-                    Edit profile
+                onClick={()=>Navigate("/EditProfile")}>
+                    Edit Profile
+                </button>
+                <button className="w-[180px] self-center button"
+                onClick={()=>Navigate("/CreateResume")}>
+                    CreateResume
+                </button>
+                <button className="w-[180px] self-center button"
+                onClick={()=>Navigate("/CreateResume")}>
+                    Create Quiz
                 </button>
             </div>
         </div>
