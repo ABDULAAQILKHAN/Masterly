@@ -24,9 +24,14 @@
     border-bottom: 5px solid #FF5500;
     outline: none;
 }
-
+.inputBorder:hover {
+    border: none;
+    border-bottom: 5px solid #FF5500;
+    outline: none;
+}
 .scrollDiv {
     overflow-y: scroll;
+    overflow-x: scroll;
     scroll-behavior: smooth;
 }
 
@@ -67,11 +72,12 @@
     transform: translateY(30px);
     animation: moveup 0.5s linear forwards;
 }
-.resumeResponsiveness{
+.resumeResponsiveness {
     display: flex;
     flex-direction: row;
 }
-@media only screen and (max-width:800px) {
+
+@media only screen and (max-width:900px) {
     .resumeResponsiveness{
         display: flex;
         flex-direction: column;

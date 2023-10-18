@@ -74,7 +74,7 @@ const Navigate = useNavigate();
         {/** parent div for Resume screen */}
         <div className="h-[100vh] w-[100vw] bg-white self-center ">
 
-            <div className="resumeResponsiveness scrollDiv allCenter w-[100%] h-[100%] p-5">
+            <div className="resumeResponsiveness gap-5 scrollDiv allCenter p-5">
                 {
                     //edit details div
                 }
@@ -90,22 +90,24 @@ const Navigate = useNavigate();
                 </div>
                     <h2 className="py-4 text-xl mx-4">Create|Edit Resume</h2>
                 </div>
+                <div className="h-[100%] w-[100%]">
                     <Editor
                         sections={sections}
                         information={resumeInformation}
                         setInformation={setResumeInformation}
-                    />
+                        />
+                </div>
                 </div>
                 </div>
                 <div className="h-[100vh] w-[100%] allCenter">
-                <div className="w-[95%] self-center scrollDiv secondaryCard">
-                    <div className="flex flex-row justify-between h-[10vh]">
-                        <div className="allCenter">
+                <div className="w-[100%] self-center scrollDiv secondaryCard">
+                    <div className="resumeResponsiveness gap-4 justify-between py-4">
+                        <div className="allCenter self-center">
                             <h2 className="text-xl">
                                 Resume Preview
                             </h2>
                         </div>
-                        <div className="allCenter">
+                        <div className="allCenter self-center">
                             <div className="flex flex-row gap-4">
                             <button className="flex flex-row p-2 text-[#FF5500] bg-white rounded-lg self-end text-lg"
                             onClick={()=>{console.log(resumeRef.current)}}

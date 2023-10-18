@@ -5,6 +5,7 @@ import '../css/global.css';
 import { useSelector } from 'react-redux'
 const ProfileView = ()=>{
     const user = useSelector(state=> state.user)
+
     const Navigate = useNavigate();
 
     return(
