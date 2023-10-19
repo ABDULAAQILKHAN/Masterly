@@ -28,14 +28,14 @@ const EditProfile = ()=>{
         }
       };
     const handleUpdate = async ()=>{
-        let user = {
-            user:data,
-            auth
-        }
         try{
             const response = await axios.post(`${path}/updateAccount`,data,auth)
             if(response.data.flag){
-                dispatch(updateUserDetails(user))       
+                dispatch(updateUserDetails({user:response.data.ResponseData})) 
+                let local = {
+                    user:response.data.ResponseData,token:user.token
+                }                
+                localStorage.setItem("local",JSON.stringify(local))
             }else{
                 alert("some error occured check after some time")
             }

@@ -11,13 +11,12 @@ export const counterSlice = createSlice({
   },
   reducers: {
     updateUserDetails: (state, action) => {
-      //console.log(action.payload.user,action.payload.token);
+      console.log("reduced state",action.payload.user);
       state.name = action.payload.user.name;
       state.userId = action.payload.user._id;
       state.uniqueId = action.payload.user.uniqueId;
       state.token = action.payload.token;
       //return true;
-
     }
   }
 })

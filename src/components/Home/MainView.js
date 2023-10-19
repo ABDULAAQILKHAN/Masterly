@@ -8,7 +8,7 @@ import '../css/global.css';
 import { useSelector, useDispatch } from 'react-redux'
 const MainView = ()=>{
     const user = useSelector(state=> state.user)
-    console.log("mainview",user)
+    //console.log("mainview",user)
 
 const Navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const Navigate = useNavigate();
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-[90%] w-[98%] bg-white homeContainers self-center">
+        <div className="h-auto w-[98%] bg-white homeContainers self-center">
             <div className="flex flex-row justify-center">
                 <h1 className="">{user.name}</h1>
             </div>
