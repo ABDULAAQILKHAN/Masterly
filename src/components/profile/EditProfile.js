@@ -57,10 +57,10 @@ const EditProfile = ()=>{
                 {
                     //basic profile card 
                 }
-                    <div className="w-[95%] secondaryCard self-center flex flex-row justify-between">
-                    <div className="allCenter mx-4">
+                    <div className="w-[100%] secondaryCard self-center flex flex-row justify-between">
+                    <div className="allCenter mx-4 w-[50px]">
 
-                        <button className="button rounded-xl border-2 border-[#FF5500] w-fit text-[1rem] h-fit" onClick={()=>Navigate("/home")}>
+                        <button className="self-center text-[#FF5500] w-fit h-fit" onClick={()=>Navigate("/home")}>
                         <ArrowLeft />
                         </button>
                     </div>
@@ -68,8 +68,8 @@ const EditProfile = ()=>{
                         <h2 className="py-4 text-[1rem] ">Edit Profile</h2>
                     </div>
                     </div>
-                    <div className="secondaryCard w-[95%] self-center h-fit allCenter">
-                        <div className="resumeResponsiveness p-5 overflow-hidden w-[95%] justify-evenly self-center h-fit">
+                    <div className="secondaryCard w-[100%] self-center h-fit allCenter">
+                        <div className="resumeResponsiveness p-5 overflow-hidden w-[100%] justify-evenly self-center h-fit">
 
                         <div className="h-[120px] w-[120px] rounded-full self-center border border-[#FF5500] overflow-hidden">
                             <img src={require('../profile/selfie.png')} className="h-[100%] w-[100%] object-cover overflow-hidden"/>
@@ -78,7 +78,7 @@ const EditProfile = ()=>{
                             //card side edit details
                         }
                         <div className="allCenter h-fit">
-                        <div className=" border-[#FF5500]  flex flex-col justify-evenly self-center">
+                        <div className="flex flex-col justify-evenly self-center" style={{flexGrow:1}}>
                         <div>
                         <input 
                             className="w-[100%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
@@ -114,11 +114,11 @@ const EditProfile = ()=>{
                     {
                         //other details start
                     }
-                    <div className="w-[95%] bg-black self-center flex flex-col justify-evenly secondaryCard items-center gap-5">
+                    <div className="w-[100%] bg-black self-center flex flex-col justify-evenly secondaryCard items-center gap-5">
                         {
                             //number & alternate email div
                         }
-                        <div className="cardBorder w-[95%] py-5 my-3">
+                        <div className=" w-[95%] py-5 my-3">
                         <div className="flex flex-wrap gap-6">
                         <div style={{flexGrow:1}} 
                         className="flex flex-row justify-center">

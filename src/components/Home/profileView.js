@@ -13,14 +13,14 @@ const ProfileView = ()=>{
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-auto w-[90%] bg-white homeContainers  self-center flex flex-col justify-evenly">
+        <div className="h-auto w-[95%] bg-white homeContainers  self-center flex flex-col justify-evenly">
             <div className="flex flex-row justify-center p-2">
                 <h1 className="text-xl">My profile</h1>
             </div>
             {
                 //profile image
             }
-            <div className="w-100 flex flex-col justify-center p-2">
+            <div className="w-[100%] flex flex-col justify-center p-2">
                 <div className="h-[225px] w-[225px] rounded-full self-center border border-[#FF5500] overflow-hidden">
 
                     <img src={require('../profile/selfie.png')} className="h-[100%] w-[100%] object-cover"/>
