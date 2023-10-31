@@ -7,6 +7,8 @@ import '../css/global.css';
 import { ArrowLeft } from "react-feather";
 import { updateUserDetails } from "../../redux/userReducer";
 import { useSelector, useDispatch } from 'react-redux'
+//import Star from 'react-native-vector-icons/FontAwesome';
+
 const EditProfile = ()=>{
     const dispatch = useDispatch();
     const Navigate = useNavigate();
@@ -15,7 +17,11 @@ const EditProfile = ()=>{
         _id: user.userId,
         name: user.name,
         uniqueId: user.uniqueId,
-    })
+        mobile: user.mobile,
+        altEmail: user.altEmail,
+    });
+    const [updateLoading, setUpdateLoading] = useState(false);
+    const [updateingState, setUpdateingState] = useState("Update")
     const handleInput = (event)=>{
         setData({...data,[event.target.name]:event.target.value})
     }
@@ -27,20 +33,35 @@ const EditProfile = ()=>{
           Authorization: `Bearer ${user.token}`,
         }
       };
+    //const HalfStar = <Star name="star-half" size={30} color="#900" />
+    //const FullStar = <Star name="star" size={30} color="#900" />
+
+    useEffect(()=>{
+        updateingState==="Updated"&&
+        setInterval(() => {
+            setUpdateingState("Update")
+        }, 3000);
+    },[updateingState])
     const handleUpdate = async ()=>{
+        setUpdateingState("Updating...")
+        console.log(data)
         try{
             const response = await axios.post(`${path}/updateAccount`,data,auth)
             if(response.data.flag){
+                console.log("res data",response.data.ResponseData)
                 dispatch(updateUserDetails({user:response.data.ResponseData})) 
                 let local = {
                     user:response.data.ResponseData,token:user.token
                 }                
                 localStorage.setItem("local",JSON.stringify(local))
+                setUpdateingState("Updated")
             }else{
                 alert("some error occured check after some time")
+                setUpdateingState("Updated")
             }
         }catch(error){
             console.log(error)
+            setUpdateingState("Updated")
         }
     }
 
@@ -52,7 +73,7 @@ const EditProfile = ()=>{
                 {
                     //edit details div
                 }
-                <div className="sm:min-h-[60%] min-h-[100%] flex flex-col self-center gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] p-5">
+                <div className="sm:min-h-[60%] max-h-[100%] allCenter  self-center gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] p-5  justify-center">
                 {
                     //basic profile card 
                 }
@@ -69,16 +90,17 @@ const EditProfile = ()=>{
                     </div>
                     <div className="secondaryCard w-[100%] self-center h-fit allCenter">
                         <div className="resumeResponsiveness p-5 overflow-hidden w-[100%] justify-evenly self-center h-fit">
-
+                        <div className="sm:w-[50%] self-center allCenter">
                         <div className="h-[120px] w-[120px]  sm:h-[210px] sm:w-[210px]  rounded-full self-center border border-[#FF5500] overflow-hidden">
                             <img src={require('../profile/selfie.png')} className="h-[100%] w-[100%] object-cover overflow-hidden"/>
+                        </div>
                         </div>
                         {
                             //card side edit details
                         }
-                        <div className="allCenter h-fit">
-                        <div className="flex flex-col justify-evenly self-center" style={{flexGrow:1}}>
-                        <div>
+                        <div className="allCenter justify-center h-fit md:w-[50%] w-[100%]">
+                        <div className="flex flex-wrap gap-6 self-center w-[90%]">
+                        <div style={{flexGrow:1}}>
                         <input 
                             className="w-[100%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
                             placeholder={user.name} 
@@ -86,7 +108,7 @@ const EditProfile = ()=>{
                             onChange={handleInput}
                         />
                         </div>
-                        <div>
+                        <div  style={{flexGrow:1}}>
                         <input 
                             className="w-[100%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
                             placeholder={user.uniqueId} 
@@ -94,7 +116,7 @@ const EditProfile = ()=>{
                             onChange={handleInput}
                         />
                         </div>
-                        <div>
+                        <div  style={{flexGrow:1}}>
                         <input 
                             className="w-[100%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
                             placeholder="Change password!" 
@@ -102,9 +124,11 @@ const EditProfile = ()=>{
                             onChange={handleInput}
                         />
                         </div>
+                        <div className="w-[100%]">
                         <button className="button rounded-xl self-center my-5 border-2 border-[#FF5500] w-fit p-1" onClick={handleUpdate}>
-                        Update
+                        {updateingState}
                         </button>
+                        </div>
                         </div>
                         </div>
                         </div>
@@ -117,29 +141,56 @@ const EditProfile = ()=>{
                         {
                             //number & alternate email div
                         }
-                        <div className=" w-[95%] py-5 my-3">
+                        <div className="w-[95%] mt-4 allCenter gap-5">
+                        <div className="flex flex-wrap gap-6">
+                        <div style={{flexGrow:1}}
+                        className="flex flex-row justify-center">
+                        <input 
+                            className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
+                            placeholder={user.mobile}
+                            name="mobile"
+                            onChange={handleInput}
+                            />
+                        </div>
+                        <div style={{flexGrow:1,}} className="flex flex-row justify-center">
+                        <input 
+                            className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
+                            placeholder={user.altEmail}
+                            name="altEmail"
+                            onChange={handleInput}
+                            />
+                        </div>
+                        </div>
+                        {
+                            /**
+                             * 
                         <div className="flex flex-wrap gap-6">
                         <div style={{flexGrow:1}} 
                         className="flex flex-row justify-center">
                         <input 
                             className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
                             placeholder="Enter Contact number" 
-                            name="password"
+                            name="mobile"
                             //onChange={handleInput}
                         />
                         </div>
+                        {
+                            //level and links
+                        }
                         <div style={{flexGrow:1,}} className="flex flex-row justify-center">
                         <input 
                             className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
                             placeholder="Alternate Email address" 
-                            name="password"
+                            name="altEmail"
                             //onChange={handleInput}
                         />
                         </div>
                         </div>
+                        */
+                   }
                         <div className="w-[100%] allCenter items-center">
-                            <button className="mx-5 button">
-                                Add
+                            <button className="mx-5 button" onClick={handleUpdate}>
+                                {updateingState}
                             </button>
                         </div>
                     </div>

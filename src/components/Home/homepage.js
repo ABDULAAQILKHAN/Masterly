@@ -40,7 +40,7 @@ const Navigate = useNavigate();
                 {
                     //header view div
                 }
-                <div className="h-fit w-[100%] allCenter mb-4 bg-black opacity-80 headerVisiblity py-3 ">
+                <div className="h-fit w-[100%] allCenter mb-4 bg-black opacity-80  py-3 ">
                     <div className="flex flex-row justify-between">
                         <div className="h-[40px] w-[200px]">
                             <img src={require('../../assets/final_half_logo.png')} className="h-[100%] w-[100%] object-cover"/>
@@ -54,19 +54,34 @@ const Navigate = useNavigate();
                 </div>
                 {
                     //div for all the views
-                }
-                <div className="resumeResponsiveness w-[100%] h-[100%]">
-                    {ProfileViewVisiblity&&
-                    <div className="h-[100%] w-[100%] sm:w-[80%] lg:w-[25%] self-center mb-2 justify-center allCenter">
-                        <ProfileView />
-                    </div>
-                    }
-                <div className="h-[100%] flex flex-col justify-center w-[100%] sm:w-[80%] lg-[50%] mb-2">
+                    /**
+                     * 1 div with main view
+                     *                 <div className="resumeResponsiveness w-[100%] h-[100%]">
+                <div className="h-[100%] allCenter self-center justify-center w-[100%] md:w-[100%] lg:w-[75%] mb-2">
                     <MainView/>
                 </div>
+                     */
+                }
+                <div className="w-[100%] h-[100%]">
+                <div className="h-[100%] w-[100%] allCenter self-center">
+                    <MainView/>
+                </div>
+                    {ProfileViewVisiblity&&(
+                    <div className="absolute top-[10%] w-[100%] h-auto allCenter backdrop-blur-lg">
+                        <div className="h-[100%] w-[100%] z-10 sm:w-[80%] lg:w-[25%] mb-2  justify-center allCenter self-end">
+                        <ProfileView />
+                        </div>
+                    </div>    
+                        )
+                    }
+                {
+                    /**
+                     * 
                 <div className="h-[100%] sm:w-[25%] flex flex-col justify-center mb-2">
                     <OtherView/>
                 </div>
+                    */
+               }
                 </div>
 
             </div>

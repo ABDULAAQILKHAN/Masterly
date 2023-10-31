@@ -20,14 +20,7 @@ const Navigate = useNavigate();
         <div className="flex flex-row justify-evenly">
                 <h1 className="">Others View</h1>
             </div>
-                <div className=" bg-white allCenter">
-                    <button className="button" onClick={()=>{
-                        localStorage.removeItem("local");
-                        Navigate("/login")
-                        }}>
-                        Logout
-                    </button>
-                </div>
+
         </div>
         </>
 
