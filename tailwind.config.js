@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         "primaryBG": "var(--primaryBG)",
         "cardBG": "var(--cardBG)",
+        "ThemeBorder": "var(--ThemeBorder)"
 
       },
     },

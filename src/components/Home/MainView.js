@@ -16,7 +16,7 @@ const Navigate = useNavigate();
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-auto w-[98%] bg-white homeContainers self-center">
+        <div className="h-[100%] w-[98%] bg-white homeContainers self-center">
             <div className="flex flex-row justify-center">
                 <h1 className="">{user.name}</h1>
             </div>

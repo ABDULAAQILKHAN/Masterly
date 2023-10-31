@@ -1,7 +1,6 @@
 .container {
   --color: #FF5500;
   width: 100%;
-  margin: 0 auto;
   flex: 1.2;
   height: fit-content;
   min-height: 900px;

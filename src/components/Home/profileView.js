@@ -13,7 +13,7 @@ const ProfileView = ()=>{
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-auto w-[95%] bg-white homeContainers  self-center flex flex-col justify-evenly">
+        <div className="h-[100%] w-[95%] homeContainers self-center flex flex-col justify-evenly">
             <div className="flex flex-row justify-center p-2">
                 <h1 className="text-xl">My profile</h1>
             </div>
@@ -32,10 +32,10 @@ const ProfileView = ()=>{
             }
             <div className="max-h-[45%] min-h-[15%] w-[95%] border border-[#FF5500] scrollDiv self-center rounded-lg flex flex-col justify-evenly ">
                 <div>
-                    <h3 className="text-start p-2 sm:text-[1.5vw]">{user.name}</h3>
+                    <h3 className="text-start p-2 sm:text-[1.2rem]">{user.name}</h3>
                 </div>
                 <div>
-                    <h3 className="text-start p-2 sm:text-[1.5vw]">{user.uniqueId}</h3>
+                    <h3 className="text-start p-2 sm:text-[1.2rem]">{user.uniqueId}</h3>
                 </div>
             </div>
             <div className="w-[100%] flex flex-col">

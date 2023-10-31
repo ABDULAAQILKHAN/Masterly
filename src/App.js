@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react';
+import { useState,useEffect, useRef } from 'react';
 import {BrowserRouter,Routes,Route } from 'react-router-dom';
 import LandingPage from "./components/Authentications/LandingPage/LandingPage";
 import Login from './components/Authentications/Login';
@@ -9,6 +9,12 @@ import CreateResume from './components/profile/CreateResume';
 import EditProfile from './components/profile/EditProfile';
 
 function App() {
+  
+  const windowWidth = useRef(window.innerWidth);
+
+  useEffect(()=>{
+    //windowWidth.current<900&&alert("The app is currently under dev for mobile view please check it out on larger screen!")
+},[windowWidth])
   return (
   <>
   <BrowserRouter>

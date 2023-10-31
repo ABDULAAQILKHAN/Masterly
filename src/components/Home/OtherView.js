@@ -16,12 +16,12 @@ const Navigate = useNavigate();
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-auto w-[90%] bg-white homeContainers  self-center">
+        <div className="h-[100%] w-[98%] bg-white homeContainers  self-center">
         <div className="flex flex-row justify-evenly">
-                <h1 className="">main view</h1>
+                <h1 className="">Others View</h1>
             </div>
-                <div className=" bg-white">
-                    <button className="" onClick={()=>{
+                <div className=" bg-white allCenter">
+                    <button className="button" onClick={()=>{
                         localStorage.removeItem("local");
                         Navigate("/login")
                         }}>

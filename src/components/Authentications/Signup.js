@@ -64,10 +64,10 @@ const handleSignup = async ()=>{
     return(
         <>
         {/** parent div for signup screen */}
-            <div className="h-[100vh]  flex flex-col justify-center">
+            <div className="h-[100vh] w-[100vw] allCenter">
                 {/** main container */}
                 <div className="whiteCard rounded-xl h-[90%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%] anim">
-                    <div className="h-[100%] flex flex-col justify-evenly">
+                    <div className="h-[100%] flex flex-col justify-start">
                         <div className="h-[15%] flex flex-row justify-center bg-black opacity-80">
                             <img src={HalfLogo} className="h-[100%]" />
                         </div>
@@ -123,7 +123,7 @@ const handleSignup = async ()=>{
                                     </div>
 
                                     {/** signup button field container */}
-                                    <div className="flex flex-col justify-evenly my-5 h-[20%]">
+                                    <div className="allCenter justify-center my-5 h-[20%]">
                                     <button disabled={Loading} className="self-center w-[25%] h-[40px] text-xl button" onClick={()=>{
                                         handleSignup()
                                     }}>

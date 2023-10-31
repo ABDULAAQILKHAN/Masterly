@@ -15,7 +15,11 @@ import { useSelector, useDispatch } from 'react-redux'
 const CreateResume = ()=>{
 
     const resumeRef = useRef();
-
+    const windowWidth = useRef(window.innerWidth);
+    const [ResumeViewbtn, setResumeViewbtn] = useState(false)
+    useEffect(()=>{
+        windowWidth.current<1080&&setResumeViewbtn(true)
+    },[windowWidth])
     const sections = {
         basicInfo: "Basic Info",
         workExp: "Work Experience",
@@ -64,7 +68,7 @@ const CreateResume = ()=>{
       });
     
     const user = useSelector((state)=> state.user)
-    console.log(user)
+    //console.log(user)
 
 const Navigate = useNavigate();
 
@@ -72,25 +76,39 @@ const Navigate = useNavigate();
     return(
         <>
         {/** parent div for Resume screen */}
-        <div className="h-[100vh] w-[100vw] bg-white self-center ">
+        <div className="h-[100vh] w-[100vw]">
 
-            <div className="resumeResponsiveness gap-5 scrollDiv allCenter p-5">
+            <div className="resumeResponsiveness h-[100%] w-[100%] justify-evenly gap-4 p-1 sm:p-4">
                 {
                     //edit details div
                 }
+                <div className="scrollDiv self-center secondaryCard h-[100%] w-[100%]">
+                {
+                    //header
+                }
+                <div className="p-3 flex flex-row justify-between w-[100%] border-b-2 border-[#FF5500]">
                 <div className="allCenter">
-
-                <div className="w-[95%] scrollDiv self-center secondaryCard h-[100%]">
-
-                <div className="flex flex-row justify-between w-[100%] border-b-2 border-[#FF5500]">
-                <div className="allCenter ">
-                    <button className="rounded-xl border-2 border-[#FF5500] w-fit h-fit self-start p-1 mx-4" onClick={()=>Navigate("/home")}>
+                    <button className="w-fit h-fit self-start p-1 mx-4" onClick={()=>Navigate("/home")}>
                         <ArrowLeft />
                     </button>
                 </div>
-                    <h2 className="py-4 text-xl mx-4">Create|Edit Resume</h2>
+                <div className="flex flex-row justify-center">
+                <div className="allCenter sm:mx-4">
+                    <h2 className="text-[1.2rem]">Create Resume</h2>
                 </div>
-                <div className="h-[100%] w-[100%]">
+
+                {
+                    ResumeViewbtn&&(
+                        <div className="allCenter mx-4">
+                            <button className="rounded-lg p-2 border bg-ThemeBorder text-white" style={{borderColor: "#FF5500"}} onClick={()=>Navigate("/home")}>
+                                Preview
+                            </button>
+                        </div>
+                    )
+                }
+                </div>
+                </div>
+                <div className="h-auto w-[100%]">
                     <Editor
                         sections={sections}
                         information={resumeInformation}
@@ -98,16 +116,19 @@ const Navigate = useNavigate();
                         />
                 </div>
                 </div>
-                </div>
-                <div className="h-[100vh] w-[100%] allCenter">
-                <div className="w-[100%] self-center scrollDiv secondaryCard">
-                    <div className="resumeResponsiveness gap-4 justify-between py-4">
+                {
+                    //Resume preview div
+                }
+                {
+                    !ResumeViewbtn&&(
+                <div className=" h-[100%] md:w-[45%] self-center scrollDiv secondaryCard ">
+                    <div className="resumeResponsiveness justify-between w-[100%] border-b-2 border-[#FF5500]">
                         <div className="allCenter self-center">
-                            <h2 className="text-xl">
-                                Resume Preview
+                            <h2 className="text-xl mx-4">
+                                Preview
                             </h2>
                         </div>
-                        <div className="allCenter self-center">
+                        <div className="allCenter py-2 self-center mx-4">
                             <div className="flex flex-row gap-4">
                             <button className="flex flex-row p-2 text-[#FF5500] bg-white rounded-lg self-end text-lg"
                             onClick={()=>{console.log(resumeRef.current)}}
@@ -134,7 +155,8 @@ const Navigate = useNavigate();
                         //activeColor={activeColor}
                     />
                 </div>
-                </div>
+                    )
+                }
             </div>
         </div>
         </>

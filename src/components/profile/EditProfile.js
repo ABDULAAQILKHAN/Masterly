@@ -49,7 +49,6 @@ const EditProfile = ()=>{
         <>
         {/** parent div for profileView screen */}
         <div className="h-[100vh] w-[100vw] allCenter">
-
                 {
                     //edit details div
                 }
@@ -71,7 +70,7 @@ const EditProfile = ()=>{
                     <div className="secondaryCard w-[100%] self-center h-fit allCenter">
                         <div className="resumeResponsiveness p-5 overflow-hidden w-[100%] justify-evenly self-center h-fit">
 
-                        <div className="h-[120px] w-[120px] rounded-full self-center border border-[#FF5500] overflow-hidden">
+                        <div className="h-[120px] w-[120px]  sm:h-[210px] sm:w-[210px]  rounded-full self-center border border-[#FF5500] overflow-hidden">
                             <img src={require('../profile/selfie.png')} className="h-[100%] w-[100%] object-cover overflow-hidden"/>
                         </div>
                         {
@@ -114,7 +113,7 @@ const EditProfile = ()=>{
                     {
                         //other details start
                     }
-                    <div className="w-[100%] bg-black self-center flex flex-col justify-evenly secondaryCard items-center gap-5">
+                    <div className="w-[100%] bg-black self-center flex flex-col justify-evenly secondaryCard items-center gap-5 pb-4">
                         {
                             //number & alternate email div
                         }
