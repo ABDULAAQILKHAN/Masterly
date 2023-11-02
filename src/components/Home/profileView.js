@@ -71,8 +71,9 @@ const ProfileView = ()=>{
         setConfirmMessage("")
         setConfirmbox(false)
         //console.log(confirm)
-        confirm&&(localStorage.removeItem("local"),
-        Navigate("/login"))
+        if(confirm)
+        localStorage.removeItem("local");
+        Navigate("/login");
     },[confirm])
     return(
         <>
