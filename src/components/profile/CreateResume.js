@@ -17,6 +17,7 @@ const CreateResume = ()=>{
     const resumeRef = useRef();
     const windowWidth = useRef(window.innerWidth);
     const [ResumeViewbtn, setResumeViewbtn] = useState(false)
+    const [mobileResumePreview, setMobileResumePreview] = useState(false)
     useEffect(()=>{
         windowWidth.current<1080&&setResumeViewbtn(true)
     },[windowWidth])
@@ -69,20 +70,64 @@ const CreateResume = ()=>{
     
     const user = useSelector((state)=> state.user)
     //console.log(user)
-
-const Navigate = useNavigate();
+    const ResumePreview = <><div className=" h-[100%] md:w-[45%] self-center scrollDiv secondaryCard ">
+    <div className="flex flex-row justify-around w-[100%] border-b-2 border-[#FF5500]">
+        {mobileResumePreview&&(<div className="allCenter ">
+            <button className="w-fit h-fit self-start p-1 mx-4" onClick={()=>setMobileResumePreview(false)}>
+                <ArrowLeft />
+            </button>
+        </div>)}
+        <div className="allCenter self-center">
+            <h2 className="text-xl">
+                Preview
+            </h2>
+        </div>
+        <div className="allCenter py-2 self-center mx-4">
+            <div className="flex flex-row gap-4">
+            <button className="flex flex-row p-2 text-[#FF5500] bg-white rounded-lg self-end text-lg"
+            onClick={()=>{console.log(resumeRef.current)}}
+            >
+                        Save <Save />
+            </button>
+            <ReactToPrint
+                trigger={() => {
+                    return (
+                        <button className="flex flex-row p-2 bg-[#FF5500] text-white rounded-lg self-end text-lg">
+                        Download <ArrowDown />
+                    </button>
+                    );
+                }}
+                content={() => resumeRef.current}
+                />
+            </div>
+            </div>
+    </div>
+    <Resume
+        ref={resumeRef}
+        sections={sections}
+        information={resumeInformation}
+        //activeColor={activeColor}
+    />
+</div></>
+    const Navigate = useNavigate();
 
 
     return(
         <>
         {/** parent div for Resume screen */}
         <div className="h-[100vh] w-[100vw]">
-
+            {
+                mobileResumePreview&&(
+                    <div className="h-[100%] w-[100%]">
+                        {ResumePreview}
+                    </div>
+                    )
+            }
             <div className="resumeResponsiveness h-[100%] w-[100%] justify-evenly gap-4 p-1 sm:p-4">
                 {
                     //edit details div
                 }
-                <div className="scrollDiv self-center secondaryCard h-[100%] w-[100%]">
+                <div className="self-center secondaryCard h-[100%] w-[100%]">
                 {
                     //header
                 }
@@ -100,7 +145,7 @@ const Navigate = useNavigate();
                 {
                     ResumeViewbtn&&(
                         <div className="allCenter mx-4">
-                            <button className="rounded-lg p-2 border bg-ThemeBorder text-white" style={{borderColor: "#FF5500"}} onClick={()=>Navigate("/home")}>
+                            <button className="rounded-lg p-2 border bg-ThemeBorder text-white" style={{borderColor: "#FF5500"}} onClick={()=>setMobileResumePreview(true)}>
                                 Preview
                             </button>
                         </div>
@@ -121,40 +166,7 @@ const Navigate = useNavigate();
                 }
                 {
                     !ResumeViewbtn&&(
-                <div className=" h-[100%] md:w-[45%] self-center scrollDiv secondaryCard ">
-                    <div className="resumeResponsiveness justify-between w-[100%] border-b-2 border-[#FF5500]">
-                        <div className="allCenter self-center">
-                            <h2 className="text-xl mx-4">
-                                Preview
-                            </h2>
-                        </div>
-                        <div className="allCenter py-2 self-center mx-4">
-                            <div className="flex flex-row gap-4">
-                            <button className="flex flex-row p-2 text-[#FF5500] bg-white rounded-lg self-end text-lg"
-                            onClick={()=>{console.log(resumeRef.current)}}
-                            >
-                                        Save <Save />
-                            </button>
-                            <ReactToPrint
-                                trigger={() => {
-                                    return (
-                                        <button className="flex flex-row p-2 bg-[#FF5500] text-white rounded-lg self-end text-lg">
-                                        Download <ArrowDown />
-                                    </button>
-                                    );
-                                }}
-                                content={() => resumeRef.current}
-                                />
-                            </div>
-                            </div>
-                    </div>
-                    <Resume
-                        ref={resumeRef}
-                        sections={sections}
-                        information={resumeInformation}
-                        //activeColor={activeColor}
-                    />
-                </div>
+                        ResumePreview
                     )
                 }
             </div>

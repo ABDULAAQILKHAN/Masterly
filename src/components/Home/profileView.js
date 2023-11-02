@@ -6,12 +6,17 @@ import { useSelector } from 'react-redux'
 import { Star } from "react-feather";
 import axios from "axios";
 import path from "../../path";
+import ConfirmBox from "../confirmbox";
+
 const ProfileView = ()=>{
     let user = useSelector(state=> state.user)
-    useEffect(()=>{
-        console.log("profile view",user)
-    },[user])
     const Navigate = useNavigate();
+    const [confirmBox,setConfirmbox] = useState(false);
+    const [confirm,setConfirm] = useState(false);
+    const [confirmMessage,setConfirmMessage] = useState("")
+    useEffect(()=>{
+        //console.log("profile view",user)
+    },[user])
     const auth = {
         headers: {
         "Content-Type": "application/json",
@@ -55,12 +60,32 @@ const ProfileView = ()=>{
                 console.log(error)
                 //setUpdateingState("Updated")
             }
-        
     }
+    const handleLogout = ()=>{
+        setConfirmMessage("Are you sure you want to Logout of this account?")
+        setConfirmbox(true)
+        /*localStorage.removeItem("local");
+        Navigate("/login")*/
+    }
+    useEffect(()=>{
+        setConfirmMessage("")
+        setConfirmbox(false)
+        //console.log(confirm)
+        confirm&&(localStorage.removeItem("local"),
+        Navigate("/login"))
+    },[confirm])
     return(
         <>
         {/** parent div for profileView screen */}
         <div className="h-[100%] w-[95%] homeContainers self-center flex flex-col justify-evenly gap-5 ">
+        {
+            //confirm dialog box
+        }
+        {confirmBox&&<ConfirmBox
+                        confirmMessage={confirmMessage} 
+                        setConfirm={setConfirm}
+                        setConfirmbox={setConfirmbox}
+                        />}
             <div className="allCenter justify-around gap-4 rounded-xl border-2 border-b-ThemeBorder h-[60%] pb-3">
             <div className="flex flex-row justify-center p-2">
                 <h1 className="text-xl">My profile</h1>
@@ -123,10 +148,7 @@ const ProfileView = ()=>{
                 onClick={()=>Navigate("/CreateResume")}>
                     Create Quiz
                 </button>
-                <button className="w-[200px] self-center button" onClick={()=>{
-                    localStorage.removeItem("local");
-                    Navigate("/login")
-                    }}>
+                <button className="w-[200px] self-center button" onClick={handleLogout}>
                     Logout
                 </button>
             </div>

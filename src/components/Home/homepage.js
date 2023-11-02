@@ -27,7 +27,7 @@ const Homepage = ()=>{
     },[])
     useEffect(()=>{
         //console.log(windowWidth.current)
-        windowWidth.current>=900&&setProfileViewVisiblity(true)
+        //windowWidth.current>=900&&setProfileViewVisiblity(true)
     },[windowWidth])
 
 const Navigate = useNavigate();

@@ -7,7 +7,8 @@ import VerifyOtp from './components/Authentications/VerifyOtp';
 import Homepage from './components/Home/homepage';
 import CreateResume from './components/profile/CreateResume';
 import EditProfile from './components/profile/EditProfile';
-
+import ConfirmBox from './components/confirmbox';
+import PasswordAuth from './components/passwordAuth';
 function App() {
   
   const windowWidth = useRef(window.innerWidth);

@@ -7,6 +7,7 @@ import '../css/global.css';
 import { ArrowLeft } from "react-feather";
 import { updateUserDetails } from "../../redux/userReducer";
 import { useSelector, useDispatch } from 'react-redux'
+import PasswordAuth from "../passwordAuth";
 //import Star from 'react-native-vector-icons/FontAwesome';
 
 const EditProfile = ()=>{
@@ -21,7 +22,9 @@ const EditProfile = ()=>{
         altEmail: user.altEmail,
     });
     const [updateLoading, setUpdateLoading] = useState(false);
-    const [updateingState, setUpdateingState] = useState("Update")
+    const [updateingState, setUpdateingState] = useState("Update");
+    const [confirmBox,setConfirmbox] = useState(false);
+    const [confirm,setConfirm] = useState(false);
     const handleInput = (event)=>{
         setData({...data,[event.target.name]:event.target.value})
     }
@@ -42,9 +45,15 @@ const EditProfile = ()=>{
             setUpdateingState("Update")
         }, 3000);
     },[updateingState])
+    useEffect(()=>{
+        setConfirmbox(false)
+        confirm&&handleUpdate()
+    },[confirm])
+    const openPassAuth = ()=>{
+        setConfirmbox(true)
+    }
     const handleUpdate = async ()=>{
         setUpdateingState("Updating...")
-        console.log(data)
         try{
             const response = await axios.post(`${path}/updateAccount`,data,auth)
             if(response.data.flag){
@@ -73,6 +82,13 @@ const EditProfile = ()=>{
                 {
                     //edit details div
                 }
+                {
+                    //auth dialog box
+                }
+                {confirmBox&&<PasswordAuth
+                    setConfirm={setConfirm}
+                    setConfirmbox={setConfirmbox}
+                />}
                 <div className="sm:min-h-[60%] max-h-[100%] allCenter  self-center gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] p-5  justify-center">
                 {
                     //basic profile card 
@@ -125,7 +141,7 @@ const EditProfile = ()=>{
                         />
                         </div>
                         <div className="w-[100%]">
-                        <button className="button rounded-xl self-center my-5 border-2 border-[#FF5500] w-fit p-1" onClick={handleUpdate}>
+                        <button className="button rounded-xl self-center my-5 border-2 border-[#FF5500] w-fit p-1" onClick={openPassAuth}>
                         {updateingState}
                         </button>
                         </div>
@@ -189,7 +205,7 @@ const EditProfile = ()=>{
                         */
                    }
                         <div className="w-[100%] allCenter items-center">
-                            <button className="mx-5 button" onClick={handleUpdate}>
+                            <button className="mx-5 button" onClick={openPassAuth}>
                                 {updateingState}
                             </button>
                         </div>

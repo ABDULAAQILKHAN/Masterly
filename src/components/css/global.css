@@ -74,8 +74,8 @@ body {
     overflow: hidden;
 }
 .secondaryCard {
-    border-radius: 20px;
-    background: white;
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
     box-shadow: -2px 0px 19px 8px rgba(0,0,0,0.47);
     -webkit-box-shadow: -2px 0px 19px 8px rgba(0,0,0,0.47);
     -moz-box-shadow: -2px 0px 19px 8px rgba(0,0,0,0.47);
@@ -89,6 +89,11 @@ body {
     border: none;
     border-bottom: 5px solid #FF5500;
     outline: none;
+}
+.inputBorder:focus {
+  border: none;
+  border-bottom: 5px solid #FF5500;
+  outline: none;
 }
 .scrollDiv {
     overflow-y: scroll;
@@ -121,7 +126,7 @@ body {
     background-color: transparent;
     @apply text-[#FF5500];
     border: 2px solid #FF5500;
-    border-radius: 25px;
+    border-radius: 10px;
     text-align: center;
 }
 .button:hover{
