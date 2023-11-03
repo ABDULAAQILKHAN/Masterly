@@ -91,10 +91,12 @@ body {
     outline: none;
 }
 .inputBorder:focus {
+  background-color: transparent;
   border: none;
   border-bottom: 5px solid #FF5500;
   outline: none;
 }
+
 .scrollDiv {
     overflow-y: scroll;
     overflow-x: scroll;
@@ -136,7 +138,7 @@ body {
 }
 .anim {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(-300px);
     animation: moveup 0.5s linear forwards;
 }
 .backgroundWall {
@@ -162,6 +164,6 @@ body {
 @keyframes moveup {
     100% {
         opacity: 1;
-        transform: translateY(30px);
+        transform: translateY(0px);
     }
 }

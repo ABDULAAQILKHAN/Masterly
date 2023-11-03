@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import path from '../../path';
 import "../css/global.css";
-import {  useDispatch } from 'react-redux';
-import {updateUserDetails} from "../../redux/userReducer";
-const Login = ({setFooterVisible})=>{
+import { useDispatch } from 'react-redux';
+import { updateUserDetails } from "../../redux/userReducer";
+const ForgotPassword = ({setFooterVisible})=>{
 const Navigate = useNavigate();
 const dispatch = useDispatch();
 const [Loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ const [passErrorVisible, setPassErrorVisible] = useState(false)
 let location = useLocation();
 useEffect(()=>{
   console.log(location.pathname)
-  location.pathname === "/login"&&setFooterVisible(true)
+  location.pathname === "/login"&&setFooterVisible(true);
 })
 const auth = {
     headers: {
@@ -30,16 +30,7 @@ const auth = {
       //Authorization: `Bearer ${token}`,
     }
   };
-  useEffect(()=>{
-    let  data  = JSON.parse(localStorage.getItem("local"))
-    if(data?.token){
-        let user = {
-            user:data?.user,token:data?.token
-        }
-        dispatch(updateUserDetails(user))
-        Navigate("/home")
-    }
-  },[])
+
 const [LoginCred,setLoginCred] = useState({
     uniqueId: '',
     password: '',
@@ -96,12 +87,12 @@ const handleLogin = async ()=>{
                 {/** main container */}
                 <div className="whiteCard h-fit self-center w-[95%] md:max-w-[60vw] xl:w-[30%] anim">
                     <div className="h-[100%] allCenter justify-between">
-                        <div className="h-[80px] flex flex-row justify-center bg-black opacity-80 z-10">
+                        <div className="h-[20%] flex flex-row justify-center bg-black opacity-80 z-10">
                             <img src={HalfLogo} className="z-15 h-[100%]" />
                         </div>
                         <div className="h-[80%] flex flex-col justify-between">
                             <div className="flex flex-row justify-center p-3">
-                                <h1 className=" text-2xl">Login</h1>
+                                <h1 className=" text-2xl">Forgot Password</h1>
                             </div>
                             {/** login fields containter */}
                             <div className=" h-[100%]">
@@ -148,7 +139,7 @@ const handleLogin = async ()=>{
                                     </button>
                                     {/** signup field and its link container */}
                                     <div className="w-[80%] my-6 self-center allCenter">
-                                    <Link className="text-l self-start hover:text-[#FF5500]" to="/Authenticate">Forgot Password?</Link>
+                                    <Link className="text-l self-start hover:text-[#FF5500]" to="/Forgot Password">Forgot Password?</Link>
                                         <Link className="text-l self-start hover:text-[#FF5500]" to="/signup">New to Masterly? Click here to Create account. </Link>
                                     </div>
                                     </div>
@@ -163,4 +154,4 @@ const handleLogin = async ()=>{
     )
 }
 
-export default Login;
+export default ForgotPassword;

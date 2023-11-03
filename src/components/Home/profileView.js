@@ -17,6 +17,7 @@ const ProfileView = ()=>{
     useEffect(()=>{
         //console.log("profile view",user)
     },[user])
+    
     const auth = {
         headers: {
         "Content-Type": "application/json",
@@ -24,6 +25,7 @@ const ProfileView = ()=>{
           Authorization: `Bearer ${user.token}`,
         }
       };
+      
     const tobase64converter = (file)=>{
         return new Promise((resolve, reject)=>{
             const fileReader = new FileReader();
@@ -71,9 +73,9 @@ const ProfileView = ()=>{
         setConfirmMessage("")
         setConfirmbox(false)
         //console.log(confirm)
-        if(confirm)
+        if(confirm){
         localStorage.removeItem("local");
-        Navigate("/login");
+        Navigate("/login");}
     },[confirm])
     return(
         <>

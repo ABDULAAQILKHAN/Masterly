@@ -18,9 +18,9 @@ export const counterSlice = createSlice({
       state.name = action.payload.user.name;
       state.userId = action.payload.user._id;
       state.uniqueId = action.payload.user.uniqueId;
-      state.mobile = action.payload.user.mobile;
-      state.altEmail = action.payload.user.altEmail;
-      state.profileImage = action.payload.user.profileImage;
+      state.mobile = action.payload.user?.mobile;
+      state.altEmail = action.payload.user?.altEmail;
+      //state.profileImage = action.payload.user.profileImage;
       state.token = action.payload.token;
       //return true;
     }
