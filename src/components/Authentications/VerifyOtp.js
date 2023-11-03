@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useNavigate, useLocation} from 'react-router-dom';
 import HalfLogo from "../../assets/final_half_logo.png"
 import PacmanLoader from "react-spinners/PacmanLoader";
 import axios from 'axios';
@@ -11,10 +11,10 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const VerifyOtp = ()=>{
 const dispatch = useDispatch();
-
-const [Loading, setLoading] = useState(false);
+const location = useLocation();
+const [Loading, setLoading] = useState("Verify");
 const Navigate = useNavigate();
-
+const [LoadingState,setLoadingState] = useState("Resend OTP...")
 const [otp,setotp] = useState(Number)
 const handleInput = (event) =>{
     if(!isNaN(event.target.value)){
@@ -31,38 +31,52 @@ const handleVerify = async ()=>{
     }
     else{
         try{
-            setLoading(true);
+            setLoading("Verifying...");
             const response = await axios.post(`${path}/verification`,otp)
             if(response.data.flag){
-                //dispatch user info in redux
-                //const {flag,user,token} = response.data;
-                //console.log(flag,user,token)
-                setLoading(false)
-                //alert("congo acc created")
                 let user = {
                     user:response.data.user,token:response.data.token
                 }
                 dispatch(updateUserDetails(user))
-                Navigate('/home')
+                Navigate("/login")
+                setLoading("Verifyied");
             }
             else{
                 alert(response.data.message)
-                setLoading(false)
+                setLoading("Verify")
             }
         }catch(error){
             console.log("error in otp catch",error);
-            setLoading(false);
-            
+            setLoading("Verify");            
         }
     }
 
 }
+const handleResendOtp = async()=>{
+    alert(location.state.uniqueId)
+    try{
+        setLoadingState("Sending...");
+        const response = await axios.post(`${path}/sendotp`,{uniqueId: location.state.uniqueId,type: "ResendOtp"})
+        if(response.data.flag){
+            setLoadingState("OTP Sent")
+        }
+        else{
+            alert(response.data.message);
+            setLoadingState("Resend OTP")
+        }
+    }catch(error){
+        alert("try again later")
+        console.log("error in otp send catch",error);
+        setLoadingState("Resend OTP");
+        
+    }
+}
     return(
         <>
         {/** parent div for login screen */}
-            <div className="h-[100vh] bg-primaryBG flex flex-col justify-center">
+            <div className="h-[100vh] w-[100vw] allCenter justify-center">
                 {/** main container */}
-                <div className="bg-[#072e33] whiteCard h-[60%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%]">
+                <div className="whiteCard h-fit self-center w-[95%] md:max-w-[60vw] xl:w-[30%] anim">
                     <div className="h-[100%] flex flex-col justify-between">
                         <div className="h-[20%] flex flex-row justify-center bg-black opacity-80">
                             <img src={HalfLogo} className="h-[100%]" />
@@ -87,27 +101,15 @@ const handleVerify = async ()=>{
                                     {/** Login button field container */}
                                     <div className="flex flex-col h-[35%] justify-between">
 
-                                    <button disabled={Loading}  className=" self-center w-[25%] h-[40px]  text-xl button" onClick={()=>{
+                                    <button className=" self-center text-xl button" onClick={()=>{
                                         handleVerify()
                                     }}>
                                     {/** Login button animation icon and text */}
-                                        {Loading?<>
-                                        <div className="mx-4">
-                                            <PacmanLoader
-                                                color={"#6da5c0"}
-                                                cssOverride={{
-                                                    width: '0'
-                                                }}
-                                                size={15}
-                                                aria-label="Loading Spinner"
-                                                data-testid="loader"
-                                            />
-                                        </div>
-                                        </>:"Verify"}
+                                        {Loading}
                                     </button>
                                     {/** signup field and its link container */}
                                     <div className="w-[80%] self-center">
-                                        <Link className="text-l  hover:text-[#FF5500]" to="/signup">Redend Otp...</Link>
+                                        <h2 className="text-l  hover:text-[#FF5500] cursor-pointer" onClick={handleResendOtp}>{LoadingState}</h2>
                                     </div>
                                     </div>
                                 </div>

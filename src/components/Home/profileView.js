@@ -138,20 +138,20 @@ const ProfileView = ()=>{
                }
             </div>
             <div className="h-[50%] allCenter border-2 border-t-ThemeBorder rounded-xl">
-            <div className="w-[100%] flex flex-col justify-evenly">
-                <button className="w-[200px] self-center button"
+            <div className="w-[100%] h-[100%] flex flex-col justify-evenly">
+                <button className="w-[200px] h-[40px] self-center button"
                 onClick={()=>Navigate("/EditProfile")}>
                     Edit Profile
                 </button>
-                <button className="w-[200px] self-center button"
+                <button className="w-[200px] h-[40px] self-center button"
                 onClick={()=>Navigate("/CreateResume")}>
                     CreateResume
                 </button>
-                <button className="w-[200px] self-center button"
+                <button className="w-[200px] h-[40px] self-center button"
                 onClick={()=>Navigate("/CreateResume")}>
                     Create Quiz
                 </button>
-                <button className="w-[200px] self-center button" onClick={handleLogout}>
+                <button className="w-[200px] h-[40px] self-center button" onClick={handleLogout}>
                     Logout
                 </button>
             </div>

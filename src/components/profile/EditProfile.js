@@ -20,6 +20,7 @@ const EditProfile = ()=>{
         uniqueId: user.uniqueId,
         mobile: user.mobile,
         altEmail: user.altEmail,
+        profession: user.profession,
     });
     const [updateLoading, setUpdateLoading] = useState(false);
     const [updateingState, setUpdateingState] = useState("Update");
@@ -116,14 +117,7 @@ const EditProfile = ()=>{
                         }
                         <div className="allCenter justify-center h-fit md:w-[50%] w-[100%]">
                         <div className="flex flex-wrap gap-6 self-center w-[90%]">
-                        <div style={{flexGrow:1}}>
-                        <input 
-                            className="w-[100%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
-                            placeholder={user.name} 
-                            name="name"
-                            onChange={handleInput}
-                        />
-                        </div>
+
                         <div  style={{flexGrow:1}}>
                         <input 
                             className="w-[100%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
@@ -141,8 +135,8 @@ const EditProfile = ()=>{
                         />
                         </div>
                         <div className="w-[100%]">
-                        <button className="button rounded-xl self-center my-5 border-2 border-[#FF5500] w-fit p-1" onClick={openPassAuth}>
-                        {updateingState}
+                        <button className="button rounded-xl self-center my-5 border-2 border-[#FF5500] w-fit p-1" onClick={()=>alert("cannot change these fields now.")}>
+                        {"Disabled"}
                         </button>
                         </div>
                         </div>
@@ -159,6 +153,23 @@ const EditProfile = ()=>{
                         }
                         <div className="w-[95%] mt-4 allCenter gap-5">
                         <div className="flex flex-wrap gap-6">
+                        <div style={{flexGrow:1}}>
+                        <input 
+                            className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
+                            placeholder={user.name} 
+                            name="name"
+                            onChange={handleInput}
+                        />
+                        </div>
+
+                        <div style={{flexGrow:1,}} className="flex flex-row justify-center">
+                        <input 
+                            className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
+                            placeholder={user.altEmail}
+                            name="altEmail"
+                            onChange={handleInput}
+                            />
+                        </div>
                         <div style={{flexGrow:1}}
                         className="flex flex-row justify-center">
                         <input 
@@ -168,13 +179,13 @@ const EditProfile = ()=>{
                             onChange={handleInput}
                             />
                         </div>
-                        <div style={{flexGrow:1,}} className="flex flex-row justify-center">
+                        <div style={{flexGrow:1}}>
                         <input 
                             className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
-                            placeholder={user.altEmail}
-                            name="altEmail"
+                            placeholder={user.profession} 
+                            name="profession"
                             onChange={handleInput}
-                            />
+                        />
                         </div>
                         </div>
                         {

@@ -10,6 +10,7 @@ export const counterSlice = createSlice({
     mobile: 'Enter mobile number',
     altEmail: 'Enter alternate email',
     profileImage: '',
+    profession: "Enter Your profession",
     token: null,
   },
   reducers: {
@@ -20,7 +21,8 @@ export const counterSlice = createSlice({
       state.uniqueId = action.payload.user.uniqueId;
       state.mobile = action.payload.user?.mobile;
       state.altEmail = action.payload.user?.altEmail;
-      //state.profileImage = action.payload.user.profileImage;
+      state.profileImage = action.payload.user.profileImage;
+      state.profession = action.payload.user.profession;
       state.token = action.payload.token;
       //return true;
     }

@@ -60,7 +60,7 @@ const PasswordAuth = ({setConfirm,setConfirmbox}) => {
                 <div className="h-fit w-[100%] allCenter">
                     <h2 className="w-fit self-start mx-4">Please enter password to verify!</h2>
                 </div>
-                <div className="h-fit w-[100%] my-3 allCenter ">
+                <div className="h-fit w-[100%] my-3 allCenter">
                     <input
                     className="w-[95%] inputBorder self-center mx-4" 
                     placeholder="Enter password here"
@@ -70,7 +70,7 @@ const PasswordAuth = ({setConfirm,setConfirmbox}) => {
                     {errors.length>0&&<span className="pt-3 text-[1rem] text-red-600">{errors}</span>}
                 </div>
                 <div className="w-[100%] h-fit allCenter justify-start">
-                    <button className="button" onClick={handleAuthenticate}>Authenticate</button>
+                    <button className="button h-[40px] w-[200px] self-center" onClick={handleAuthenticate}>Authenticate</button>
                 </div>
                 </div>
             </div>

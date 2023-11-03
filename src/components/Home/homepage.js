@@ -58,8 +58,8 @@ const Homepage = ()=>{
                 </div>
                     {
                     ProfileToggle?
-                    (<div className="absolute top-[10%] w-[100%] h-auto allCenter backdrop-blur-lg">
-                        <div className="h-[100%] w-[100%] z-10 sm:w-[80%] lg:w-[25%] mb-2  justify-center allCenter self-end">
+                    (<div className="absolute top-[10%] w-[100%] h-[90%] allCenter backdrop-blur-lg">
+                        <div className="h-[100%] w-[100%] z-10 sm:w-[80%] md:w-[45%] lg:w-[35%] mb-2  justify-center allCenter self-end">
                         <ProfileView />
                         </div>
                     </div>):""

@@ -12,68 +12,144 @@ const Signup = ()=>{
 
 const Navigate = useNavigate();
 const [Loading, setLoading] = useState(false);
-
-/*const auth = {
-    headers: {
-      "Access-Control-Allow-Origin": `${path}`,
-      //Authorization: `Bearer ${token}`,
-    }
-  };*/
+const [ButtonState, setButtonState] = useState('Join');
+const [nameError,setnameError] = useState("");
+const [nameErrorVisible,setnameErrorVisible] = useState(false);
+const [uniqueIdError,setuniqueIdError] = useState("");
+const [uniqueIdErrorVisible,setuniqueIdErrorVisible] = useState(false);
+const [passError,setpassError] = useState("");
+const [passErrorVisible,setpassErrorVisible] = useState(false);
+const [cpassError,setcpassError] = useState("");
+const [cpassErrorVisible,setcpassErrorVisible] = useState(false);
 const [SignupCred,setSignupCred] = useState({
     name: '',
     uniqueId: '',
     password: '',
     cpassword: '',
 })
+const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i ;
+const pattern = /[0-9]/g ;
 const handleInput = (event) =>{
+    console.log(event.target.name,event.target.value)
     setSignupCred({...SignupCred,[event.target.name]:event.target.value})
+    switch(event.target.name){
+        case "name":    nameAuthorizer(event.target.value);
+        break;
+        case "uniqueId":    UniqueIdAuthorizer(event.target.value);
+        break;
+        case "password":    passwordAuthorizer(event.target.value);
+        break;
+        case "cpassword":    cpasswordAuthorizer(event.target.value);
+        break;
+        default: return false;
+    }
 }
 
+const nameAuthorizer = (value)=>{
+    if(value.length < 5 ){
+        setnameError("Enter correct name");
+        setnameErrorVisible(true)
+    }
+    else{
+        setnameError("");
+        setnameErrorVisible(false)
+    }
+}
+const UniqueIdAuthorizer = (value)=>{
+    if(value.length < 6 || !regex.test(value)){
+        setuniqueIdError("Enter Unique ID");
+        setuniqueIdErrorVisible(true)
+    }
+    else{
+        setuniqueIdError("");
+        setuniqueIdErrorVisible(false)
+    }
+
+}
+const passwordAuthorizer = (value)=>{
+    if(!value.match(pattern) || !value.match('@') || value.length <= 9 || value >=38 ){
+        setpassError("Enter Password");
+        setpassErrorVisible(true)
+    }
+    else{
+        setpassError("");
+        setpassErrorVisible(false)
+    }
+}
+const cpasswordAuthorizer = (value)=>{
+    if( value !== SignupCred.password){
+        setcpassError("Enter Confirm password");
+        setcpassErrorVisible(true)
+    }
+    else{
+        setcpassError("");
+        setcpassErrorVisible(false)
+    }
+}
+const allErrorsTrue = ()=>{
+    setnameError("Enter name");
+    setnameErrorVisible(true);
+    setuniqueIdError("Enter Unique Id");
+    setuniqueIdErrorVisible(true);
+    setpassError("Enter password");
+    setpassErrorVisible(true);
+    setcpassError("Confirm password");
+    setcpassErrorVisible(true);
+}
+const allErrorsFalse = ()=>{
+    setnameError("");
+    setnameErrorVisible(false);
+    setuniqueIdError("");
+    setuniqueIdErrorVisible(false);
+    setpassError("");
+    setpassErrorVisible(false);
+    setcpassError("");
+    setcpassErrorVisible(false);
+}
 const handleSignup = async ()=>{
-    //console.log(SignupCred)
-    if(SignupCred.name === '' || SignupCred.uniqueId === '' || SignupCred.password === '' || SignupCred.cpassword === ''){
-        alert("One of the field is empty");
-        return false;
-    }
-    if(SignupCred.password !== SignupCred.cpassword){
-        alert("password doesnot match");
-        return false;
-    }
+
+        
+        if(SignupCred.name !== '' || SignupCred.uniqueId !== '' || SignupCred.password !== '' || SignupCred.cpassword !== ''){
+            allErrorsFalse()
         try{
             setLoading(true);
+            setButtonState("Sending OTP...")
             console.log(SignupCred)
             const response = await axios.post(`${path}/signup`,SignupCred)
             if(response.data.flag){
                 //alert(response.data.token)
                 setLoading(false)
-                Navigate('/verifyotp')
+                Navigate('/verifyotp',{state:{uniqueId: SignupCred.uniqueId}})
             }
             else{
                 alert(response.data.message)
                 setLoading(false)
+                setButtonState("Join")
             }
 
         }catch(error){
             console.log("error in signup catch",error);
             setLoading(false);
-            
+            setButtonState("Join")
         }
-    
-
+    }
+    else{
+        allErrorsTrue()
+    }
 }
     return(
         <>
         {/** parent div for signup screen */}
             <div className="h-[100vh] w-[100vw] allCenter">
                 {/** main container */}
-                <div className="whiteCard rounded-xl h-[90%] self-center w-[90vw] md:max-w-[60vw] xl:w-[30%] anim">
+                <div className="whiteCard h-fit self-center w-[95%] md:max-w-[60vw] xl:w-[30%] anim">
                     <div className="h-[100%] flex flex-col justify-start">
-                        <div className="h-[15%] flex flex-row justify-center bg-black opacity-80">
+                        <div className="h-[80px] flex flex-row justify-center bg-black opacity-80">
                             <img src={HalfLogo} className="h-[100%]" />
                         </div>
                         <div className="h-[80%]">
-                            <div className="flex flex-row justify-center ">
-                                <h1 className=" text-2xl ">Signup</h1>
+                            <div className="flex flex-row justify-center p-4">
+                                <h1 className=" text-[1.5rem] ">Signup</h1>
                             </div>
                             {/** signup fields containter */}
                             <div className=" h-[100%] ">
@@ -86,9 +162,12 @@ const handleSignup = async ()=>{
                                                 placeholder={"Enter Your Full name"} 
                                                 name="name"
                                                 type="text"
+                                                //onFocus={nameAuthorizer}
+                                                //onBlur={nameAuthorizer}
+                                                //onChange={(event)=>{nameAuthorizer();handleInput(event)}}
                                                 onChange={handleInput}
                                             />
-                                            <span style={{visibility: 'hidden'}} className="text-[red] self-center p-1">this is to genereate error</span>
+                                            <span style={{visibility: nameErrorVisible}} className="text-[red] self-center p-1">{nameError}</span>
                                         </div>
                                         <div className="flex flex-col">
                                             <input 
@@ -98,7 +177,7 @@ const handleSignup = async ()=>{
                                                 type="email"
                                                 onChange={handleInput}
                                             />
-                                            <span style={{visibility: 'hidden'}} className="text-[red] self-center p-1">this is to genereate error</span>
+                                            <span style={{visibility: uniqueIdErrorVisible}} className="text-[red] self-center p-1">{uniqueIdError}</span>
                                         </div>
                                         <div className="flex flex-col">
                                             <input 
@@ -106,9 +185,11 @@ const handleSignup = async ()=>{
                                                 placeholder={"Enter Strong password"} 
                                                 name="password"
                                                 type="password"
+                                                //onFocus={passwordAuthorizer}
+                                                //onBlur={passwordAuthorizer}
                                                 onChange={handleInput}
                                             />
-                                            <span style={{visibility: 'hidden'}} className="text-[red] self-center p-1">this is to genereate error</span>
+                                            <span style={{visibility: passErrorVisible}} className="text-[red] self-center p-1">{passError}</span>
                                         </div>
                                         <div className="flex flex-col">
                                             <input 
@@ -118,29 +199,16 @@ const handleSignup = async ()=>{
                                                 type="password"
                                                 onChange={handleInput}
                                             />
-                                            <span style={{visibility: 'hidden'}} className="text-[red] self-center p-1">this is to genereate error</span>
+                                            <span style={{visibility: cpassErrorVisible}} className="text-[red] self-center p-1">{cpassError}</span>
                                         </div>
                                     </div>
 
                                     {/** signup button field container */}
                                     <div className="allCenter justify-center my-5 h-[20%]">
-                                    <button disabled={Loading} className="self-center w-[25%] h-[40px] text-xl button" onClick={()=>{
+                                    <button disabled={Loading} className="self-center p-1 text-[1.3rem] button" onClick={()=>{
                                         handleSignup()
                                     }}>
-                                    {/** signup button animation icon and text */}
-                                        {Loading?<>
-                                        <div className="mx-6">
-                                            <PacmanLoader
-                                                color={"white"}
-                                                cssOverride={{
-                                                    width: '0'
-                                                }}
-                                                size={15}
-                                                aria-label="Loading Spinner"
-                                                data-testid="loader"
-                                            />
-                                        </div>
-                                        </>:"Join"}
+                                    {ButtonState}
                                     </button>
                                     {/** signup field and its link container */}
                                     <div className="w-[80%] my-6 self-center">

@@ -130,6 +130,7 @@ body {
     border: 2px solid #FF5500;
     border-radius: 10px;
     text-align: center;
+    @apply  h-[40px] w-[200px]
 }
 .button:hover{
     background-color: #FF5500;
