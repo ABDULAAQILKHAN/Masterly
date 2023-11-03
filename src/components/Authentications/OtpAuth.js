@@ -10,7 +10,7 @@ import "../css/global.css";
 import { ArrowLeft } from "react-feather";
 const OtpAuth = ({setFooterVisible})=>{
 const Navigate = useNavigate();
-
+const location = useLocation();
 const [LoadingState,setLoadingState] = useState("Send OTP")
 const [userError, setUserError] = useState("");
 const [userErrorVisible, setUserErrorVisible] = useState(false);
@@ -42,7 +42,7 @@ const handleSendOtp = async ()=>{
             if(response.data.flag){
                 setUserError("");
                 setUserErrorVisible(false)
-                alert("found")
+                //alert("found")
                 setOtpSent(false)
                 setLoadingState("Sent")
             }
