@@ -109,7 +109,7 @@ body {
     border-radius: 20px;
   }
   
-  .scrollDiv::-webkit-scrollbar-thumb {
+.scrollDiv::-webkit-scrollbar-thumb {
     border: 1px solid #FF5500 ; 
     border-radius: 20px;
     background-color: #FF5500;

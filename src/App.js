@@ -27,11 +27,11 @@ function App() {
       <Route exact path="/forgotpassword" element={<ForgotPassword /> } />
 
     </Routes>
-    {!FooterVisible&&
+    {/*!FooterVisible&&
       <div>
         <h1>Visit website</h1>
       </div>
-    }
+  */}
   </BrowserRouter>
   </>  
   );

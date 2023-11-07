@@ -223,7 +223,7 @@ function Editor(props) {
     </div>
   );
   const basicInfoBody = (
-    <div className={styles.detail}>
+    <div className={`${styles.detail}`}>
       <div className={styles.row}>
         <InputControl
           label="Name"
@@ -644,8 +644,9 @@ function Editor(props) {
             ""
           )}
         </div>
-
+        <div className="">
         {generateBody()}
+        </div>
 
         <button onClick={handleSubmission}>Save</button>
       </div>

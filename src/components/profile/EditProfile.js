@@ -165,7 +165,7 @@ const EditProfile = ()=>{
                         <div style={{flexGrow:1,}} className="flex flex-row justify-center">
                         <input 
                             className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
-                            placeholder={user.altEmail}
+                            placeholder={user.altEmail?user.altEmail:"Enter alternate email."}
                             name="altEmail"
                             onChange={handleInput}
                             />
@@ -174,7 +174,7 @@ const EditProfile = ()=>{
                         className="flex flex-row justify-center">
                         <input 
                             className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
-                            placeholder={user.mobile}
+                            placeholder={user.mobile?user.mobile:"Enter mobile number."}
                             name="mobile"
                             onChange={handleInput}
                             />
@@ -182,7 +182,7 @@ const EditProfile = ()=>{
                         <div style={{flexGrow:1}}>
                         <input 
                             className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
-                            placeholder={user.profession} 
+                            placeholder={user.profession?user.profession:"Enter your Profession."} 
                             name="profession"
                             onChange={handleInput}
                         />

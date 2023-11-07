@@ -34,12 +34,15 @@ const handleVerify = async ()=>{
             setLoading("Verifying...");
             const response = await axios.post(`${path}/verification`,otp)
             if(response.data.flag){
+                /*
                 let user = {
                     user:response.data.user,token:response.data.token
                 }
                 dispatch(updateUserDetails(user))
+                */
                 Navigate("/login")
-                setLoading("Verifyied");
+                setLoading("Verified");
+                //alert("verified")
             }
             else{
                 alert(response.data.message)

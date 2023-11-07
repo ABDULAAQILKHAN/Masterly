@@ -33,7 +33,7 @@ const Homepage = ()=>{
     return(
         <>
         {/** parent div for homepage screen */}
-            <div className="h-[100vh] w-[100vw] scrollDiv justify-start bg-transparent">
+            <div className="h-fit w-[100vw] justify-start bg-transparent">
                 {
                     //header view div
                 }
@@ -52,7 +52,7 @@ const Homepage = ()=>{
                     </div>
                 </div>
 
-                <div className="w-[100%] h-[100%]">
+                <div className="w-[100vw] h-fit">
                 <div className="h-[100%] w-[100%] allCenter self-center">
                     <MainView/>
                 </div>

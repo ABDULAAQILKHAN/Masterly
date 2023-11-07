@@ -148,8 +148,8 @@ const handleLogin = async ()=>{
                                     </button>
                                     {/** signup field and its link container */}
                                     <div className="w-[80%] my-6 self-center allCenter">
-                                    <Link className="text-l self-start hover:text-[#FF5500]" to="/Authenticate">Forgot Password?</Link>
-                                        <Link className="text-l self-start hover:text-[#FF5500]" to="/signup">New to Masterly? Click here to Create account. </Link>
+                                    <Link className="text-l  text-red-500 self-start hover:text-[#FF5500]" to="/Authenticate">Forgot Password?</Link>
+                                        <Link className="text-l self-start hover:text-[#FF5500] flex flex-row" to="/signup">New to Masterly? <p className="text-red-500">&nbsp;Click here&nbsp;</p> to Create account. </Link>
                                     </div>
                                     </div>
                                 </div>

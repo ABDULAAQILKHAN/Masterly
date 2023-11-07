@@ -70,7 +70,7 @@ const CreateResume = ()=>{
     
     const user = useSelector((state)=> state.user)
     //console.log(user)
-    const ResumePreview = <><div className=" h-[100%] md:w-[45%] self-center scrollDiv secondaryCard ">
+    const ResumePreview = <><div className="h-[100%] md:w-[45%] secondaryCard">
     <div className="flex flex-row justify-around w-[100%] border-b-2 border-[#FF5500]">
         {mobileResumePreview&&(<div className="allCenter ">
             <button className="w-fit h-fit self-start p-1 mx-4" onClick={()=>setMobileResumePreview(false)}>
@@ -92,7 +92,7 @@ const CreateResume = ()=>{
             <ReactToPrint
                 trigger={() => {
                     return (
-                        <button className="flex flex-row p-2 bg-[#FF5500] text-white rounded-lg self-end text-lg">
+                    <button className="rounded-lg p-2 border bg-ThemeBorder text-white flex flex-row">
                         Download <ArrowDown />
                     </button>
                     );
@@ -123,11 +123,11 @@ const CreateResume = ()=>{
                     </div>
                     )
             }
-            <div className="resumeResponsiveness h-[100%] w-[100%] justify-evenly gap-4 p-1 sm:p-4">
+            <div className="resumeResponsiveness h-[100%] w-[100%] justify-evenly gap-4 sm:p-4">
                 {
                     //edit details div
                 }
-                <div className="self-center secondaryCard h-[100%] w-[100%]">
+                <div className="self-center secondaryCard h-[100%] scrollDiv w-[100%]">
                 {
                     //header
                 }
@@ -153,7 +153,7 @@ const CreateResume = ()=>{
                 }
                 </div>
                 </div>
-                <div className="h-auto w-[100%]">
+                <div className="h-fit w-[100%]">
                     <Editor
                         sections={sections}
                         information={resumeInformation}
@@ -164,11 +164,13 @@ const CreateResume = ()=>{
                 {
                     //Resume preview div
                 }
+                <div className="">
                 {
                     !ResumeViewbtn&&(
                         ResumePreview
-                    )
-                }
+                        )
+                    }
+                </div>
             </div>
         </div>
         </>
