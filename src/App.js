@@ -6,10 +6,8 @@ import VerifyOtp from './components/Authentications/VerifyOtp';
 import Homepage from './components/Home/homepage';
 import CreateResume from './components/profile/CreateResume';
 import EditProfile from './components/profile/EditProfile';
-import ConfirmBox from './components/confirmbox';
-import PasswordAuth from './components/passwordAuth';
+
 import ForgotPassword from './components/Authentications/ForgotPassword';
-import OtpAuth from './components/Authentications/OtpAuth';
 function App() {
   const [FooterVisible, setFooterVisible] = useState(false);
   return (
@@ -23,8 +21,8 @@ function App() {
       <Route exact path="/home" element={<Homepage /> } />
       <Route exact path="/CreateResume" element={<CreateResume /> } />
       <Route exact path="/EditProfile" element={<EditProfile /> } />
-      <Route exact path="/Authenticate" element={<OtpAuth /> } />
-      <Route exact path="/forgotpassword" element={<ForgotPassword /> } />
+      <Route exact path="/ForgotPassword" element={<ForgotPassword /> } />
+
 
     </Routes>
     {/*!FooterVisible&&

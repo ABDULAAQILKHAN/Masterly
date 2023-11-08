@@ -8,6 +8,9 @@ import { ArrowLeft } from "react-feather";
 import { updateUserDetails } from "../../redux/userReducer";
 import { useSelector, useDispatch } from 'react-redux'
 import PasswordAuth from "../passwordAuth";
+import ResetPassAndEmail from "./ResetPassAndEmail";
+import { Star } from "react-feather";
+
 //import Star from 'react-native-vector-icons/FontAwesome';
 
 const EditProfile = ()=>{
@@ -17,15 +20,18 @@ const EditProfile = ()=>{
     const [data,setData] = useState({
         _id: user.userId,
         name: user.name,
-        uniqueId: user.uniqueId,
         mobile: user.mobile,
         altEmail: user.altEmail,
         profession: user.profession,
     });
+
     const [updateLoading, setUpdateLoading] = useState(false);
     const [updateingState, setUpdateingState] = useState("Update");
     const [confirmBox,setConfirmbox] = useState(false);
     const [confirm,setConfirm] = useState(false);
+    const [selectedImage, setSelectedImage] = useState()
+    const [passEmail,setpassEmail] = useState(false);
+    const [loadingState, setLoadingState] = useState("Change Password")
     const handleInput = (event)=>{
         setData({...data,[event.target.name]:event.target.value})
     }
@@ -39,7 +45,18 @@ const EditProfile = ()=>{
       };
     //const HalfStar = <Star name="star-half" size={30} color="#900" />
     //const FullStar = <Star name="star" size={30} color="#900" />
-
+    const tobase64converter = (file)=>{
+        return new Promise((resolve, reject)=>{
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () =>{
+                resolve(fileReader.result)
+            };
+            fileReader.onerror = (error)=>{
+                reject(error)
+            }
+        })
+    } 
     useEffect(()=>{
         updateingState==="Updated"&&
         setInterval(() => {
@@ -47,11 +64,42 @@ const EditProfile = ()=>{
         }, 3000);
     },[updateingState])
     useEffect(()=>{
+        //console.log("selected img",selectedImage)
+
+    },[setSelectedImage])
+    useEffect(()=>{
         setConfirmbox(false)
         confirm&&handleUpdate()
     },[confirm])
     const openPassAuth = ()=>{
         setConfirmbox(true)
+    }
+    const handleProfileImageUpload = async (event)=>{
+        let file = event.target.files[0];
+        //console.log(file);
+        const base64 = await tobase64converter(file);
+        console.log(base64);
+        setSelectedImage(base64)
+            try{
+                /*
+                const response = await axios.post(`${path}/uploadProfile`,base64,auth)
+                if(response.data.flag){
+                    console.log("res data",response.data.ResponseData)
+                    dispatch(updateUserDetails({user:response.data.ResponseData})) 
+                    let local = {
+                        user:response.data.ResponseData,token:user.token
+                    }                
+                    localStorage.setItem("local",JSON.stringify(local))
+                    setUpdateingState("Updated")
+                }else{
+                    alert("some error occured check after some time")
+                    //setUpdateingState("Updated")
+                }
+                */
+            }catch(error){
+                console.log(error)
+                //setUpdateingState("Updated")
+            }
     }
     const handleUpdate = async ()=>{
         setUpdateingState("Updating...")
@@ -74,7 +122,25 @@ const EditProfile = ()=>{
             setUpdateingState("Updated")
         }
     }
-
+    const handleChangePassword = async()=>{
+        try{
+            setLoadingState("Sending OTP...");
+            const response = await axios.post(`${path}/sendotp`,{uniqueId: user.uniqueId,type: "forgotpass"})
+            if(response.data.flag){
+                setLoadingState("Change Password")
+                setpassEmail(true)   
+            }
+            else{
+                alert(response.data.message);
+                setLoadingState("Resend OTP")
+            }
+        }catch(error){
+            alert("try again later")
+            console.log("error in otp send catch",error);
+            setLoadingState("Resend OTP");
+            
+        }
+    }
 
     return(
         <>
@@ -90,6 +156,11 @@ const EditProfile = ()=>{
                     setConfirm={setConfirm}
                     setConfirmbox={setConfirmbox}
                 />}
+                {
+                    //change email and pass component
+                }
+                {
+                    passEmail&&<ResetPassAndEmail setpassEmail={setpassEmail}/>}
                 <div className="sm:min-h-[60%] max-h-[100%] allCenter  self-center gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] p-5  justify-center">
                 {
                     //basic profile card 
@@ -109,34 +180,49 @@ const EditProfile = ()=>{
                         <div className="resumeResponsiveness p-5 overflow-hidden w-[100%] justify-evenly self-center h-fit">
                         <div className="sm:w-[50%] self-center allCenter">
                         <div className="h-[120px] w-[120px]  sm:h-[210px] sm:w-[210px]  rounded-full self-center border border-[#FF5500] overflow-hidden">
-                            <img src={require('../profile/selfie.png')} className="h-[100%] w-[100%] object-cover overflow-hidden"/>
+                        <input 
+                        type="file"
+                        lable="Image"
+                        name="profileImage"
+                        id="imageUpload"
+                        accept=".jpeg, .png, .jpg"
+                        className="h-0 w-0 hidden"
+                        onClick={handleProfileImageUpload}
+                    />
+                        <label htmlFor="imageUpload" >
+
+                            <img 
+                            src={require('../profile/selfie.png')}
+                            className="h-[100%] w-[100%] object-cover"/>
+                         </label>
                         </div>
                         </div>
                         {
                             //card side edit details
                         }
                         <div className="allCenter justify-center h-fit md:w-[50%] w-[100%]">
-                        <div className="flex flex-wrap gap-6 self-center w-[90%]">
+                        <div className="allCenter gap-6 self-center w-[90%]">
 
                         <div  style={{flexGrow:1}}>
                         <input 
                             className="w-[100%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
                             placeholder={user.uniqueId} 
                             name="uniqueId"
-                            onChange={handleInput}
+                            disabled={true}
                         />
                         </div>
                         <div  style={{flexGrow:1}}>
-                        <input 
-                            className="w-[100%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
-                            placeholder="Change password!" 
-                            name="password"
-                            onChange={handleInput}
-                        />
+                        <div className="flex flex-row justify-evenly">
+                            <Star color="gold"/>
+                            <Star />
+                            <Star />
+                            <Star />
+                            <Star />
+                        </div>
                         </div>
                         <div className="w-[100%]">
-                        <button className="button rounded-xl self-center my-5 border-2 border-[#FF5500] w-fit p-1" onClick={()=>alert("cannot change these fields now.")}>
-                        {"Disabled"}
+                        <button className="button rounded-xl self-center my-5 border-2 border-[#FF5500] w-fit p-1" onClick={handleChangePassword}>
+                        {loadingState}
                         </button>
                         </div>
                         </div>

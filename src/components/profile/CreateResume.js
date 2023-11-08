@@ -164,13 +164,11 @@ const CreateResume = ()=>{
                 {
                     //Resume preview div
                 }
-                <div className="">
                 {
                     !ResumeViewbtn&&(
                         ResumePreview
                         )
                     }
-                </div>
             </div>
         </div>
         </>

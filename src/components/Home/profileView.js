@@ -104,7 +104,7 @@ const ProfileView = ()=>{
                         name="profileImage"
                         id="imageUpload"
                         accept=".jpeg, .png, .jpg"
-                        className="h-0 w-0"
+                        className="h-0 w-0 hidden"
                         onClick={handleProfileImageUpload}
                     />
                         <label htmlFor="imageUpload" >

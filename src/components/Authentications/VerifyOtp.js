@@ -56,7 +56,7 @@ const handleVerify = async ()=>{
 
 }
 const handleResendOtp = async()=>{
-    alert(location.state.uniqueId)
+    //alert(location.state.uniqueId)
     try{
         setLoadingState("Sending...");
         const response = await axios.post(`${path}/sendotp`,{uniqueId: location.state.uniqueId,type: "ResendOtp"})
