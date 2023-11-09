@@ -16,36 +16,41 @@ const [Loading, setLoading] = useState("Verify");
 const Navigate = useNavigate();
 const [LoadingState,setLoadingState] = useState("Resend OTP...")
 const [otp,setotp] = useState(Number)
+const [otpError, setOtpError] = useState("")
+const [otpErrorVisible, setOtpErrorVisible] = useState(false)
+
 const handleInput = (event) =>{
     if(!isNaN(event.target.value)){
         setotp({...otp,[event.target.name]:event.target.value})
+        setOtpErrorVisible(false);
+        setOtpError("");
     }
     else{
-        alert("Only numbers allowed");
+        setOtpErrorVisible(true);
+        setOtpError("Only numbers allowed");
     }
 }
 const handleVerify = async ()=>{
     //console.log(otp)
     if(!otp){
-        alert("Enter OTP")
+        setOtpError("Enter OTP");
+        setOtpErrorVisible(true)
     }
     else{
         try{
+            setOtpErrorVisible(false);
+            setOtpError("")
             setLoading("Verifying...");
             const response = await axios.post(`${path}/verification`,otp)
             if(response.data.flag){
-                /*
-                let user = {
-                    user:response.data.user,token:response.data.token
-                }
-                dispatch(updateUserDetails(user))
-                */
-                Navigate("/login")
                 setLoading("Verified");
-                //alert("verified")
+                setOtpError("");
+                setOtpErrorVisible(false)
+                Navigate("/login")
             }
             else{
-                alert(response.data.message)
+                setOtpError(response.data.message);
+                setOtpErrorVisible(true)
                 setLoading("Verify")
             }
         }catch(error){
@@ -100,7 +105,7 @@ const handleResendOtp = async()=>{
                                         type="number"
                                         onChange={handleInput}
                                     />
-                                    <span style={{visibility: 'hidden'}} className="text-[red] self-center p-1">this is to genereate error</span>
+                                    <span style={{visibility: otpErrorVisible}} className="text-[red] self-center p-1">{otpError}</span>
                                     {/** Login button field container */}
                                     <div className="flex flex-col h-[35%] justify-between">
 

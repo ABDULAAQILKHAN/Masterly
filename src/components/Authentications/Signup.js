@@ -21,6 +21,12 @@ const [passError,setpassError] = useState("");
 const [passErrorVisible,setpassErrorVisible] = useState(false);
 const [cpassError,setcpassError] = useState("");
 const [cpassErrorVisible,setcpassErrorVisible] = useState(false);
+const [Check, setCheck] = useState({
+    name: false,
+    uniqueId: false,
+    password: false,
+    cpassword: false,
+});
 const [SignupCred,setSignupCred] = useState({
     name: '',
     uniqueId: '',
@@ -47,43 +53,58 @@ const handleInput = (event) =>{
 
 const nameAuthorizer = (value)=>{
     if(value.length < 5 ){
-        setnameError("Enter correct name");
+        setnameError("Enter full Name");
         setnameErrorVisible(true)
+        setCheck({...Check,name: false})
+        return false;
     }
     else{
+        setCheck({...Check,name: true})
         setnameError("");
         setnameErrorVisible(false)
+        return true;
     }
 }
 const UniqueIdAuthorizer = (value)=>{
     if(value.length < 6 || !regex.test(value)){
-        setuniqueIdError("Enter Unique ID");
-        setuniqueIdErrorVisible(true)
+        setuniqueIdError("Enter correct Email ID");
+        setuniqueIdErrorVisible(true);
+        setCheck({...Check,uniqueId: false})      
+        return false;  
     }
     else{
+        setCheck({...Check,uniqueId: true})        
         setuniqueIdError("");
         setuniqueIdErrorVisible(false)
+        return true;
     }
 
 }
 const passwordAuthorizer = (value)=>{
     if(!value.match(pattern) || !value.match('@') || value.length <= 9 || value >=38 ){
-        setpassError("Enter Password");
+        setpassError("include @,A,a and a number");
         setpassErrorVisible(true)
+        return false;
     }
     else{
+        setCheck({...Check,password: true})        
         setpassError("");
         setpassErrorVisible(false)
+        return true;
     }
 }
 const cpasswordAuthorizer = (value)=>{
     if( value !== SignupCred.password){
-        setcpassError("Enter Confirm password");
+        setcpassError("Confirm password does not match!");
         setcpassErrorVisible(true)
+        setCheck({...Check,cpassword: false})    
+        return false;    
     }
     else{
+        setCheck({...Check,cpassword: true})        
         setcpassError("");
         setcpassErrorVisible(false)
+        return true;
     }
 }
 const allErrorsTrue = ()=>{
@@ -106,11 +127,20 @@ const allErrorsFalse = ()=>{
     setcpassError("");
     setcpassErrorVisible(false);
 }
-const handleSignup = async ()=>{
-
-        
-        if(SignupCred.name !== '' || SignupCred.uniqueId !== '' || SignupCred.password !== '' || SignupCred.cpassword !== ''){
-            allErrorsFalse()
+const blankCheck = ()=>{
+    if(SignupCred.name !== '' || SignupCred.uniqueId !== '' || SignupCred.password !== '' || SignupCred.cpassword !== ''){
+        allErrorsFalse()
+        return true;
+    }
+    else{
+        allErrorsTrue()
+        return false;
+    }
+}
+/**
+ * Check.name && Check.uniqueId && Check.cpassword && Check.password
+ */
+const PostRequest = async ()=>{
         try{
             setLoading(true);
             setButtonState("Sending OTP...")
@@ -132,10 +162,22 @@ const handleSignup = async ()=>{
             setLoading(false);
             setButtonState("Join")
         }
+}
+const handleSignup = ()=>{        
+        if(blankCheck()){
+            console.log(Check)
+            if(nameAuthorizer(SignupCred.name)){
+                if(UniqueIdAuthorizer(SignupCred.uniqueId)){
+                    if(passwordAuthorizer(SignupCred.password)){
+                        if(cpasswordAuthorizer(SignupCred.cpassword)){
+                            PostRequest();
+                            allErrorsFalse();
+                        }
+                    }
+                }
+            }
     }
-    else{
-        allErrorsTrue()
-    }
+
 }
     return(
         <>
