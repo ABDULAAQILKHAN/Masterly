@@ -125,10 +125,13 @@ const handleLogin = async ()=>{
                                         onChange={handleInput}
                                         />
                                         <span style={{visibility: passErrorVisible}} className="text-[red] self-center p-1">{passError}</span>
+                                        <div className="w-[80%] flex flex-row self-center">
+                                        <Link className="text-l mx-1 self-start hover:text-[#FF5500]" to="/ForgotPassword">Forgot Password?</Link>
+                                        </div>
                                     </div>
                                     {/** Login button field container */}
-                                    <div className="flex flex-col justify-start ">
-                                    <button disabled={Loading} className=" self-center w-[25%] h-[40px]  text-xl button" onClick={()=>{
+                                    <div className="flex flex-col justify-start">
+                                    <button disabled={Loading} className=" self-center w-[25%] h-[40px] mt-3 text-xl button" onClick={()=>{
                                         handleLogin()
                                     }}>
                                     {/** Login button animation icon and text */}
@@ -148,7 +151,7 @@ const handleLogin = async ()=>{
                                     </button>
                                     {/** signup field and its link container */}
                                     <div className="w-[80%] my-6 self-center allCenter">
-                                    <Link className="text-l  text-red-500 self-start hover:text-[#FF5500]" to="/ForgotPassword">Forgot Password?</Link>
+
                                         <Link className="text-l self-start hover:text-[#FF5500] flex flex-row" to="/signup">New to Masterly? <p className="text-red-500">&nbsp;Click here&nbsp;</p> to Create account. </Link>
                                     </div>
                                     </div>

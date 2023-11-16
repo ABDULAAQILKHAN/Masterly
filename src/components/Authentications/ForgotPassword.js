@@ -22,9 +22,10 @@ const [passErrorVisible, setPassErrorVisible] = useState(false);
 const [otpSent, setOtpSent] = useState(true);
 
 useEffect(()=>{
-  console.log(location.pathname)
+  //console.log(location.pathname)
   location.pathname === "/login"&&setFooterVisible(true)
 })
+const pattern = /[0-9]/g ;
 
 const [input,setInput] = useState({
     uniqueId: '',
@@ -78,6 +79,14 @@ const handleVerifyOtp = async ()=>{
     }
     if(input.password === ''){
         setPassError("Enter Password!");
+        setPassErrorVisible(true)
+        if(!input.otp === ''){
+            setPassError("");
+            setPassErrorVisible(false)
+        }
+    }
+    if(!input.password.match(pattern) || !input.password.match('@') || input.password.length <= 9 || input.password >=38 ){
+        setPassError("Enter Strong password.");
         setPassErrorVisible(true)
         if(!input.otp === ''){
             setPassError("");

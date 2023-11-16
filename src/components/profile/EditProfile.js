@@ -161,7 +161,7 @@ const EditProfile = ()=>{
                 }
                 {
                     passEmail&&<ResetPassAndEmail setpassEmail={setpassEmail}/>}
-                <div className="sm:min-h-[60%] max-h-[100%] allCenter  self-center gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] p-5  justify-center">
+                <div className="sm:min-h-[60%] h-[100%] allCenter self-center p-5 sm:p-0 gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] justify-center">
                 {
                     //basic profile card 
                 }
