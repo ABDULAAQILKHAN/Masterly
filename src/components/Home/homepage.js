@@ -40,7 +40,9 @@ const Homepage = ()=>{
                 <div className="h-fit w-[100%] allCenter mb-4 bg-black opacity-80  py-3 ">
                     <div className="flex flex-row justify-between">
                         <div className="h-[40px] w-[200px]">
+                            <Link to="https://abdulaaqilkhan.github.io/MasterlyLanding/">
                             <img src={require('../../assets/final_half_logo.png')} className="h-[100%] w-[100%] object-cover"/>
+                            </Link>
                         </div>
                         <div className="mx-3 allCenter">
                             <button style={{color:"white"}}
