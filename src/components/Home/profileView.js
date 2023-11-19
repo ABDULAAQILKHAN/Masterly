@@ -90,7 +90,7 @@ const ProfileView = ()=>{
                         setConfirmbox={setConfirmbox}
                         />}
             <div className="allCenter justify-around gap-4 rounded-xl border-2 border-b-ThemeBorder h-[60%] pb-3">
-            <div className="flex flex-row justify-center p-2">
+            <div className="flex flex-row justify-evenly p-2">
                 <h1 className="text-xl">My profile</h1>
             </div>
             {
@@ -122,6 +122,10 @@ const ProfileView = ()=>{
                 <Star />
                 <Star />
             </div>
+            <button className="w-[200px] h-[40px] self-center button"
+                onClick={()=>Navigate("/EditProfile")}>
+                    Edit Profile
+            </button>
             {
                 //user information
                 /**
@@ -139,14 +143,16 @@ const ProfileView = ()=>{
             </div>
             <div className="h-[50%] allCenter border-2 border-t-ThemeBorder rounded-xl">
             <div className="w-[100%] h-[100%] flex flex-col justify-evenly">
-                <button className="w-[200px] h-[40px] self-center button"
-                onClick={()=>Navigate("/EditProfile")}>
-                    Edit Profile
-                </button>
-                <button className="w-[200px] h-[40px] self-center button"
+               <div className="h-fit w-[100%] flex flex-row justify-around">
+                <button className="self-center button"
                 onClick={()=>Navigate("/CreateResume")}>
-                    CreateResume
+                    Create Resume
                 </button>
+                <button className="self-center button"
+                onClick={()=>Navigate("/CreateResume")}>
+                    My Resume's
+                </button>
+               </div>
                 <button className="w-[200px] h-[40px] self-center button"
                 onClick={()=>Navigate("/CreateResume")}>
                     Create Quiz

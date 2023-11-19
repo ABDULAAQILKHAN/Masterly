@@ -10,17 +10,34 @@ import ReactToPrint from "react-to-print";
 import { Save } from "react-feather";
 import { ArrowDown } from "react-feather";
 import { ArrowLeft } from "react-feather";
-
+import {X} from 'react-feather';
 import { useSelector, useDispatch } from 'react-redux'
-const CreateResume = ()=>{
+import ScaleLoader from "react-spinners/ScaleLoader";
 
+const CreateResume = ()=>{
+    
     const resumeRef = useRef();
     const windowWidth = useRef(window.innerWidth);
     const [ResumeViewbtn, setResumeViewbtn] = useState(false)
     const [mobileResumePreview, setMobileResumePreview] = useState(false)
+    const [ResumeName, setResumeName] = useState('')
+    const [EnterNameVisible, setEnterNameVisible] = useState(false);
+    const [Loading, setLoading] = useState(false)
+    const [errors,setErrors] = useState("")
     useEffect(()=>{
         windowWidth.current<1080&&setResumeViewbtn(true)
     },[windowWidth])
+    const user = useSelector((state)=> state.user);
+    const auth = {
+        headers: {
+        "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": `${path}`,
+          Authorization: `Bearer ${user.token}`,
+        }
+      };
+    const handleInput = e => {
+        setResumeName(e.target.value)
+    }
     const sections = {
         basicInfo: "Basic Info",
         workExp: "Work Experience",
@@ -60,7 +77,7 @@ const CreateResume = ()=>{
           id: sections.summary,
           sectionTitle: sections.summary,
           detail: "",
-        },
+    },
         [sections.other]: {
           id: sections.other,
           sectionTitle: sections.other,
@@ -68,7 +85,38 @@ const CreateResume = ()=>{
         },
       });
     
-    const user = useSelector((state)=> state.user)
+    const handleSave = async()=>{
+        setLoading(true);
+        if(ResumeName.length==0||ResumeName.length<5){
+            setLoading(false);
+            setErrors("Enter Resume name with +5 characters");
+        }
+        else{
+            setErrors("");
+        const data = {
+            ResumeName,
+            userId: user.userId,
+            resumeInformation
+        }
+        console.log(data)
+        try{
+            const response = await axios.post(`${path}/saveResume`,data,auth)
+            if(response.data.flag){
+                setLoading(false);
+                setEnterNameVisible(false)
+                alert(response.data.msg)
+                console.log("saved ",response.data.Saved)
+            }
+            else{
+                setLoading(false);
+                setEnterNameVisible(false)
+                alert(response.data.msg)
+            }
+        }catch(error){
+            console.log(error)
+        }
+    }
+    }
     //console.log(user)
     const ResumePreview = <><div className="h-[100%] md:w-[45%] secondaryCard">
     <div className="flex flex-row justify-around w-[100%] border-b-2 border-[#FF5500]">
@@ -85,7 +133,7 @@ const CreateResume = ()=>{
         <div className="allCenter py-2 self-center mx-4">
             <div className="flex flex-row gap-4">
             <button className="flex flex-row p-2 text-[#FF5500] bg-white rounded-lg self-end text-lg"
-            onClick={()=>{console.log(resumeRef.current)}}
+            onClick={()=>setEnterNameVisible(true)}
             >
                         Save <Save />
             </button>
@@ -116,6 +164,52 @@ const CreateResume = ()=>{
         <>
         {/** parent div for Resume screen */}
         <div className="h-[100vh] w-[100vw]">
+            {
+                //resume name enter modal
+            }
+            {
+                        EnterNameVisible&&(<div className="h-[90vh] w-[100vw] absolute left-0 backdrop-blur-sm allCenter">
+                        <div className="h-fit w-[90%] sm:w-[60%] bg-black secondaryCard self-center pb-4 ">
+                
+                            <div className="w-[100%] border-2 border-b-ThemeBorder flex flex-row justify-between p-3">
+                                <h2 className="text-[1rem]">
+                                    Save Resume.
+                                </h2>
+                                <button onClick={()=>setEnterNameVisible(false)}>
+                                    <X />
+                                </button>
+                            </div>
+                            <div className="allCenter h-[100%] p-4 ">
+                            <div className="h-fit w-[100%] allCenter">
+                                <h2 className="w-fit self-start mx-4">{"Enter an appropriate Resume name."}</h2>
+                            </div>
+                            <div className="w-[100%] h-[100%] allCenter justify-start pb-4">
+                            <div className="h-fit w-[100%] my-3 allCenter">
+                                <input
+                                className="w-[95%] inputBorder self-center mx-4" 
+                                placeholder="Enter Name here"
+                                onChange={(e)=>setResumeName(e.target.value)}
+                                type="text"
+                                />
+                                {errors.length>0&&<span className="pt-3 text-[1rem] text-red-600">{errors}</span>}
+                            </div>
+                                <button className="button h-[40px] w-[200px] self-center" onClick={handleSave}>
+                                {Loading?<>
+                                <div className="">
+                                    <ScaleLoader
+                                        color={"white"}
+                                        size={10}
+                                        aria-label="Loading Spinner"
+                                        data-testid="loader"
+                                    />
+                                </div>
+                                </>:"Save"}
+                                </button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>)
+            }
             {
                 mobileResumePreview&&(
                     <div className="h-[100%] w-[100%]">

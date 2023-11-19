@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import {Link, Navigate, useLocation} from 'react-router-dom';
 import HalfLogo from "../../assets/final_half_logo.png"
-import PacmanLoader from "react-spinners/PacmanLoader";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import path from '../../path';
@@ -136,13 +136,10 @@ const handleLogin = async ()=>{
                                     }}>
                                     {/** Login button animation icon and text */}
                                         {Loading?<>
-                                        <div className="mx-4">
-                                            <PacmanLoader
-                                                color={"#6da5c0"}
-                                                cssOverride={{
-                                                    width: '0'
-                                                }}
-                                                size={15}
+                                        <div className="">
+                                            <ScaleLoader
+                                                color={"white"}
+                                                size={10}
                                                 aria-label="Loading Spinner"
                                                 data-testid="loader"
                                             />
