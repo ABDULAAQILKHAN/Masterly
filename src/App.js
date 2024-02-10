@@ -22,8 +22,6 @@ function App() {
       <Route exact path="/CreateResume" element={<CreateResume /> } />
       <Route exact path="/EditProfile" element={<EditProfile /> } />
       <Route exact path="/ForgotPassword" element={<ForgotPassword /> } />
-
-
     </Routes>
     {/*!FooterVisible&&
       <div>

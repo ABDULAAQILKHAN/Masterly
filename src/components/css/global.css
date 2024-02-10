@@ -130,12 +130,21 @@ body {
     border: 2px solid #FF5500;
     border-radius: 10px;
     text-align: center;
-    @apply  h-[40px] w-[35%]
+    @apply  h-[40px] w-fit px-3
 }
 .button:hover{
     background-color: #FF5500;
     color: white;
     transition-duration: 900ms;
+}
+.inputDiv {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr 1fr; 
+  gap: 3px 3px; 
+  grid-template-areas: 
+    ". ."
+    ". ."; 
 }
 .anim {
     opacity: 0;
@@ -160,6 +169,11 @@ body {
     }
     .headerVisiblity{
         display: block;
+    }
+    .inputDiv {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly; 
     }
 }
 @keyframes moveup {

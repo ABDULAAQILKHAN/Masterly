@@ -145,27 +145,27 @@ const EditProfile = ()=>{
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-[100vh] w-[100vw] allCenter">
+        <div className="h-[100%] w-[100vw] allCenter justify-center">
                 {
                     //edit details div
                 }
                 {
-                    //auth dialog box
-                }
-                {confirmBox&&<PasswordAuth
+                //auth dialog box
+                confirmBox&&<PasswordAuth
                     setConfirm={setConfirm}
-                    setConfirmbox={setConfirmbox}
-                />}
-                {
-                    //change email and pass component
+                    setConfirmbox={setConfirmbox}/>
                 }
                 {
-                    passEmail&&<ResetPassAndEmail setpassEmail={setpassEmail}/>}
-                <div className="sm:min-h-[60%] h-[100%] allCenter self-center p-5 sm:p-0 gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] justify-center">
+                //change email and pass component
+                passEmail&&<ResetPassAndEmail 
+                    setpassEmail={setpassEmail}/>
+                }
+
+                <div className="sm:h-[60%] h-[100%] allCenter self-center p-5 sm:p-0 gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] w-[100%] justify-center">
                 {
                     //basic profile card 
                 }
-                    <div className="w-[100%] secondaryCard self-center flex flex-row justify-between">
+                    <div className="w-[100%] secondaryCard self-center flex flex-row justify-between h-[50px]">
                     <div className="allCenter mx-4 w-[50px]">
 
                         <button className="self-center text-[#FF5500] w-fit h-fit" onClick={()=>Navigate("/home")}>
@@ -238,8 +238,8 @@ const EditProfile = ()=>{
                             //number & alternate email div
                         }
                         <div className="w-[95%] mt-4 allCenter gap-5">
-                        <div className="flex flex-wrap gap-6">
-                        <div style={{flexGrow:1}}>
+                        <div className="inputDiv">
+                        <div >
                         <input 
                             className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
                             placeholder={user.name} 
@@ -248,7 +248,7 @@ const EditProfile = ()=>{
                         />
                         </div>
 
-                        <div style={{flexGrow:1,}} className="flex flex-row justify-center">
+                        <div className="flex flex-row justify-center">
                         <input 
                             className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
                             placeholder={user.altEmail?user.altEmail:"Enter alternate email."}
@@ -256,7 +256,7 @@ const EditProfile = ()=>{
                             onChange={handleInput}
                             />
                         </div>
-                        <div style={{flexGrow:1}}
+                        <div 
                         className="flex flex-row justify-center">
                         <input 
                             className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
@@ -265,7 +265,7 @@ const EditProfile = ()=>{
                             onChange={handleInput}
                             />
                         </div>
-                        <div style={{flexGrow:1}}>
+                        <div >
                         <input 
                             className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
                             placeholder={user.profession?user.profession:"Enter your Profession."} 

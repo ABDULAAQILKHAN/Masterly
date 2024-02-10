@@ -80,7 +80,7 @@ const ProfileView = ()=>{
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-[100%] w-[95%] homeContainers self-center flex flex-col justify-evenly gap-5 ">
+        <div className="h-[100%] w-[95%] homeContainers self-center flex flex-col gap-5">
         {
             //confirm dialog box
         }
@@ -88,8 +88,13 @@ const ProfileView = ()=>{
                         confirmMessage={confirmMessage} 
                         setConfirm={setConfirm}
                         setConfirmbox={setConfirmbox}
-                        />}
-            <div className="allCenter justify-around gap-4 rounded-xl border-2 border-b-ThemeBorder h-[60%] pb-3">
+                        />
+        }
+        {
+            //first section
+        }
+            <div className="rounded-xl border-2 border-b-ThemeBorder pb-3  flex-1">
+            <div className="allCenter justify-around gap-4 h-[100%]">
             <div className="flex flex-row justify-evenly p-2">
                 <h1 className="text-xl">My profile</h1>
             </div>
@@ -115,33 +120,30 @@ const ProfileView = ()=>{
                          </label>
                 </div>
             </div>
-            <div className="flex flex-row justify-evenly">
-                <Star color="gold"/>
-                <Star />
-                <Star />
-                <Star />
-                <Star />
-            </div>
+            <div className="allCenter justify-center h-[100%] w-[100%]">
+            <div className="flex flex-row justify-around w-[100%]">
+                <div className=" h-[100%] w-[60%] allCenter">
+                    <div className="flex flex-row justify-evenly ">
+                        <Star color="gold"/>
+                        <Star />
+                        <Star />
+                        <Star />
+                        <Star />
+                    </div>
+                </div>
             <button className="w-[200px] h-[40px] self-center button"
                 onClick={()=>Navigate("/EditProfile")}>
                     Edit Profile
             </button>
+            </div>
+            </div>
+            </div>
+            </div>
             {
-                //user information
-                /**
-                 * 
-            <div className="max-h-[45%] min-h-[15%] w-[95%] border border-[#FF5500] scrollDiv self-center rounded-lg flex flex-col justify-evenly mt-3 ">
-                <div>
-                    <h3 className="text-start p-2 sm:text-[1.2rem]">{user.name}</h3>
-                </div>
-                <div>
-                    <h3 className="text-start p-2 sm:text-[1.2rem]">{user.uniqueId}</h3>
-                </div>
-            </div>
-                    */
-               }
-            </div>
-            <div className="h-[50%] allCenter border-2 border-t-ThemeBorder rounded-xl">
+                //second section
+            }
+            <div className="border-2 border-t-ThemeBorder rounded-xl  flex-1">
+            <div className="allCenter h-[100%]">
             <div className="w-[100%] h-[100%] flex flex-col justify-evenly">
                <div className="h-fit w-[100%] flex flex-row justify-around">
                 <button className="self-center button"
@@ -153,13 +155,21 @@ const ProfileView = ()=>{
                     My Resume's
                 </button>
                </div>
-                <button className="w-[200px] h-[40px] self-center button"
+               <div className="h-fit w-[100%] flex flex-row justify-around">
+               <button className="w-[200px] h-[40px] self-center button"
                 onClick={()=>Navigate("/CreateResume")}>
                     Create Quiz
                 </button>
+                <button className="w-[200px] h-[40px] self-center button"
+                onClick={()=>Navigate("/CreateResume")}>
+                    Take a Quiz
+                </button>
+               </div>
+
                 <button className="w-[200px] h-[40px] self-center button" onClick={handleLogout}>
                     Logout
                 </button>
+            </div>
             </div>
             </div>
         </div>
