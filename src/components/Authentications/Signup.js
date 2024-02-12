@@ -184,7 +184,7 @@ const handleSignup = ()=>{
         {/** parent div for signup screen */}
             <div className="h-[100vh] w-[100vw] allCenter">
                 {/** main container */}
-                <div className="whiteCard h-fit self-center w-[95%] md:max-w-[60vw] xl:w-[30%] anim">
+                <div className="whiteCard h-fit self-center w-[95%] sm:w-[80%] md:max-w-[60vw] xl:w-[30%] anim">
                     <div className="h-[100%] flex flex-col justify-start">
                         <div className="h-[80px] flex flex-row justify-center bg-black opacity-80">
                             <img src={HalfLogo} className="h-[100%]" />
@@ -247,14 +247,14 @@ const handleSignup = ()=>{
 
                                     {/** signup button field container */}
                                     <div className="allCenter justify-center my-5 h-[20%]">
-                                    <button disabled={Loading} className="self-center p-1 text-[1.3rem] button" onClick={()=>{
+                                    <button disabled={Loading} className="self-center p-1 text-[1.1rem] button" onClick={()=>{
                                         handleSignup()
                                     }}>
                                     {ButtonState}
                                     </button>
                                     {/** signup field and its link container */}
-                                    <div className="w-[80%] my-6 self-center">
-                                        <Link className="text-l  hover:text-[#FF5500]" to="/login">Already have a account...</Link>
+                                    <div className="w-[80%] h-[80px] p-6  self-center allCenter justify-center">
+                                        <Link className="text-l  text-[#FF5500]" to="/login">Already have a account...</Link>
                                     </div>
                                     </div>
                                 </div>

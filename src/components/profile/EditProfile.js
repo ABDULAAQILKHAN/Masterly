@@ -72,7 +72,14 @@ const EditProfile = ()=>{
         confirm&&handleUpdate()
     },[confirm])
     const openPassAuth = ()=>{
-        setConfirmbox(true)
+        if( data.name == user.name &&
+            data.mobile == user.mobile &&
+            data.altEmail == user.altEmail &&
+            data.profession == user.profession){
+                alert("no change detected!")
+            }else{
+                setConfirmbox(true)
+            }
     }
     const handleProfileImageUpload = async (event)=>{
         let file = event.target.files[0];
@@ -144,21 +151,23 @@ const EditProfile = ()=>{
 
     return(
         <>
+            {
+            //auth dialog box
+            confirmBox&&<PasswordAuth
+                setConfirm={setConfirm}
+                setConfirmbox={setConfirmbox}/>
+            }
+            {
+            //change email and pass component
+            passEmail&&<ResetPassAndEmail 
+                setpassEmail={setpassEmail}/>
+            }
         {/** parent div for profileView screen */}
-        <div className="h-[100%] w-[100vw] allCenter justify-center">
+        <div className="h-[100%] md:h-[100vh]  w-[100vw]">
+        <div className="h-[100%] w-[100%] allCenter justify-center ">
+
                 {
                     //edit details div
-                }
-                {
-                //auth dialog box
-                confirmBox&&<PasswordAuth
-                    setConfirm={setConfirm}
-                    setConfirmbox={setConfirmbox}/>
-                }
-                {
-                //change email and pass component
-                passEmail&&<ResetPassAndEmail 
-                    setpassEmail={setpassEmail}/>
                 }
 
                 <div className="sm:h-[60%] h-[100%] allCenter self-center p-5 sm:p-0 gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] w-[100%] justify-center">
@@ -168,7 +177,7 @@ const EditProfile = ()=>{
                     <div className="w-[100%] secondaryCard self-center flex flex-row justify-between h-[50px]">
                     <div className="allCenter mx-4 w-[50px]">
 
-                        <button className="self-center text-[#FF5500] w-fit h-fit" onClick={()=>Navigate("/home")}>
+                        <button className="self-center hover:text-[#FF5500] w-fit h-fit" onClick={()=>Navigate("/home")}>
                         <ArrowLeft />
                         </button>
                     </div>
@@ -313,6 +322,7 @@ const EditProfile = ()=>{
                 }
                 </div>
                
+                </div>
                 </div>
 
             </div>

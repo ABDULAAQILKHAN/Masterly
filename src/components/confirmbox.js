@@ -11,7 +11,7 @@ const ConfirmBox = ({confirmMessage,setConfirm,setConfirmbox}) => {
                     <h2 className="text-[1rem]">
                         Please Confirm
                     </h2>
-                    <button onClick={()=>setConfirmbox(false)}>
+                    <button className="hover:text-red-500 cursor-pointer" onClick={()=>setConfirmbox(false)}>
                         <X />
                     </button>
                 </div>

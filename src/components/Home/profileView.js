@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate} from 'react-router-dom';
 import '../css/global.css';
 import { useSelector } from 'react-redux'
-import { Star } from "react-feather";
+import { Star, Circle, ArrowUpRight, ArrowRight } from "react-feather";
 import axios from "axios";
 import path from "../../path";
 import ConfirmBox from "../confirmbox";
@@ -144,7 +144,54 @@ const ProfileView = ()=>{
             }
             <div className="border-2 border-t-ThemeBorder rounded-xl  flex-1">
             <div className="allCenter h-[100%]">
-            <div className="w-[100%] h-[100%] flex flex-col justify-evenly">
+            <div className="w-[100%] h-[100%] flex flex-col justify-between">
+                <div className="h-fit w-[100%] flex flex-row justify-between p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
+                onClick={()=>Navigate("/CreateResume")}>
+                    
+                    <p className="self-center text-[1.2rem]">
+                            Create Resume
+                    </p>
+                    <ArrowUpRight />
+
+                </div>
+                <div className="h-fit w-[100%] flex flex-row justify-between border border-b-grey-200 p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]"
+                onClick={()=>Navigate("/MyResume")}>
+                    
+                    <p className="self-center text-[1.2rem]">
+                            My Resume
+                    </p>
+                    <ArrowUpRight />
+
+                </div>
+                <div className="h-fit w-[100%] flex flex-row justify-between border border-b-grey-200 p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]">
+                    
+                    <p className="self-center text-[1.2rem]">
+                            Create Quiz
+                    </p>
+                    <ArrowUpRight />
+
+                </div>
+                <div className="h-fit w-[100%] flex flex-row justify-between border border-b-grey-200 p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]">
+                    
+                    <p className="self-center text-[1.2rem]">
+                            Take a Quiz
+                    </p>
+                    <ArrowUpRight />
+
+                </div>
+                <div className="h-fit w-[100%] flex flex-row justify-between border border-b-grey-200 p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
+                 onClick={handleLogout}>
+                    <p className="self-center text-[1.2rem]">
+                            Logout
+                    </p>
+                    <ArrowRight color="red"/>
+                </div>
+
+
+                {
+                    /**
+                     * 
+
                <div className="h-fit w-[100%] flex flex-row justify-around">
                 <button className="self-center button"
                 onClick={()=>Navigate("/CreateResume")}>
@@ -169,6 +216,8 @@ const ProfileView = ()=>{
                 <button className="w-[200px] h-[40px] self-center button" onClick={handleLogout}>
                     Logout
                 </button>
+                                     */
+            }
             </div>
             </div>
             </div>

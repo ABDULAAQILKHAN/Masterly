@@ -24,6 +24,8 @@ const CreateResume = ()=>{
     const [EnterNameVisible, setEnterNameVisible] = useState(false);
     const [Loading, setLoading] = useState(false)
     const [errors,setErrors] = useState("")
+    const [saveState, setSaveState] = useState("Save")
+
     useEffect(()=>{
         windowWidth.current<1080&&setResumeViewbtn(true)
     },[windowWidth])
@@ -35,6 +37,13 @@ const CreateResume = ()=>{
           Authorization: `Bearer ${user.token}`,
         }
       };
+      useEffect(()=>{
+        if(saveState === "Saved"){
+            setTimeout(()=>{
+                setSaveState("Save")
+            },3000)
+        }
+      },[saveState])
     const handleInput = e => {
         setResumeName(e.target.value)
     }
@@ -104,7 +113,8 @@ const CreateResume = ()=>{
             if(response.data.flag){
                 setLoading(false);
                 setEnterNameVisible(false)
-                alert(response.data.msg)
+                setSaveState("Saved")
+                //alert(response.data.msg)
                 console.log("saved ",response.data.Saved)
             }
             else{
@@ -121,7 +131,7 @@ const CreateResume = ()=>{
     const ResumePreview = <><div className="h-[100%] md:w-[45%] secondaryCard">
     <div className="flex flex-row justify-around w-[100%] border-b-2 border-[#FF5500]">
         {mobileResumePreview&&(<div className="allCenter ">
-            <button className="w-fit h-fit self-start p-1 mx-4" onClick={()=>setMobileResumePreview(false)}>
+            <button className="w-fit h-fit self-start p-1 mx-4 hover:text-[#FF5500]" onClick={()=>setMobileResumePreview(false)}>
                 <ArrowLeft />
             </button>
         </div>)}
@@ -154,6 +164,7 @@ const CreateResume = ()=>{
         ref={resumeRef}
         sections={sections}
         information={resumeInformation}
+        live={true}
         //activeColor={activeColor}
     />
 </div></>
@@ -193,9 +204,11 @@ const CreateResume = ()=>{
                                 />
                                 {errors.length>0&&<span className="pt-3 text-[1rem] text-red-600">{errors}</span>}
                             </div>
-                                <button className="button h-[40px] w-[200px] self-center" onClick={handleSave}>
+                                <button className="button text-white h-[40px] w-[200px] self-center " 
+                                style={{backgroundColor: Loading?"#FF5500":"white"}}
+                                onClick={handleSave}>
                                 {Loading?<>
-                                <div className="">
+                                <div className="text-white">
                                     <ScaleLoader
                                         color={"white"}
                                         size={10}
@@ -203,7 +216,7 @@ const CreateResume = ()=>{
                                         data-testid="loader"
                                     />
                                 </div>
-                                </>:"Save"}
+                                </>:saveState}
                                 </button>
                             </div>
                             </div>
@@ -227,7 +240,7 @@ const CreateResume = ()=>{
                 }
                 <div className="p-3 flex flex-row justify-between w-[100%] border-b-2 border-[#FF5500]">
                 <div className="allCenter">
-                    <button className="w-fit h-fit self-start p-1 mx-4" onClick={()=>Navigate("/home")}>
+                    <button className="w-fit h-fit self-start p-1 mx-4 hover:text-[#FF5500]" onClick={()=>Navigate("/home")}>
                         <ArrowLeft />
                     </button>
                 </div>

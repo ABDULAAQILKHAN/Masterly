@@ -131,7 +131,9 @@ const handleLogin = async ()=>{
                                     </div>
                                     {/** Login button field container */}
                                     <div className="flex flex-col justify-start">
-                                    <button disabled={Loading} className=" self-center w-[25%] h-[40px] mt-3 text-xl button" onClick={()=>{
+                                    <button disabled={Loading} className=" self-center w-[25%] h-[40px] mt-3 text-xl button"
+                                    style={{backgroundColor: Loading?"#FF5500":"white"}}
+                                    onClick={()=>{
                                         handleLogin()
                                     }}>
                                     {/** Login button animation icon and text */}
@@ -147,9 +149,9 @@ const handleLogin = async ()=>{
                                         </>:"Login"}
                                     </button>
                                     {/** signup field and its link container */}
-                                    <div className="w-[80%] my-6 self-center allCenter">
+                                    <div className="my-6 w-[80%] flex flex-row justify-start self-center">
 
-                                        <Link className="text-l self-start hover:text-[#FF5500] flex flex-row" to="/signup">New to Masterly? <p className="text-red-500">&nbsp;Click here&nbsp;</p> to Create account. </Link>
+                                        <Link className="text-l hover:text-[#FF5500]" to="/signup"><p className="text-red-500 ">New to Masterly? </p></Link>
                                     </div>
                                     </div>
                                 </div>
