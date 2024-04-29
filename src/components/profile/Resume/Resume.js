@@ -19,7 +19,23 @@ const Resume = forwardRef((props, ref) => {
   const [columns, setColumns] = useState([[], []]);
   const [source, setSource] = useState("");
   const [target, seTarget] = useState("");
-
+  const [info, setInfo] = useState({});
+  useEffect(()=>{
+    if (props.live) {
+      setInfo({
+        workExp: information[sections.workExp],
+      project: information[sections.project],
+      achievement: information[sections.achievement],
+      education: information[sections.education],
+      basicInfo: information[sections.basicInfo],
+      summary: information[sections.summary],
+      other: information[sections.other],
+    })
+  }else{
+    setInfo(props.information)
+  }    
+  },[])
+/*
   const info = {
     workExp: information[sections.workExp],
     project: information[sections.project],
@@ -29,11 +45,10 @@ const Resume = forwardRef((props, ref) => {
     summary: information[sections.summary],
     other: information[sections.other],
   };
-
+*/
   const getFormattedDate = (value) => {
     if (!value) return "";
     const date = new Date(value);
-
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
@@ -48,29 +63,29 @@ const Resume = forwardRef((props, ref) => {
           info.workExp?.sectionTitle ? "" : styles.hidden
         }`}
       >
-        <div className={styles.sectionTitle}>{info.workExp.sectionTitle}</div>
+        <div className={styles.sectionTitle}>{info.workExp?.sectionTitle}</div>
         <div className={styles.content}>
           {info.workExp?.details?.map((item) => (
-            <div className={styles.item} key={item.title}>
-              {item.title ? (
-                <p className={styles.title}>{item.title}</p>
+            <div className={styles.item} key={item?.title}>
+              {item?.title ? (
+                <p className={styles.title}>{item?.title}</p>
               ) : (
                 <span />
               )}
-              {item.companyName ? (
-                <p className={styles.subTitle}>{item.companyName}</p>
+              {item?.companyName ? (
+                <p className={styles.subTitle}>{item?.companyName}</p>
               ) : (
                 <span />
               )}
-              {item.certificationLink ? (
-                <a className={styles.link} href={item.certificationLink}>
+              {item?.certificationLink ? (
+                <a className={styles.link} href={item?.certificationLink}>
                   <Paperclip />
-                  {item.certificationLink}
+                  {item?.certificationLink}
                 </a>
               ) : (
                 <span />
               )}
-              {item.startDate && item.endDate ? (
+              {item?.startDate && item.endDate ? (
                 <div className={styles.date}>
                   <Calendar /> {getFormattedDate(item.startDate)}-
                   {getFormattedDate(item.endDate)}
@@ -78,16 +93,16 @@ const Resume = forwardRef((props, ref) => {
               ) : (
                 <div />
               )}
-              {item.location ? (
+              {item?.location ? (
                 <p className={styles.date}>
                   <MapPin /> Remote
                 </p>
               ) : (
                 <span />
               )}
-              {item.points?.length > 0 ? (
+              {item?.points?.length > 0 ? (
                 <ul className={styles.points}>
-                  {item.points?.map((elem, index) => (
+                  {item?.points?.map((elem, index) => (
                     <li className={styles.point} key={elem + index}>
                       {elem}
                     </li>
@@ -111,39 +126,39 @@ const Resume = forwardRef((props, ref) => {
           info.project?.sectionTitle ? "" : styles.hidden
         }`}
       >
-        <div className={styles.sectionTitle}>{info.project.sectionTitle}</div>
+        <div className={styles.sectionTitle} key={info.project?.sectionTitle}>{info.project?.sectionTitle}</div>
         <div className={styles.content}>
           {info.project?.details?.map((item) => (
             <div className={styles.item}>
-              {item.title ? (
-                <p className={styles.title}>{item.title}</p>
+              {item?.title ? (
+                <p className={styles.title}>{item?.title}</p>
               ) : (
                 <span />
               )}
-              {item.link ? (
-                <a className={styles.link} href={item.link}>
+              {item?.link ? (
+                <a className={styles.link} href={item?.link}>
                   <Paperclip />
-                  {item.link}
+                  {item?.link}
                 </a>
               ) : (
                 <span />
               )}
-              {item.github ? (
-                <a className={styles.link} href={item.github}>
+              {item?.github ? (
+                <a className={styles.link} href={item?.github}>
                   <GitHub />
-                  {item.github}
+                  {item?.github}
                 </a>
               ) : (
                 <span />
               )}
-              {item.overview ? (
-                <p className={styles.overview}>{item.overview} </p>
+              {item?.overview ? (
+                <p className={styles.overview}>{item?.overview} </p>
               ) : (
                 <span />
               )}
-              {item.points?.length > 0 ? (
+              {item?.points?.length > 0 ? (
                 <ul className={styles.points}>
-                  {item.points?.map((elem, index) => (
+                  {item?.points?.map((elem, index) => (
                     <li className={styles.point} key={elem + index}>
                       {elem}
                     </li>
@@ -173,17 +188,17 @@ const Resume = forwardRef((props, ref) => {
         <div className={styles.content}>
           {info.education?.details?.map((item) => (
             <div className={styles.item}>
-              {item.title ? (
-                <p className={styles.title}>{item.title}</p>
+              {item?.title ? (
+                <p className={styles.title}>{item?.title}</p>
               ) : (
                 <span />
               )}
-              {item.college ? (
-                <p className={styles.subTitle}>{item.college}</p>
+              {item?.college ? (
+                <p className={styles.subTitle}>{item?.college}</p>
               ) : (
                 <span />
               )}
-              {item.startDate && item.endDate ? (
+              {item?.startDate && item.endDate ? (
                 <div className={styles.date}>
                   <Calendar /> {getFormattedDate(item.startDate)} -
                   {getFormattedDate(item.endDate)}

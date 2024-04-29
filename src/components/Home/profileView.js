@@ -66,22 +66,25 @@ const ProfileView = ({setProfileToggle})=>{
     const handleLogout = ()=>{
         setConfirmMessage("Are you sure you want to Logout of this account?")
         setConfirmbox(true)
-        /*localStorage.removeItem("local");
-        Navigate("/login")*/
+
     }
     useEffect(()=>{
         setConfirmMessage("")
         setConfirmbox(false)
         //console.log(confirm)
         if(confirm){
+
         setProfileToggle(false)
         localStorage.removeItem("local");
-        Navigate("/login");}
+        localStorage.removeItem('persist:root')
+        //Navigate("/login");
+        window.location.reload(false);
+    }
     },[confirm])
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-[100%] w-[95%] homeContainers self-center flex flex-col gap-5">
+        <div className="h-[100%] w-[95%] homeContainers self-center flex flex-col gap-1">
         {
             //confirm dialog box
         }

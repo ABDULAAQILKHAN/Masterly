@@ -24,6 +24,9 @@ const MyResume = () => {
           Authorization: `Bearer ${user.token}`,
         }
       };
+      useEffect(()=>{
+        console.log(information[sections.basicInfo])
+      },[information])
     const getData = async ()=>{
       //console.log(user.userId)
       setLoader(true)
@@ -95,7 +98,7 @@ const sections = {
     summary: information[sections.summary],
     other: information[sections.other],
   };
-
+  console.log("resome",info)
   const getFormattedDate = (value) => {
     if (!value) return "";
     const date = new Date(value);
@@ -155,8 +158,8 @@ const sections = {
                     <Resume
                       ref={resumeRef}
                       sections={sections}
-                      information={information}
-                      live={true}
+                      information={info}
+                      live={false}
                       //activeColor={activeColor}
                       />
                   </div>

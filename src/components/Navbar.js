@@ -11,13 +11,21 @@ const Navbar = ({setNavVisible})=>{
     const Navigate = useNavigate();
 
     let user = useSelector(state=> state.user)
+    useEffect(()=>{
+        if(localStorage.getItem("local")){
+            user = JSON.parse(localStorage.getItem("local"))
+            console.log("local user",user)
+        }
 
+    },[localStorage.getItem("local")])
     const handleToggle = ()=>{
         setProfileToggle(prev=>!prev)
     }
     return <> 
         
-        <div className="h-fit w-[100%] allCenter mb-4 bg-black opacity-80  py-3 " 
+        <div className={`h-fit w-[100%] allCenter bg-[#141316] py-3`} style={{
+            visibility: user.token?"visible":"hidden"
+        }}
             >
                     <div className="flex flex-row justify-between">
                         <div className="h-[40px] w-[200px]" onClick={()=>{  
@@ -46,7 +54,7 @@ const Navbar = ({setNavVisible})=>{
                 {
                     ProfileToggle?
                     (<div className="absolute top-[10%] w-[100%] h-[90%] allCenter backdrop-blur-lg">
-                        <div className="h-[100%] w-[100%] z-10 sm:w-[80%] md:w-[45%] lg:w-[35%] mb-2  justify-center allCenter self-end">
+                        <div className="h-[100%] w-[100%] z-10 sm:w-[80%] md:w-[45%] lg:w-[25%] mb-2  justify-center allCenter self-end">
                         <ProfileView 
                         setProfileToggle={setProfileToggle} />
                         </div>

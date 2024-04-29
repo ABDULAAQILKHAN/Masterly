@@ -26,7 +26,7 @@ const Homepage = ()=>{
     return(
         <>
         {/** parent div for homepage screen */}
-            <div className="h-fit w-[100vw] justify-start bg-transparent">
+            <div className="h-fit w-[100vw] justify-start">
                 {
                     //header view div
                 }

@@ -37,6 +37,7 @@ const auth = {
   };
   useEffect(()=>{
     let  data  = JSON.parse(localStorage.getItem("local"))
+    console.log("login data",data)
     if(data?.token){
         let user = {
             user:data?.user,token:data?.token

@@ -2,14 +2,12 @@
   --color: #FF5500;
   width: 100%;
   flex: 1.2;
-  height: fit-content;
-  min-height: 900px;
+  height: 900px;
   box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 30px;
   padding: 30px;
-  overflow-x: scroll;
   scroll-behavior: smooth;
 }
 

@@ -12,11 +12,11 @@ export const counterSlice = createSlice({
     profileImage: '',
     profession: '',
     token: null,
+    loginState: false,
   },
   reducers: {
     updateUserDetails: (state, action) => {
-      try{
-
+      try{   
         //console.log("reduced state",action.payload.user);
         state.name = action.payload.user.name;
         state.userId = action.payload.user._id;
