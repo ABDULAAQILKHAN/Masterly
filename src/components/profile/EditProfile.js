@@ -170,22 +170,22 @@ const EditProfile = ()=>{
                     //edit details div
                 }
 
-                <div className="sm:h-[60%] h-[100%] allCenter self-center p-5 sm:p-0 gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] w-[100%] justify-center">
+                <div className="sm:h-[60%] h-[100%] allCenter self-center sm:p-0 gap-2 sm:w-[100%] md:w-[70%] xl:w-[60%] w-[100%] justify-center">
                 {
                     //basic profile card 
                 }
-                    <div className="w-[100%] secondaryCard self-center flex flex-row justify-between h-[50px]">
-                    <div className="allCenter mx-4 w-[50px]">
-
-                        <button className="self-center hover:text-[#FF5500] w-fit h-fit" onClick={()=>Navigate("/home")}>
-                        <ArrowLeft />
-                        </button>
-                    </div>
-                    <div className="allCenter mx-4">
-                        <h2 className="py-4 text-[1rem] ">Edit Profile</h2>
-                    </div>
-                    </div>
                     <div className="secondaryCard w-[100%] self-center h-fit allCenter">
+                        <div className="w-[100%] border-2 border-b-[#FF5500] self-center flex flex-row justify-between h-[50px]">
+                        <div className="allCenter mx-4 w-[50px]">
+
+                            <button className="self-center hover:text-[#FF5500] w-fit h-fit" onClick={()=>Navigate("/home")}>
+                            <ArrowLeft />
+                            </button>
+                        </div>
+                        <div className="allCenter mx-4">
+                            <h2 className="py-4 text-[1rem] ">Edit Profile</h2>
+                        </div>
+                        </div>
                         <div className="resumeResponsiveness p-5 overflow-hidden w-[100%] justify-evenly self-center h-fit">
                         <div className="sm:w-[50%] self-center allCenter">
                         <div className="h-[120px] w-[120px]  sm:h-[210px] sm:w-[210px]  rounded-full self-center border border-[#FF5500] overflow-hidden">
@@ -237,12 +237,10 @@ const EditProfile = ()=>{
                         </div>
                         </div>
                         </div>
-
-                    </div>
                     {
                         //other details start
                     }
-                    <div className="w-[100%] bg-black self-center flex flex-col justify-evenly secondaryCard items-center gap-5 pb-4">
+                    <div className="w-[100%] self-center flex flex-col justify-evenly items-center gap-5 pb-4">
                         {
                             //number & alternate email div
                         }
@@ -283,33 +281,6 @@ const EditProfile = ()=>{
                         />
                         </div>
                         </div>
-                        {
-                            /**
-                             * 
-                        <div className="flex flex-wrap gap-6">
-                        <div style={{flexGrow:1}} 
-                        className="flex flex-row justify-center">
-                        <input 
-                            className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
-                            placeholder="Enter Contact number" 
-                            name="mobile"
-                            //onChange={handleInput}
-                        />
-                        </div>
-                        {
-                            //level and links
-                        }
-                        <div style={{flexGrow:1,}} className="flex flex-row justify-center">
-                        <input 
-                            className="w-[80%] h-[50px] self-center bg-transparent placeholder: caret-[#FF5500] text-[1.1rem] placeholder:text-center inputBorder" 
-                            placeholder="Alternate Email address" 
-                            name="altEmail"
-                            //onChange={handleInput}
-                        />
-                        </div>
-                        </div>
-                        */
-                   }
                         <div className="w-[100%] allCenter items-center">
                             <button className="mx-5 button" onClick={openPassAuth}>
                                 {updateingState}
@@ -317,10 +288,12 @@ const EditProfile = ()=>{
                         </div>
                     </div>
 
+                    </div>
+                    </div>
+
                 {
                     //right resume div
                 }
-                </div>
                
                 </div>
                 </div>

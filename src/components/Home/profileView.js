@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate} from 'react-router-dom';
 import '../css/global.css';
 import { useSelector } from 'react-redux'
-import { Star, Circle, ArrowUpRight, ArrowRight } from "react-feather";
+import { Star, LogOut, ArrowUpRight, ArrowRight, FilePlus, FileText, Edit3, BookOpen, Home } from "react-feather";
 import axios from "axios";
 import path from "../../path";
 import ConfirmBox from "../confirmbox";
@@ -84,7 +84,7 @@ const ProfileView = ({setProfileToggle})=>{
     return(
         <>
         {/** parent div for profileView screen */}
-        <div className="h-[100%] w-[95%] homeContainers self-center flex flex-col gap-1">
+        <div className="h-[100%] w-[100%] sm:w-[95%] homeContainers self-center flex flex-col gap-1">
         {
             //confirm dialog box
         }
@@ -150,86 +150,77 @@ const ProfileView = ({setProfileToggle})=>{
             }
             <div className="border-2 border-t-ThemeBorder rounded-xl  flex-1">
             <div className="allCenter h-[100%]">
-            <div className="w-[100%] h-[100%] flex flex-col justify-between">
-                <div className="h-fit w-[100%] flex flex-row justify-between p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
+            <div className="w-[100%] h-[100%] flex flex-col gap-1">
+                <div className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
+                onClick={()=>{
+                    Navigate("/")
+                    setProfileToggle(false)
+                    }}>
+                    <div className="self-center w-[90%] flex flex-row justify-between">
+
+                    <p className="self-center text-[1.2rem]">
+                            Home
+                    </p>
+                    <Home />
+                    </div>
+
+                </div>
+                <div className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
                 onClick={()=>{
                     Navigate("/CreateResume")
                     setProfileToggle(false)
                     }}>
-                    
+                    <div className="self-center w-[90%] flex flex-row justify-between">
+
                     <p className="self-center text-[1.2rem]">
                             Create Resume
                     </p>
-                    <ArrowUpRight />
+                    <FilePlus />
+                    </div>
 
                 </div>
-                <div className="h-fit w-[100%] flex flex-row justify-between border border-b-grey-200 p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]"
+                <div className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]"
                 onClick={()=>{
                     setProfileToggle(false)
                     Navigate("/MyResume")
                     }}>
-                    
-                    <p className="self-center text-[1.2rem]">
-                            My Resume
-                    </p>
-                    <ArrowUpRight />
+                    <div className="self-center w-[90%] flex flex-row justify-between">
+                        
+                        <p className="self-center text-[1.2rem]">
+                                My Resume
+                        </p>
+                        <FileText />
+                    </div>
 
                 </div>
-                <div className="h-fit w-[100%] flex flex-row justify-between border border-b-grey-200 p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]">
-                    
-                    <p className="self-center text-[1.2rem]">
-                            Create Quiz
-                    </p>
-                    <ArrowUpRight />
+                <div className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]">
+                    <div className="self-center w-[90%] flex flex-row justify-between">
 
+                        <p className="self-center text-[1.2rem]">
+                                Create Quiz
+                        </p>
+                        <Edit3 />
+                    </div>
                 </div>
-                <div className="h-fit w-[100%] flex flex-row justify-between border border-b-grey-200 p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]">
-                    
+                <div className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]">
+                <div className="self-center w-[90%] flex flex-row justify-between">
                     <p className="self-center text-[1.2rem]">
                             Take a Quiz
                     </p>
-                    <ArrowUpRight />
-
+                    <BookOpen />
                 </div>
-                <div className="h-fit w-[100%] flex flex-row justify-between border border-b-grey-200 p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
+                </div>
+                <div className="h-fit w-[100%] flex flex-row 
+                justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
                  onClick={handleLogout}>
+                <div className="self-center w-[90%] flex flex-row justify-between">
+
                     <p className="self-center text-[1.2rem]">
                             Logout
                     </p>
-                    <ArrowRight color="red"/>
+                    <LogOut color="red"/>
                 </div>
-
-
-                {
-                    /**
-                     * 
-
-               <div className="h-fit w-[100%] flex flex-row justify-around">
-                <button className="self-center button"
-                onClick={()=>Navigate("/CreateResume")}>
-                    Create Resume
-                </button>
-                <button className="self-center button"
-                onClick={()=>Navigate("/CreateResume")}>
-                    My Resume's
-                </button>
-               </div>
-               <div className="h-fit w-[100%] flex flex-row justify-around">
-               <button className="w-[200px] h-[40px] self-center button"
-                onClick={()=>Navigate("/CreateResume")}>
-                    Create Quiz
-                </button>
-                <button className="w-[200px] h-[40px] self-center button"
-                onClick={()=>Navigate("/CreateResume")}>
-                    Take a Quiz
-                </button>
-               </div>
-
-                <button className="w-[200px] h-[40px] self-center button" onClick={handleLogout}>
-                    Logout
-                </button>
-                                     */
-            }
+                </div>
             </div>
             </div>
             </div>

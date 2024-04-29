@@ -23,7 +23,7 @@ const Navbar = ({setNavVisible})=>{
     }
     return <> 
         
-        <div className={`h-fit w-[100%] allCenter bg-[#141316] py-3`} style={{
+        <div className={`h-[8vh] w-[100%] allCenter bg-[#141316]`} style={{
             visibility: user.token?"visible":"hidden"
         }}
             >
@@ -55,8 +55,8 @@ const Navbar = ({setNavVisible})=>{
 
                 {
                     ProfileToggle?
-                    (<div className="absolute top-[10%] w-[100%] h-[90%] allCenter backdrop-blur-lg">
-                        <div className="h-[100%] w-[100%] z-10 sm:w-[80%] md:w-[45%] lg:w-[25%] mb-2  justify-center allCenter self-end">
+                    (<div className="absolute top-[8%] w-[100%] h-[92%] allCenter backdrop-blur-sm">
+                        <div className="h-[100%] w-[100%] z-10 sm:w-[80%] md:w-[45%] lg:w-[25%] sm:mb-2  justify-center allCenter self-end">
                         <ProfileView 
                         setProfileToggle={setProfileToggle} />
                         </div>
