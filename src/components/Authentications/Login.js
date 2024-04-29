@@ -9,7 +9,8 @@ import path from '../../path';
 import "../css/global.css";
 import {  useDispatch } from 'react-redux';
 import {updateUserDetails} from "../../redux/userReducer";
-const Login = ({setFooterVisible})=>{
+const Login = ()=>{
+
 const Navigate = useNavigate();
 const dispatch = useDispatch();
 const [Loading, setLoading] = useState(false);
@@ -19,10 +20,14 @@ const [userErrorVisible, setUserErrorVisible] = useState(false);
 const [passErrorVisible, setPassErrorVisible] = useState(false)
 
 let location = useLocation();
+/*
 useEffect(()=>{
   console.log(location.pathname)
-  location.pathname === "/login"&&setFooterVisible(true)
-})
+  location.pathname === "/login" || 
+  location.pathname === "/signup" || 
+  location.pathname === "/" && setNavVisible(true)
+},[location])
+*/
 const auth = {
     headers: {
     "Content-Type": "application/json",

@@ -8,7 +8,7 @@ import axios from "axios";
 import path from "../../path";
 import ConfirmBox from "../confirmbox";
 
-const ProfileView = ()=>{
+const ProfileView = ({setProfileToggle})=>{
     let user = useSelector(state=> state.user)
     const Navigate = useNavigate();
     const [confirmBox,setConfirmbox] = useState(false);
@@ -74,6 +74,7 @@ const ProfileView = ()=>{
         setConfirmbox(false)
         //console.log(confirm)
         if(confirm){
+        setProfileToggle(false)
         localStorage.removeItem("local");
         Navigate("/login");}
     },[confirm])
@@ -132,7 +133,9 @@ const ProfileView = ()=>{
                     </div>
                 </div>
             <button className="w-[200px] h-[40px] self-center button"
-                onClick={()=>Navigate("/EditProfile")}>
+                onClick={()=>{
+                    setProfileToggle(false)
+                    Navigate("/EditProfile")}}>
                     Edit Profile
             </button>
             </div>
@@ -146,7 +149,10 @@ const ProfileView = ()=>{
             <div className="allCenter h-[100%]">
             <div className="w-[100%] h-[100%] flex flex-col justify-between">
                 <div className="h-fit w-[100%] flex flex-row justify-between p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
-                onClick={()=>Navigate("/CreateResume")}>
+                onClick={()=>{
+                    Navigate("/CreateResume")
+                    setProfileToggle(false)
+                    }}>
                     
                     <p className="self-center text-[1.2rem]">
                             Create Resume
@@ -155,7 +161,10 @@ const ProfileView = ()=>{
 
                 </div>
                 <div className="h-fit w-[100%] flex flex-row justify-between border border-b-grey-200 p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]"
-                onClick={()=>Navigate("/MyResume")}>
+                onClick={()=>{
+                    setProfileToggle(false)
+                    Navigate("/MyResume")
+                    }}>
                     
                     <p className="self-center text-[1.2rem]">
                             My Resume

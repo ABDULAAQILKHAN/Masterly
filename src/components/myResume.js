@@ -36,9 +36,9 @@ const MyResume = () => {
           setLoader(false)
 
         }else{
-          alert(response.data.Msg)
+          //alert(response.data.Msg)
           setLoader(false)
-          Navigate("/home")
+          //Navigate("/home")
         }
         
 
@@ -128,10 +128,9 @@ const sections = {
           }</h1>
           </div>
           }
+            <div className="h-[100%] w-[100%] allCenter justify-center">                    
           {
-          found&& 
-                <div className="h-[100%] w-[100%] allCenter justify-center">                    
-
+          found?
                   <div className="self-center h-[100%] w-[95%]
                   sm:w-[80%] md:w-[65%] lg:w-[60%] bg-white">
                     <div className="w-[100%] secondaryCard self-center flex flex-row justify-between h-[50px]">
@@ -161,8 +160,17 @@ const sections = {
                       //activeColor={activeColor}
                       />
                   </div>
-                </div>
-        }
+                  :
+                  <div className="self-center h-[100%] allCenter gap-3">
+                    <h1 className="text-[1.3rem]">No resumes found!</h1>
+                    <button className="button self-center"
+                    onClick={()=>Navigate("/CreateResume")}
+                    >
+                      Create resume
+                    </button>
+                  </div>
+                }
+              </div>
       </>
     )
 };
