@@ -10,16 +10,23 @@ const MainView = ()=>{
     const user = useSelector(state=> state.user)
     //console.log("mainview",user)
 
-const Navigate = useNavigate();
+    const Navigate = useNavigate();
 
 
     return(
         <>
-        {/** parent div for profileView screen */}
-        <div className="h-[100%] w-[98%] homeContainers self-center">
-            <div className="flex bg-black flex-row justify-center">
-                <h1 className="">{user.name}</h1>
+        {/** parent div for profileView screen 
+         * 
+        */}
+        <div className="h-[100%] w-[100%] self-center">
+        <div className="w-[100%] h-[100%] flex flex-row justify-center gap-3">
+            <div className="w-[30%] bg-red-600 h-[100%]">
+
             </div>
+            <div className="w-[70%] bg-green-600 h-[100%]">
+
+            </div>
+        </div>
         </div>
         </>
 

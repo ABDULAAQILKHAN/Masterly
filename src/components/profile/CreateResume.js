@@ -25,6 +25,8 @@ const CreateResume = ()=>{
     const [Loading, setLoading] = useState(false)
     const [errors,setErrors] = useState("")
     const [saveState, setSaveState] = useState("Save")
+    const Navigate = useNavigate();
+
 
     useEffect(()=>{
         //windowWidth.current<1080&&setResumeViewbtn(true)
@@ -172,8 +174,6 @@ const CreateResume = ()=>{
 </div>
 </div>
 </>
-    const Navigate = useNavigate();
-
 
     return(
         <>
@@ -262,7 +262,7 @@ const CreateResume = ()=>{
                         />
                     }
                 {mobileResumePreview&&
-                <div>
+                <div className="absolute top-0 left-0 p-5 z-15 w-[100%] h-[100vh] backdrop-blur-sm allCenter">
                     {ResumePreview}
                 </div>}
 

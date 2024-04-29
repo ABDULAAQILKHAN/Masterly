@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import {Link, useNavigate, useLocation} from 'react-router-dom';
 import ProfileView from "./Home/profileView";
-import { User } from "react-feather";
+import { Menu } from "react-feather";
 import { useSelector } from 'react-redux'
 
 const Navbar = ({setNavVisible})=>{
@@ -45,7 +45,9 @@ const Navbar = ({setNavVisible})=>{
                             <button style={{color:"white"}}
                             type="button"
                              onClick={handleToggle}>
-                                <User />
+                                <Menu 
+                                color={ProfileToggle?"#ff5500":"white"}
+                                />
                             </button>
                         </div>
                     </div>
