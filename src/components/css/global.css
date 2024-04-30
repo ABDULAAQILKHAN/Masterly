@@ -87,10 +87,27 @@ body {
     -webkit-box-shadow: -2px 0px 19px 8px rgba(0,0,0,0.47);
     -moz-box-shadow: -2px 0px 19px 8px rgba(0,0,0,0.47);
 }
+.SearchinputBorder {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  caret-color: #ff5500;
+  
+}
+.SearchinputBorder:hover {
+  border: none;
+  /*border: 1px solid #FF5500;*/
+  outline: none;
+}
+.SearchinputBorder:focus {
+background-color: transparent;
+border: none;
+outline: none;
+}
 .inputBorder {
-    border: none;
-    border-bottom: 5px solid #FF5500;
-    outline: none;
+  border: none;
+  outline: none;
+  border-bottom: 5px solid #FF5500;
 }
 .inputBorder:hover {
     border: none;

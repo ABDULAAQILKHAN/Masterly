@@ -20,10 +20,10 @@ const MainView = ()=>{
         */}
         <div className="h-[100%] w-[100%] self-center">
         <div className="w-[100%] h-[100%] flex flex-row justify-center gap-3">
-            <div className="w-[30%] bg-red-600 h-[100%]">
+            <div className={`sm:flex hidden w-[30%] bg-red-600 h-[900px]`}>
 
             </div>
-            <div className="w-[70%] bg-green-600 h-[100%]">
+            <div className="sm:w-[70%] w-[100%] bg-green-600 h-[900px]">
 
             </div>
         </div>
