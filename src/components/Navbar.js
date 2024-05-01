@@ -40,7 +40,10 @@ const Navbar = ({setNavVisible})=>{
                         <div className="w-[50%] h-[fit] flex flex-row justify-end mx-4" >
                         
                             <div className="allCenter cursor-pointer"
-                            onClick={()=>setSearch(true)}
+                            onClick={()=>{
+                                setSearch(true)
+                            setProfileToggle(false)
+                            }}
                             >
                                 <Search color="white" />
                             </div>

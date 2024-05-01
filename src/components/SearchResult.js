@@ -3,7 +3,7 @@ import "./css/global.css";
 import axios from "axios";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import path from "../path";
-import { Search, UserX, XCircle} from 'react-feather';
+import { MessageCircle, Search, User, UserPlus, UserX, XCircle} from 'react-feather';
 const SearchResult = ({setSearch}) => {
     const [input, setInput] = useState("");
     const [users, setUsers] = useState([])
@@ -63,7 +63,7 @@ const SearchResult = ({setSearch}) => {
     return(<>
         <div className="h-[100vh] w-[100vw] left-0 top-0 absolute flex flex-row justify-center backdrop-blur-sm">
 
-            <div className="h-[90%] w-[90%] sm:w-[60%] bg-white self-center rounded-xl flex flex-col justify-start z-10">
+            <div className="h-[90%] w-[90%] sm:w-[60%] bg-white self-center rounded-xl flex flex-col justify-start z-10 border border-[#FF5500]">
 
                 <div className="w-[100%] h-[fit] flex flex-row gap-1 self-center border-b-2 border-b-[#ff5500]">
                 <input 
@@ -78,7 +78,7 @@ const SearchResult = ({setSearch}) => {
                 <div className=" h-[100%] w-[100%] mb-2">
                     {
                         notFound && input.length>0 &&<>
-                            <div className="self-center flex flex-col justify-center">
+                            <div className="self-center flex flex-col justify-center" key={5}>
                                 <UserX size={60} className="self-center"/>
                                 <h2 className="self-center">
                                     NO user found!
@@ -88,7 +88,7 @@ const SearchResult = ({setSearch}) => {
                     }
                     {
                         users.length===0 &&input.length===0 &&<>
-                            <div className="self-center flex flex-col justify-center">
+                            <div className="self-center flex flex-col justify-center" key={4}>
                                 <Search size={60} className="self-center"/>
                                 <h2 className="self-center">
                                     Search users
@@ -102,12 +102,10 @@ const SearchResult = ({setSearch}) => {
                                 <div key={user.userId} className="h-[8vh] w-[100%] my-4 flex flex-col justify-center">
                                     <div 
                                     style={{borderBottom: "2px solid #FF5500",}}
-                                    className="w-[90%] h-[100%] flex flex-row justify-around self-center hover:border-2 border-[#FF5500] cursor-pointer">
+                                    className="w-[90%] h-[100%] flex flex-row justify-around self-center  cursor-pointer">
                                          
-                                        <div className="h-[50px] w-[50px] border-2 border-[#FF5500] rounded-full ">
-                                            {
-                                                //image
-                                            }
+                                        <div className="h-[50px] w-[50px] border-2 border-[#FF5500] rounded-full allCenter">
+                                            <User color="#FF5500" className="self-center"/>
                                         </div>
                                         <div className="w-[70%] h-[100%] flex flex-col gap-2">
                                             <p>
@@ -117,7 +115,9 @@ const SearchResult = ({setSearch}) => {
                                                 {user.uniqueId}
                                             </p>
                                         </div>
-
+                                        <div className="allCenter h-[100%]">
+                                        <UserPlus className="hover:text-[#FF5500]"/>
+                                        </div>
                                     </div>
                                 </div>)
                         })}

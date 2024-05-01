@@ -131,7 +131,7 @@ const CreateResume = ()=>{
     }
     //console.log(user)
     const ResumePreview = <>
-    <div className="flex flex-row justify-center relative z-10">
+    <div className="h-[100%] flex flex-row justify-center z-10">
     <div className="h-[100%] md:w-[45%] secondaryCard self-center">
     <div className="flex flex-row justify-around w-[100%] border-b-2 border-[#FF5500]">
         {mobileResumePreview&&(<div className="allCenter ">
@@ -164,13 +164,20 @@ const CreateResume = ()=>{
             </div>
             </div>
     </div>
+    <div className="h-[90%] w-[100%] scrollDiv">
     <Resume
         ref={resumeRef}
         sections={sections}
         information={resumeInformation}
         live={true}
         //activeColor={activeColor}
-    />
+        />
+        {
+            /**
+             * 
+    */
+}
+    </div>
 </div>
 </div>
 </>
@@ -178,7 +185,7 @@ const CreateResume = ()=>{
     return(
         <>
         {/** parent div for Resume screen */}
-        <div className="h-[100vh] w-[100vw]">
+        <div className="h-[100%] w-[100vw]">
             {
                 //resume name enter modal
             }
