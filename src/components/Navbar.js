@@ -4,12 +4,15 @@ import {Link, useNavigate, useLocation} from 'react-router-dom';
 import ProfileView from "./Home/profileView";
 import { Menu } from "react-feather";
 import { useSelector } from 'react-redux'
+import { Search } from "react-feather";
+import SearchResult from "./SearchResult";
+
 
 const Navbar = ({setNavVisible})=>{
     const [ProfileToggle, setProfileToggle] = useState(false);
     const [navbarView,setNavbarView] = useState(true);
     const Navigate = useNavigate();
-
+    const [Searchres, setSearch] = useState(false);
     let user = useSelector(state=> state.user)
     useEffect(()=>{
         if(localStorage.getItem("local")){
@@ -32,24 +35,34 @@ const Navbar = ({setNavVisible})=>{
                             Navigate("/home")
                             setProfileToggle(false)
                         }}>
-                            {
-                                /**
-                                 * 
-                            <Link to="https://abdulaaqilkhan.github.io/MasterlyLanding/">
-                            </Link>
-                                */
-                            }
                             <img src={require('../assets/final_half_logo.png')} className="h-[100%] w-[100%] object-cover cursor-pointer"/>
                         </div>
+                        <div className="w-[50%] h-[fit] flex flex-row justify-end mx-4" >
+                        
+                            <div className="allCenter cursor-pointer"
+                            onClick={()=>{
+                                setSearch(true)
+                            setProfileToggle(false)
+                            }}
+                            >
+                                <Search color="white" />
+                            </div>
+                                {               
+                                Searchres&&<SearchResult 
+                                setSearch={setSearch}/>   
+                                }
+
                         <div className="mx-3 allCenter">
-                            <button style={{color:"white"}}
+                            <button className=" self-end" style={{color:"white"}}
                             type="button"
-                             onClick={handleToggle}>
+                            onClick={handleToggle}>
                                 <Menu 
                                 color={ProfileToggle?"#ff5500":"white"}
                                 />
                             </button>
                         </div>
+                        </div>
+
                     </div>
                 </div>
 
