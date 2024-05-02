@@ -80,7 +80,7 @@ const EditProfile = ()=>{
         //console.log(file);
         const base64 = await tobase64converter(file);
         console.log(base64);
-        setSelectedImage(base64)
+        //setSelectedImage(base64)
             try{
                 /*
                 const response = await axios.post(`${path}/uploadProfile`,base64,auth)
