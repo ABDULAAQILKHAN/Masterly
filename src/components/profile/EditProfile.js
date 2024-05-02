@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {Link, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import path from '../../path';
 import '../css/global.css';
@@ -24,12 +24,9 @@ const EditProfile = ()=>{
         altEmail: user.altEmail,
         profession: user.profession,
     });
-
-    const [updateLoading, setUpdateLoading] = useState(false);
     const [updateingState, setUpdateingState] = useState("Update");
     const [confirmBox,setConfirmbox] = useState(false);
     const [confirm,setConfirm] = useState(false);
-    const [selectedImage, setSelectedImage] = useState()
     const [passEmail,setpassEmail] = useState(false);
     const [loadingState, setLoadingState] = useState("Change Password")
     const handleInput = (event)=>{
@@ -63,10 +60,7 @@ const EditProfile = ()=>{
             setUpdateingState("Update")
         }, 3000);
     },[updateingState])
-    useEffect(()=>{
-        //console.log("selected img",selectedImage)
 
-    },[setSelectedImage])
     useEffect(()=>{
         setConfirmbox(false)
         confirm&&handleUpdate()
@@ -163,7 +157,7 @@ const EditProfile = ()=>{
                 setpassEmail={setpassEmail}/>
             }
         {/** parent div for profileView screen */}
-        <div className="h-[100%] md:h-[100vh]  w-[100vw]">
+        <div className="h-[100%] md:h-[100vh] w-[100vw]">
         <div className="h-[100%] w-[100%] allCenter justify-center ">
 
                 {

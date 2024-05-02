@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/global.css";
-import {X} from 'react-feather';
+import { XCircle} from 'react-feather';
 const ConfirmBox = ({confirmMessage,setConfirm,setConfirmbox}) => {
 
     return(<>
@@ -12,7 +12,7 @@ const ConfirmBox = ({confirmMessage,setConfirm,setConfirmbox}) => {
                         Please Confirm
                     </h2>
                     <button className="hover:text-red-500 cursor-pointer" onClick={()=>setConfirmbox(false)}>
-                        <X />
+                        <XCircle />
                     </button>
                 </div>
                 <div className="allCenter h-[100%] p-4 ">

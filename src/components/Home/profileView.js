@@ -8,12 +8,14 @@ import axios from "axios";
 import path from "../../path";
 import ConfirmBox from "../confirmbox";
 
-const ProfileView = ({setProfileToggle})=>{
+const ProfileView = ({setProfileToggle,setActive,active})=>{
     let user = useSelector(state=> state.user)
     const Navigate = useNavigate();
     const [confirmBox,setConfirmbox] = useState(false);
     const [confirm,setConfirm] = useState(false);
     const [confirmMessage,setConfirmMessage] = useState("")
+
+
     useEffect(()=>{
         //console.log("profile view",user)
     },[user])
@@ -151,9 +153,15 @@ const ProfileView = ({setProfileToggle})=>{
             <div className="border-2 border-t-ThemeBorder rounded-xl  flex-1">
             <div className="allCenter h-[100%]">
             <div className="w-[100%] h-[100%] flex flex-col gap-1">
-                <div className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
+                <div 
+                style={{
+                    backgroundColor: active === "Home" ? "#FF5500" : "white",
+                    color: active === "Home" ? "white" : "black"
+                }}
+                className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
                 onClick={()=>{
                     Navigate("/")
+                    setActive("Home")
                     setProfileToggle(false)
                     }}>
                     <div className="self-center w-[90%] flex flex-row justify-between">
@@ -165,10 +173,16 @@ const ProfileView = ({setProfileToggle})=>{
                     </div>
 
                 </div>
-                <div className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
+                <div 
+                style={{
+                    backgroundColor: active === "CreateResume" ? "#FF5500" : "white",
+                    color: active === "CreateResume" ? "white" : "black"
+                }}
+                className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]" 
                 onClick={()=>{
                     Navigate("/CreateResume")
                     setProfileToggle(false)
+                    setActive("CreateResume")
                     }}>
                     <div className="self-center w-[90%] flex flex-row justify-between">
 
@@ -179,10 +193,16 @@ const ProfileView = ({setProfileToggle})=>{
                     </div>
 
                 </div>
-                <div className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]"
+                <div
+                style={{
+                    backgroundColor: active === "MyResume" ? "#FF5500" : "white",
+                    color: active === "MyResume" ? "white" : "black"
+                }}
+                className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]"
                 onClick={()=>{
                     setProfileToggle(false)
                     Navigate("/MyResume")
+                    setActive("MyResume")
                     }}>
                     <div className="self-center w-[90%] flex flex-row justify-between">
                         
@@ -193,7 +213,12 @@ const ProfileView = ({setProfileToggle})=>{
                     </div>
 
                 </div>
-                <div className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]">
+                <div 
+                style={{
+                    backgroundColor: active === "CreateQuiz" ? "#FF5500" : "white",
+                    color: active === "CreateQuiz" ? "white" : "black"
+                }}
+                className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]">
                     <div className="self-center w-[90%] flex flex-row justify-between">
 
                         <p className="self-center text-[1.2rem]">
@@ -202,7 +227,12 @@ const ProfileView = ({setProfileToggle})=>{
                         <Edit3 />
                     </div>
                 </div>
-                <div className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]">
+                <div 
+                style={{
+                    backgroundColor: active === "TakeQuiz" ? "#FF5500" : "white",
+                    color: active === "TakeQuiz" ? "white" : "black"
+                }}
+                className="h-fit w-[100%] flex flex-row justify-center p-2 hover:bg-[grey] cursor-pointer hover:text-[#FF5500]">
                 <div className="self-center w-[90%] flex flex-row justify-between">
                     <p className="self-center text-[1.2rem]">
                             Take a Quiz

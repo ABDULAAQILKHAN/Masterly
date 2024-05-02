@@ -11,15 +11,21 @@ export const counterSlice = createSlice({
     altEmail: '',
     profileImage: '',
     profession: '',
+    friends: [],
+    sentRequest: [],
+    receivedRequest: [],
     token: null,
     loginState: false,
   },
   reducers: {
     updateUserDetails: (state, action) => {
       try{   
-        //console.log("reduced state",action.payload.user);
+        console.log("reduced state" ,action.payload.user);
         state.name = action.payload.user.name;
         state.userId = action.payload.user._id;
+        state.friends = action.payload.user.friends;
+        state.sentRequest = action.payload.user.sentRequest;
+        state.receivedRequest = action.payload.user.receivedRequest;
         state.uniqueId = action.payload.user.uniqueId;
         state.mobile = action.payload.user?.mobile;
         state.altEmail = action.payload.user?.altEmail;
