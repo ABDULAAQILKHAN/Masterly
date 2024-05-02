@@ -10,7 +10,7 @@ import ReactToPrint from "react-to-print";
 import { Save } from "react-feather";
 import { ArrowDown } from "react-feather";
 import { ArrowLeft } from "react-feather";
-import {X} from 'react-feather';
+import { XCircle} from 'react-feather';
 import { useSelector, useDispatch } from 'react-redux'
 import ScaleLoader from "react-spinners/ScaleLoader";
 
@@ -198,7 +198,7 @@ const CreateResume = ()=>{
                         Save Resume.
                     </h2>
                     <button onClick={()=>setEnterNameVisible(false)}>
-                        <X />
+                        <XCircle />
                     </button>
                 </div>
                 <div className="allCenter h-[100%] p-4 ">

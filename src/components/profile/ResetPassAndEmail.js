@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from 'react-redux'
 import "../css/global.css";
-import {X} from 'react-feather';
+import { XCircle} from 'react-feather';
 import path from "../../path";
 import axios from "axios";
 const ResetPassAndEmail = ({setpassEmail}) => {
@@ -123,7 +123,7 @@ const ResetPassAndEmail = ({setpassEmail}) => {
                         Update Email | password
                     </h2>
                     <button onClick={()=>setpassEmail(false)}>
-                        <X />
+                        <XCircle />
                     </button>
                 </div>
                 <div className="allCenter h-[100%] p-4">
