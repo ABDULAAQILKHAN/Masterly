@@ -167,7 +167,7 @@ const SearchResult = ({setSearch}) => {
                                             </p>
                                         </div>
                                         {
-                                            user.sentRequest.includes(item._id)?(
+                                            user?.sentRequest?.includes(item._id)?(
                                         <div className="allCenter h-[100%]">
                                         <UserCheck className="text-green-500" 
                                             onClick={()=>{alert("Already a friend!")
