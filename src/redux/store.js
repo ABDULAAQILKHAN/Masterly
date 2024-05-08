@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userReducer from './userReducer'
+import FriendsReducer from './FriendsReducer';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer,
         FLUSH,
@@ -18,7 +19,8 @@ const persistConfig = {
 };
 
 const reducer = combineReducers({
-  user: userReducer
+  user: userReducer,
+  friend: FriendsReducer
 })
 const persistedReducer = persistReducer(persistConfig, reducer);
 

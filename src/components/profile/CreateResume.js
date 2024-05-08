@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import {Link, useNavigate} from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../axiosInstance';
 import path from '../../path';
 import '../css/global.css';
 import Editor from './Editor/Editor'
@@ -111,7 +111,7 @@ const CreateResume = ()=>{
         }
         console.log(data)
         try{
-            const response = await axios.post(`${path}/saveResume`,data,auth)
+            const response = await axios.post(`/saveResume`,data)
             if(response.data.flag){
                 setLoading(false);
                 setEnterNameVisible(false)

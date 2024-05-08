@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate} from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../axiosInstance';
 import path from '../../path';
 import '../css/global.css';
 import { ArrowLeft } from "react-feather";
@@ -105,7 +105,7 @@ const EditProfile = ()=>{
     const handleUpdate = async ()=>{
         setUpdateingState("Updating...")
         try{
-            const response = await axios.post(`${path}/updateAccount`,data,auth)
+            const response = await axios.post(`/updateAccount`,data)
             if(response.data.flag){
                 console.log("res data",response.data.ResponseData)
                 dispatch(updateUserDetails({user:response.data.ResponseData})) 
@@ -126,7 +126,7 @@ const EditProfile = ()=>{
     const handleChangePassword = async()=>{
         try{
             setLoadingState("Sending OTP...");
-            const response = await axios.post(`${path}/sendotp`,{uniqueId: user.uniqueId,type: "forgotpass"})
+            const response = await axios.post(`/sendotp`,{uniqueId: user.uniqueId,type: "forgotpass"})
             if(response.data.flag){
                 setLoadingState("Change Password")
                 setpassEmail(true)   

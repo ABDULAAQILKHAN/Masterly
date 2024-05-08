@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import path from "../path";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import axios from "axios";
+import axios from "../axiosInstance";
 import Resume from "./profile/Resume/Resume"
 import { ArrowLeft, Trash } from "react-feather";
 import {Link, useNavigate} from 'react-router-dom';
@@ -31,7 +31,7 @@ const MyResume = () => {
       //console.log(user.userId)
       setLoader(true)
       try{
-        let response = await axios.post(`${path}/GetMyResume`,{userId: user.userId});
+        let response = await axios.post(`/GetMyResume`,{userId: user.userId});
         if(response.data.flag){
           setInformation(response?.data?.Info[0].resumeInformation)
           setResumeName(response?.data?.Info[0].ResumeName)
@@ -58,7 +58,7 @@ const MyResume = () => {
   const handleDeleteResume = async () =>{
     setLoader(true)
     try{
-        let response = await axios.post(`${path}/DeleteResume`,{userId: user.userId})
+        let response = await axios.post(`/DeleteResume`,{userId: user.userId})
         //console.log(response.data)
         if(response.data.flag){
           //alert("deleted")

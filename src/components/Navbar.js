@@ -20,7 +20,6 @@ const Navbar = ({setNavVisible})=>{
         setProfileToggle(prev=>!prev)
     }
     return <> 
-        
         <div className={`h-[8vh] w-[100vw] allCenter bg-[#141316]`} style={{
             visibility: user.token?"visible":"hidden"
         }}

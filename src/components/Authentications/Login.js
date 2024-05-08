@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {Link, Navigate, useLocation} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import HalfLogo from "../../assets/final_half_logo.png"
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import path from '../../path';
 import "../css/global.css";
 import {  useDispatch } from 'react-redux';
 import {updateUserDetails} from "../../redux/userReducer";
+import { updateFriendsDetails } from "../../redux/FriendsReducer";
 const Login = ()=>{
 
 const Navigate = useNavigate();
@@ -19,30 +20,24 @@ const [passError, setPassError] = useState("");
 const [userErrorVisible, setUserErrorVisible] = useState(false);
 const [passErrorVisible, setPassErrorVisible] = useState(false)
 
-let location = useLocation();
-/*
-useEffect(()=>{
-  console.log(location.pathname)
-  location.pathname === "/login" || 
-  location.pathname === "/signup" || 
-  location.pathname === "/" && setNavVisible(true)
-},[location])
-*/
-const auth = {
-    headers: {
-    "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": `${path}`,
-      //Authorization: `Bearer ${token}`,
-    }
-  };
   useEffect(()=>{
     let  data  = JSON.parse(localStorage.getItem("local"))
     console.log("login data",data)
     if(data?.token){
         let user = {
-            user:data?.user,token:data?.token
+            user:data?.user,
+            token:data?.token
         }
         dispatch(updateUserDetails(user))
+        let bulkFriendData = {
+            friends: data.user.friends,
+            sentRequest: data.user.sentRequest,
+            receivedRequest: data.user.receivedRequest,
+        }
+        dispatch(updateFriendsDetails({
+            type: "loginData",
+            bulkFriendData
+        }))
         Navigate("/home")
     }
   },[])
@@ -61,14 +56,25 @@ const handleLogin = async ()=>{
     else{
         try{
             setLoading(true);
-            const response = await axios.post(`${path}/login`,LoginCred,auth)
+            const response = await axios.post(`${path}/login`,LoginCred)
             if(response.data.flag){
                 setUserErrorVisible(false)
                 setPassErrorVisible(false)
                 let local = {
-                    user:response.data.user,token:response.data.token
+                    user:response.data.user,
+                    token:response.data.token
                 }
+                let bulkFriendData = {
+                    friends: response.data.user.friends,
+                    sentRequest: response.data.user.sentRequest,
+                    receivedRequest: response.data.user.receivedRequest,
+                }
+                dispatch(updateFriendsDetails({
+                    type: "loginData",
+                    bulkFriendData
+                }))
                 dispatch(updateUserDetails(local));
+                console.log("1st login",response.data.user)
                 localStorage.setItem("local",JSON.stringify(local))
                 Navigate("/home")
                 setLoading(false)
